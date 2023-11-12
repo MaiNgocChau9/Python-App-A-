@@ -9,6 +9,8 @@ a = ban_than()
 print("Tuổi hiện tại:",a.Tuoi)
 a.Tuoi = 11
 print("Tuổi năm trước:",a.Tuoi)
+print("Số thứ tự:",a.So_TT)
+print("Môn học yêu thích:",a.Mon_hoc_yeu_thich)
 
 """
     Ten = "Huỳnh Minh Hoàng"
