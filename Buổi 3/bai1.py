@@ -1,10 +1,11 @@
 class PhuongTien:
-    LoaiXe = "Tesla Model S Plaid"
-    HangXe = "Tesla"
-    MauSac = "Xám"
-    SoChoNgoi = 4
-    SoBanhXe = 4
-    GiaTien = 22299000000
+    def __init__(self, Loai_Xe, Hang_Xe, Mau_Sac, So_Cho_Ngoi, So_Banh_Xe, Gia_Tien):
+        self.LoaiXe = Loai_Xe
+        self.HangXe = Hang_Xe
+        self.MauSac = Mau_Sac
+        self.SoChoNgoi = So_Cho_Ngoi
+        self.SoBanhXe = So_Banh_Xe
+        self.GiaTien = Gia_Tien
 
     def XuatThongTin(self):
         print("Loại xe:", self.LoaiXe)
