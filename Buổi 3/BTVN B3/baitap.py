@@ -14,11 +14,11 @@ class ThuCung():
         print("Cân nặng:", self.CanNang)
     
     def doi_mau_long(self):
-        print()
         self.MauSac = str(input("Đổi màu lông: "))
 
 vatnuoi = ThuCung("Mèo", "Chó", "Đen", 2, 23)
 vatnuoi.xuatthongtin()
 
+print()
 vatnuoi.doi_mau_long()
 vatnuoi.xuatthongtin()
