@@ -15,11 +15,11 @@ class PhuongTien:
         print("Số bánh xe:", self.SoBanhXe)
         print("Giá tiền:", self.GiaTien)
 
-xe = PhuongTien()
-xe.LoaiXe = "Model S Long Range"
-xe.HangXe = "Tesla"
-xe.MauSac = "Đen"
-xe.SoChoNgoi = 4
-xe.SoBanhXe = 4
-xe.GiaTien = 18499000000
+xe = PhuongTien("Model S Long Range", "Tesla", "Đen", 4, 4, 18499000000)
+# xe.LoaiXe = "Model S Long Range"
+# xe.HangXe = "Tesla"
+# xe.MauSac = "Đen"
+# xe.SoChoNgoi = 4
+# xe.SoBanhXe = 4
+# xe.GiaTien = 18499000000
 xe.XuatThongTin()
