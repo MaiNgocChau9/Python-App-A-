@@ -8,9 +8,10 @@ class HocSinh():
     def Output(self):
         print("Họ và tên:", self.HoVaTen)
         print("Địa chỉ:", self.DiaChi)
-        print("Chiều cao:", self.ChieuCao)
-        print("Cân nặng:", self.CanNang)
+        print("Chiều cao:", self.ChieuCao, "cm")
+        print("Cân nặng:", self.CanNang, "kg")
         print("Học lực:", self.HocLuc)
+        
 #1. Khởi tạo để tạo đối tượng học sinh với tên, địa chỉ, chiều cao và cân nặng được cung cấp.
 print("#1. Khởi tạo để tạo đối tượng học sinh với tên, địa chỉ, chiều cao và cân nặng được cung cấp.")
 hocsinh = HocSinh("Mai Ngọc Châu", "Đồng Nai, Việt Nam", 158, 40, "Xuất sắc") #Cân nặng và Chiều cao có thể sai :vvv
