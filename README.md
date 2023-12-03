@@ -2,20 +2,12 @@
 
 Thư mục này chứa các code PyQt6 được viết bởi "Mai Ngọc Châu". Các code này được sử dụng để xây dựng các ứng dụng giao diện người dùng đồ họa (GUI) với Python.
 
-## Các ứng dụng mẫu
+## Lập trình
 
-Dưới đây là một số ứng dụng mẫu được lưu trữ trong thư mục này:
-
-* [Ứng dụng hiển thị thời gian hiện tại](./Ứng dụngHiểnThờiGianHiệnTại)
-* [Ứng dụng quản lý danh bạ](./ỨngDụngQuảnLýDanhBáo)
-
-## Nguyên tắc lập trình tốt nhất
-
-Các code trong thư mục này được viết theo các nguyên tắc lập trình tốt nhất, bao gồm:
+Các code trong thư mục này được viết theo các nguyên tắc lập trình, bao gồm:
 
 * Sử dụng các hàm và lớp để tổ chức code.
-* Thử nghiệm code một cách đầy đủ.
-* Sử dụng các chú thích để giải thích code.
+* Sử dụng PyQt6 để xây dụng giao diện người dùng đồ họa (GUI) trong Python.
 
 ## Giấy phép
 
