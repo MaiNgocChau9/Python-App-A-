@@ -7,7 +7,6 @@ class Login(QMainWindow):
         super().__init__()
         uic.loadUi("D:\Aurora\Python\Python App (A)\Python-App-A-\Buổi 5\pyqt_ui.ui", self)
                    
-                   
 app = QApplication(sys.argv)
 my_login_ui = Login()
 my_login_ui.show()
