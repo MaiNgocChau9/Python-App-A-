@@ -1,1 +1,1 @@
-print("Buổi 6")
+print("Buoi 6")
