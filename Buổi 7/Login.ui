@@ -269,7 +269,7 @@ QPushButton:hover{
   </widget>
  </widget>
  <resources>
-  <include location="D:/Aurora/Python/Python App (A)/Python-App-A-/Buổi 7/resource2.qrc"/>
+  <include location="D:/Aurora/Python/Python App (A)/Python-App-A-/Buổi 6/resource2.qrc"/>
  </resources>
  <connections/>
 </ui>
