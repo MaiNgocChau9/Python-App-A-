@@ -5,7 +5,7 @@ from PyQt6 import uic
 class Login(QMainWindow):
     def __init__ (self):
         super().__init__()
-        uic.loadUi("D:/Aurora/Python/Python App (A)/Python-App-A-/Buoi 7/baitap/Login.ui", self)
+        uic.loadUi("D:\Aurora\Python\Python App (A)\Python-App-A-\Buổi 7\baitap\Login.ui", self)
                    
 app = QApplication(sys.argv)
 my_login_ui = Login()
