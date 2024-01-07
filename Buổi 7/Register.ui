@@ -6,9 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>652</width>
-    <height>504</height>
+    <width>655</width>
+    <height>510</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>655</width>
+    <height>510</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>655</width>
+    <height>510</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -269,7 +281,7 @@ QPushButton:hover{
   </widget>
  </widget>
  <resources>
-  <include location="D:/Aurora/Python/Python App (A)/Python-App-A-/Buổi 6/resource2.qrc"/>
+  <include location="../Buổi 6/resource2.qrc"/>
  </resources>
  <connections/>
 </ui>
