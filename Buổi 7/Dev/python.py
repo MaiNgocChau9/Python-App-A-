@@ -19,7 +19,6 @@ class Login(QMainWindow):
     def __init__ (self):
         super().__init__()
         uic.loadUi("D:\Aurora\Python\Python App (A)\Python-App-A-\Buổi 7\Dev\Login.ui", self)
-        self.setWindowTitle("ABC")
         self.pushButton.clicked.connect(self.the_button_was_clicked)
         self.label_7.mousePressEvent = lambda event: self.register()
     
