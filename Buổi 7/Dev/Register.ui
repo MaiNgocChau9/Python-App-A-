@@ -185,7 +185,7 @@ QLineEdit:focus{
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>397</x>
+      <x>390</x>
       <y>60</y>
       <width>201</width>
       <height>51</height>

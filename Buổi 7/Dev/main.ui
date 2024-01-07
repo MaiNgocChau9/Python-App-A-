@@ -97,6 +97,9 @@ QLineEdit:focus{
 	background-color: white;
 }</string>
          </property>
+         <property name="placeholderText">
+          <string>Hỏi tôi bất cứ câu hỏi gì!</string>
+         </property>
         </widget>
        </item>
        <item>
@@ -130,7 +133,11 @@ QPushButton:pressed{
 }</string>
          </property>
          <property name="text">
-          <string>Send</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>send.png</normaloff>send.png</iconset>
          </property>
         </widget>
        </item>
