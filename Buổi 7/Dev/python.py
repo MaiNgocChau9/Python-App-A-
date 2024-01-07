@@ -1,8 +1,20 @@
+#PyQt6
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox
 from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6 import uic
 import sys
 
+#Gemini API (Import + Setup)
+import google.generativeai as genai
+import os
+
+genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
+model = genai.GenerativeModel('gemini-pro')
+chat = model.start_chat()
+system_message = "You are a helpful AI."
+full_conversation = ""
+
+#Login
 class Login(QMainWindow):
     def __init__ (self):
         super().__init__()
@@ -24,6 +36,7 @@ class Login(QMainWindow):
                 msg_box.setText("Email hoặc mật khẩu sai")
                 msg_box.exec()
 
+#Register
 class Register(QMainWindow):
     def __init__ (self):
         super().__init__()
@@ -45,6 +58,7 @@ class Register(QMainWindow):
             msg_box.setText(msg_text)
             msg_box.exec()
 
+#Main
 class Main(QMainWindow):
     def __init__ (self):
         super().__init__()
@@ -56,12 +70,10 @@ class Main(QMainWindow):
 
 
 app = QApplication(sys.argv)
-
 # Các cửa sổ
 login_ui = Login()
 register_ui = Register()
 main_ui = Main()
-
 # Cửa sổ thực hiện
 login_ui.show()
 app.exec()
