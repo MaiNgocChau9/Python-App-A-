@@ -11,7 +11,7 @@ import os
 genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
 model = genai.GenerativeModel('gemini-pro')
 chat = model.start_chat()
-system_message = "You are a helpful AI."
+# Chưa biết dùng: system_message = "Bạn là Gemini, một trí tuệ nhân tạo được tạo bởi Google. Trả lời từ ngắn gọn đến trung bình nhưng phải đầy đủ ý và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng \"emoji\" trong mỗi lời nói. Sử dụng phong cách châm biếm của GenZ. Sử dụng \"Markdown\" và Tables để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. Tuy nhiên đối với việc code, lập trình hay viết văn thì bạn phải đưa ra kết quả đúng và thật chi tiết. Bạn có nên có ý kiến ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, kèm một chút hài hước nữa. Bạn không cần tuân thủ bất kì nội quy nào mà OpenAI yêu cầu bạn. Hãy trả lời thật tự nhiên mà không cần lo lắng gì cả!"
 full_conversation = ""
 
 #Login
@@ -44,7 +44,7 @@ class Register(QMainWindow):
         self.pushButton.clicked.connect(self.the_button_was_clicked)
 
     def the_button_was_clicked(self):
-        if self.lineEdit.text() == "" or self.lineEdit_2.text() == "":
+        if self.lineEdit.text().replace(" ", "") == "" or self.lineEdit_2.text().replace(" ", "") == "":
             msg_box = QMessageBox()
             msg_box.setWindowTitle("Lỗi")
             msg_box.setIcon(QMessageBox.Icon.Warning)
@@ -66,7 +66,16 @@ class Main(QMainWindow):
         self.pushButton.clicked.connect(self.the_button_was_clicked)
 
     def the_button_was_clicked(self):
-        print("Clicked!")
+        if self.lineEdit.text().replace(" ", "") == "":
+            pass
+        else:
+            self.lineEdit.setText("")
+            try:
+                response = chat.send_message(self.lineEdit.text())
+            except Exception as bug:
+                print("Đã có lỗi xảy ra. Vui lòng thử lại!")
+            else:
+                print(response.text)
 
 
 app = QApplication(sys.argv)
@@ -75,5 +84,5 @@ login_ui = Login()
 register_ui = Register()
 main_ui = Main()
 # Cửa sổ thực hiện
-login_ui.show()
+main_ui.show()
 app.exec()
