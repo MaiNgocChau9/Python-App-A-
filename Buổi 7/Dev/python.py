@@ -74,6 +74,7 @@ class Main(QMainWindow):
                 response = chat.send_message(self.lineEdit.text())
             except Exception as bug:
                 print("Đã có lỗi xảy ra. Vui lòng thử lại!")
+                print("Bug:", {bug})
             else:
                 print(response.text)
 
