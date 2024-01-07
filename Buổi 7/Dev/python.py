@@ -85,8 +85,21 @@ class Main(QMainWindow):
             try:
                 response = chat.send_message(temp)
             except Exception as bug:
-                print("Đã có lỗi xảy ra. Vui lòng thử lại!")
-                print("Bug:", {bug})
+                print("Đã có lỗi xảy ra. Vui lòng thử lại sau ít phút!")
+                print(str(response.text))
+                self.full_conversation += f"""
+## You
+
+Đã có lỗi xảy ra. Vui lòng thử lại sau ít phút!
+
+
+## Gemini
+
+{response.text}
+
+
+
+                """
             else:
                 print(str(response.text))
                 self.full_conversation += f"""
