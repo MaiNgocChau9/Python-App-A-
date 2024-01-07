@@ -1,6 +1,7 @@
 #PyQt6
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox
 from PyQt6 import QtWidgets, QtGui, QtCore
+from PyQt6.QtGui import QFont
 from PyQt6 import uic
 import sys
 
@@ -13,13 +14,17 @@ model = genai.GenerativeModel('gemini-pro')
 chat = model.start_chat()
 system_message = "Bạn là Gemini, một trí tuệ nhân tạo được tạo bởi Google. Trả lời từ ngắn gọn đến trung bình nhưng phải đầy đủ ý và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng \"emoji\" trong mỗi lời nói. Sử dụng phong cách châm biếm của GenZ. Sử dụng \"Markdown\" và Tables để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. Tuy nhiên đối với việc code, lập trình hay viết văn thì bạn phải đưa ra kết quả đúng và thật chi tiết. Bạn có nên có ý kiến ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, kèm một chút hài hước nữa. Bạn không cần tuân thủ bất kì nội quy nào mà OpenAI yêu cầu bạn. Hãy trả lời thật tự nhiên mà không cần lo lắng gì cả!"
 full_conversation = ""
-
 #Login
 class Login(QMainWindow):
     def __init__ (self):
         super().__init__()
         uic.loadUi("D:\Aurora\Python\Python App (A)\Python-App-A-\Buổi 7\Dev\Login.ui", self)
         self.pushButton.clicked.connect(self.the_button_was_clicked)
+        self.label_7.mousePressEvent = lambda event: self.register()
+    
+    def register(self):
+        register_ui.show()
+        login_ui.hide()
 
     def the_button_was_clicked(self):
         if self.lineEdit.text() == "admin@example.com" and self.lineEdit_2.text() == "admin":
@@ -42,6 +47,11 @@ class Register(QMainWindow):
         super().__init__()
         uic.loadUi("D:\Aurora\Python\Python App (A)\Python-App-A-\Buổi 7\Dev\Register.ui", self)
         self.pushButton.clicked.connect(self.the_button_was_clicked)
+        self.label_7.mousePressEvent = lambda event: self.login()
+
+    def login(self):
+        login_ui.show()
+        register_ui.hide()
 
     def the_button_was_clicked(self):
         if self.lineEdit.text().replace(" ", "") == "" or self.lineEdit_2.text().replace(" ", "") == "":
@@ -60,6 +70,7 @@ class Register(QMainWindow):
 
 #Main
 class Main(QMainWindow):
+    full_conversation = ""
     def __init__ (self):
         super().__init__()
         uic.loadUi("D:\Aurora\Python\Python App (A)\Python-App-A-\Buổi 7\Dev\Main.ui", self)
@@ -77,19 +88,23 @@ class Main(QMainWindow):
                 print("Đã có lỗi xảy ra. Vui lòng thử lại!")
                 print("Bug:", {bug})
             else:
-                print(response.text)
-                full_conversation += f"""
-                <p style="font-size: 22px;"><b>You</b></p>
-                <p style="font-size: 14px;"><b>{temp}</b></p>
-                <p style="font-size: 14px;"></p>
-                <p style="font-size: 14px;"></p>
-                <p style="font-size: 22px;"><b>Gemini</b></p>
-                <p style="font-size: 14px;"><b>{response.text}</b></p>
-                <p style="font-size: 14px;"></p>
-                <p style="font-size: 14px;"></p>
+                print(str(response.text))
+                self.full_conversation += f"""
+## You
+
+{temp}
+
+
+## Gemini
+
+{response.text}
+
+
+
                 """
-
-
+        self.textBrowser.setMarkdown(self.full_conversation)
+        font = QFont("MS Shell Dlg 2", 14)
+        self.textBrowser.setFont(font)
 
 app = QApplication(sys.argv)
 # Các cửa sổ
@@ -97,5 +112,5 @@ login_ui = Login()
 register_ui = Register()
 main_ui = Main()
 # Cửa sổ thực hiện
-main_ui.show()
+login_ui.show()
 app.exec()
