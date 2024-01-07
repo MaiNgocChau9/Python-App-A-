@@ -20,16 +20,18 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">border: 10px;</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
      <widget class="QWidget" name="widget" native="true">
       <property name="styleSheet">
-       <string notr="true">border: 2px solid rgb(116, 170, 156);
+       <string notr="true">margin: 10px;
+border: 2px solid rgb(116, 170, 156);
 background-color: white;
-border-radius: 15px;</string>
+border-radius: 15px;
+margin-bottom: 0px;</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
@@ -37,13 +39,7 @@ border-radius: 15px;</string>
          <property name="styleSheet">
           <string notr="true">QTextBrowser{
 	border: 0px;
-}
-/*
-QTextBrowser QScrollBar::handle {
-	background-color: gray;
-	border: 0px;
-}
-*/</string>
+}</string>
          </property>
          <property name="html">
           <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
