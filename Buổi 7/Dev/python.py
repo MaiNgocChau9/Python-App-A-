@@ -116,7 +116,7 @@ class Main(QMainWindow):
 
                 """
         self.textBrowser.setMarkdown(self.full_conversation)
-        font = QFont("MS Shell Dlg 2", 14)
+        font = QFont("Segoe UI", 12)
         self.textBrowser.setFont(font)
 
 app = QApplication(sys.argv)
