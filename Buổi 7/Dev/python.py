@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox
 from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtGui import QFont
 from PyQt6 import uic
-import sys
+import sys  
 
 #Gemini API (Import + Setup)
 import google.generativeai as genai
