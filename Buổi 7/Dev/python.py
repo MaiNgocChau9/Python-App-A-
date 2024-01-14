@@ -104,16 +104,16 @@ class Main(QMainWindow):
                 print(str(response.text))
                 self.full_conversation += f"""
 ## You
-
+######
 {temp}
-
-
+######
+######
 ## Gemini
-
+######
 {response.text}
-
-
-
+######
+######
+######
                 """
         self.textBrowser.setMarkdown(self.full_conversation)
         font = QFont("Segoe UI", 12)
