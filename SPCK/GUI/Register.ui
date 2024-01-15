@@ -175,7 +175,7 @@ QLineEdit:focus{
     <property name="geometry">
      <rect>
       <x>430</x>
-      <y>380</y>
+      <y>400</y>
       <width>111</width>
       <height>51</height>
      </rect>
@@ -263,6 +263,24 @@ QPushButton:hover{
     </property>
     <property name="pixmap">
      <pixmap>../Image/OIG-removebg-preview.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>360</y>
+      <width>191</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>I agree to Eclahtee's terms</string>
     </property>
    </widget>
   </widget>
