@@ -23,3 +23,10 @@ Eclahtee có thể được sử dụng trong nhiều lĩnh vực khác nhau, ba
   * Tích hợp phương pháp Pomodoro vào Eclahtee sẽ giúp người dùng tập trung học tập và làm việc hiệu quả hơn.
   * Theo phương pháp Pomodoro, thời gian làm việc tập trung được chia thành các chu kỳ 25 phút, nghỉ giải lao 5 phút.
   * Sau 4 hiệp pomodoro, người dùng sẽ nghỉ dài 10-15 phút.
+
+  ### **Thêm hình ảnh, liên kết vào trong ghi chú**
+  * Thêm hình ảnh, liên kết vào trong ghi chú sẽ giúp người dùng ghi chú một cách chi tiết và sinh động hơn.
+  * Eclahtee sẽ hỗ trợ người dùng thêm hình ảnh, liên kết từ các nguồn khác nhau, chẳng hạn như Google Drive, Dropbox, Unsplash, ...
+  ### **Online**
+  * Người dùng truy cập ghi chú của mình từ mọi nơi thông qua Internet.
+  * Tích hợp với các ứng dụng khác, chẳng hạn như ứng dụng lịch, ứng dụng nhắc nhở, ... để đồng bộ giữa các ứng dụng.
