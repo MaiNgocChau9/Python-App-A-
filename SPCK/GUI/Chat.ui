@@ -216,6 +216,7 @@ background-color: #F0F0F0;</string>
             <property name="styleSheet">
              <string notr="true">QTextBrowser{
 	border: 0px;
+	background-color: white;
 }</string>
             </property>
             <property name="html">
