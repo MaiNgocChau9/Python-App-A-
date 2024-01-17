@@ -7,7 +7,7 @@
   * (Đang trên ý tưởng) Ngoài ra, A.I cũng giúp Eclahtee tự động tạo ra các ghi chú nhắc nhở, giúp người dùng không bỏ sót bất kỳ thông tin quan trọng nào.
 
   ### **Giao diện thân thiện:** 
-  * Eclahtee có giao diện đơn giản, dễ sử dụng. Người dùng có thể dễ dàng tạo mới, chỉnh sửa, xóa bỏ ghi chú chỉ với một vài thao tác đơn giản.
+  * Eclahtee có giao diện đơn giản, dễ sử dụng. Người dùng có thể dễ dàng tạo một ghi chú mới, chỉnh sửa, xóa bỏ ghi chú, tạo danh sách việc cần làm (Todo list) chỉ với một vài thao tác đơn giản.
 
 ## **Ứng dụng của Eclahtee**
 
