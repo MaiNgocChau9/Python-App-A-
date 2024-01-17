@@ -21,6 +21,7 @@ class Login(QMainWindow):
         uic.loadUi("SPCK\GUI\Login.ui", self)
         self.pushButton.clicked.connect(self.the_button_was_clicked)
         self.label_7.mousePressEvent = lambda event: self.register()
+
     
     def register(self):
         register_ui.show()
@@ -28,12 +29,19 @@ class Login(QMainWindow):
 
     def the_button_was_clicked(self):
         if self.lineEdit.text() == "admin@example.com" and self.lineEdit_2.text() == "admin":
+            if self.checkBox.isChecked(): 
                 msg_box = QMessageBox()
                 msg_box.setWindowTitle("Success")
                 msg_box.setText("Đăng nhập thành công!")
                 msg_box.exec()
                 login_ui.hide()
                 main_ui.show()
+            else: 
+                msg_box = QMessageBox()
+                msg_box.setWindowTitle("Caution")
+                msg_box.setIcon(QMessageBox.Icon.Warning)
+                msg_box.setText("Vui lòng đánh dấu vào \"Keep me login\"")
+                msg_box.exec()
         else:
                 msg_box = QMessageBox()
                 msg_box.setWindowTitle("Lỗi")
@@ -62,11 +70,18 @@ class Register(QMainWindow):
             msg_box.setText(msg_text)
             msg_box.exec()
         else:
-            msg_box = QMessageBox()
-            msg_box.setWindowTitle("Thành công")
-            msg_text = "Tài khoản đã được tạo! (Đó là trên lý thuyết, thực tế thì tương lai sẽ thử MySQL)\n" + f"Email: {self.lineEdit.text()}\nPassword: {self.lineEdit_2.text()}"
-            msg_box.setText(msg_text)
-            msg_box.exec()
+            if self.checkBox.isChecked():
+                msg_box = QMessageBox()
+                msg_box.setWindowTitle("Thành công")
+                msg_text = "Tài khoản đã được tạo! (Đó là trên lý thuyết, thực tế thì tương lai sẽ thử MySQL)\n" + f"Email: {self.lineEdit.text()}\nPassword: {self.lineEdit_2.text()}"
+                msg_box.setText(msg_text)
+                msg_box.exec()
+            else:
+                msg_box = QMessageBox()
+                msg_box.setWindowTitle("Caution")
+                msg_box.setIcon(QMessageBox.Icon.Warning)
+                msg_box.setText("Vui lòng đánh dấu vào \"I agree to Eclahtee's terms\"")
+                msg_box.exec()
 
 #Main
 class Main(QMainWindow):
