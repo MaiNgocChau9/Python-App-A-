@@ -79,10 +79,19 @@ border-radius: 18px;</string>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">max-height: 22px;
-border: 2px solid white;
-padding: 6px;
-border-radius: 18px;</string>
+          <string notr="true">QLabel{
+	max-height: 22px;
+	border: 2px solid white;
+	padding: 6px;
+	border-radius: 18px;
+}
+
+QLabel:hover{
+	max-height: 22px;
+	border: 2px solid gray;
+	padding: 6px;
+	border-radius: 18px;
+}</string>
          </property>
          <property name="text">
           <string/>
@@ -108,10 +117,19 @@ border-radius: 18px;</string>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">max-height: 22px;
-border: 2px solid white;
-padding: 6px;
-border-radius: 18px;</string>
+          <string notr="true">QLabel{
+	max-height: 22px;
+	border: 2px solid white;
+	padding: 6px;
+	border-radius: 18px;
+}
+
+QLabel:hover{
+	max-height: 22px;
+	border: 2px solid gray;
+	padding: 6px;
+	border-radius: 18px;
+}</string>
          </property>
          <property name="text">
           <string/>
@@ -137,10 +155,19 @@ border-radius: 18px;</string>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">max-height: 22px;
-border: 2px solid white;
-padding: 6px;
-border-radius: 18px;</string>
+          <string notr="true">QLabel{
+	max-height: 22px;
+	border: 2px solid white;
+	padding: 6px;
+	border-radius: 18px;
+}
+
+QLabel:hover{
+	max-height: 22px;
+	border: 2px solid gray;
+	padding: 6px;
+	border-radius: 18px;
+}</string>
          </property>
          <property name="text">
           <string/>
