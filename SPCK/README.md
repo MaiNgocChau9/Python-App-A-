@@ -17,7 +17,7 @@ Eclahtee có thể được sử dụng trong nhiều lĩnh vực khác nhau, ba
   * **Ghi chú về các ý tưởng sáng tạo:** Trong ghi chú, bạn có thể nhập các ý tưởng của mình.
   * ...
 
-# **Định hướng phát triển**
+## **Định hướng phát triển**
   
   ### **Tích hợp phương pháp học tập Pomodoro**
   * Tích hợp phương pháp Pomodoro vào Eclahtee sẽ giúp người dùng tập trung học tập và làm việc hiệu quả hơn.
