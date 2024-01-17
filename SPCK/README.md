@@ -11,7 +11,7 @@
 
 ## **Ứng dụng của Eclahtee**
 
-Eclahtee có thể được sử dụng trong nhiều lĩnh vực khác nhau, bao gồm:
+  ### Eclahtee có thể được sử dụng trong nhiều lĩnh vực khác nhau, bao gồm:
 
   * **Học tập:** Eclahtee giúp học sinh, sinh viên ghi chú bài giảng, tài liệu học tập,... một cách dễ dàng và hiệu quả.
   * **Ghi chú về các ý tưởng sáng tạo:** Trong ghi chú, bạn có thể nhập các ý tưởng của mình.
