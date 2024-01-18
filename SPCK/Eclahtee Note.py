@@ -88,11 +88,13 @@ class Home(QMainWindow):
     def __init__ (self):
         super().__init__()
         uic.loadUi("SPCK\\GUI\\Home.ui", self)
+        
         # Font
         font = QFont("Segoe UI", 14)
         font.setBold(True)
         font_button = QFont("Segoe UI", 10)
         font_button.setBold(True)
+        
         # UI
         self.label_9.setFont(font)
         self.label_11.setFont(font)
