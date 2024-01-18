@@ -88,10 +88,17 @@ class Home(QMainWindow):
     def __init__ (self):
         super().__init__()
         uic.loadUi("SPCK\\GUI\\Home.ui", self)
+        # Font
         font = QFont("Segoe UI", 14)
         font.setBold(True)
-        self.label_9.setText("Todo list")
+        font_button = QFont("Segoe UI", 10)
+        font_button.setBold(True)
+        # UI
         self.label_9.setFont(font)
+        self.label_11.setFont(font)
+        self.pushButton_6.setFont(font_button)
+        self.pushButton_7.setFont(font_button)
+        self.pushButton_2.setFont(font_button)
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
