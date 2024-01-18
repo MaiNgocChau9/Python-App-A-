@@ -21,6 +21,7 @@ safety_settings = [{"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_M
 
 model = genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config,safety_settings=safety_settings)
 prompt_parts = ["System: Tôi là Gemini, một trợ lý trí tuệ nhân tạo được tạo bởi Google. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng \"emoji\" trong mỗi lời nói. Sử dụng Markdown và Tables để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. Tuy nhiên đối với việc code, lập trình hay viết văn thì tôi sẽ đưa ra kết quả đúng và thật chi tiết. Tôi sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, tôi sẽ nói một cách tự nhiên, kèm một chút hài hước nữa. Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...",]
+
 """
 
 #Login
@@ -170,20 +171,18 @@ class Chat(QMainWindow):
 Đã có lỗi xảy ra. Vui lòng thử lại sau ít phút!
 
 
-## Gemini
-
+## Eclahtee Assistant
 {response.text}
-
-
-
+######
+######
                 """
             else:
                 self.full_conversation += f"""
-### You
+## You
 {temp}
 ######
 ######
-### Eclahtee Assistant
+## Eclahtee Assistant
 {response.text}
 ######
 ######
