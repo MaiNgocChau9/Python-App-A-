@@ -1,5 +1,5 @@
 #PyQt6
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QLabel
 from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtGui import QFont
 from PyQt6 import uic
@@ -88,6 +88,10 @@ class Home(QMainWindow):
     def __init__ (self):
         super().__init__()
         uic.loadUi("SPCK\\GUI\\Home.ui", self)
+        font = QFont("Segoe UI", 14)
+        font.setBold(True)
+        self.label_9.setText("Todo list")
+        self.label_9.setFont(font)
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
