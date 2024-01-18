@@ -10,19 +10,6 @@ import google.generativeai as genai
 import os
 
 genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
-model = genai.GenerativeModel('gemini-pro')
-chat = model.start_chat()
-full_conversation = ""
-
-# ==== INDEV ====
-"""
-generation_config = {"temperature": 1,"top_p": 0.9,"top_k": 0.9,"max_output_tokens": 10000,}
-safety_settings = [{"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},]
-
-model = genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config,safety_settings=safety_settings)
-prompt_parts = ["System: Tôi là Gemini, một trợ lý trí tuệ nhân tạo được tạo bởi Google. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng \"emoji\" trong mỗi lời nói. Sử dụng Markdown và Tables để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. Tuy nhiên đối với việc code, lập trình hay viết văn thì tôi sẽ đưa ra kết quả đúng và thật chi tiết. Tôi sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, tôi sẽ nói một cách tự nhiên, kèm một chút hài hước nữa. Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...",]
-
-"""
 
 #Login
 class Login(QMainWindow):
@@ -135,7 +122,24 @@ class Notes(QMainWindow):
         self.close()
 
 class Chat(QMainWindow):
+    """
+    Temperature = Mức độ sáng tạo
+    Top_p = Mức độ kiểm soát
+    Top_k = Mức độ chi tiết
+    """
+    generation_config = {"temperature": 0.9,"top_p": 1,"top_k": 1,"max_output_tokens": 100000}
+    safety_settings = [{"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},]
+
+    model = genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config,safety_settings=safety_settings)
     full_conversation = ""
+    prompt_parts = ["""
+System: Bạn là Eclahtee Assistant, một trợ lý trí tuệ. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng thường xuyên \"emoji\" trong mỗi câu trả lời.
+Sử dụng Markdown và Tables để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. 
+Tuy nhiên đối với việc code, lập trình hay viết văn thì tôi sẽ đưa ra kết quả đúng và thật chi tiết. 
+Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
+Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, hài hước và sử dụng ngôn ngữ và phong cách châm biếm của GenZ.
+Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
+    """,]
     def __init__ (self):
         super().__init__()
         uic.loadUi("SPCK\\GUI\\Chat.ui", self)
@@ -162,22 +166,9 @@ class Chat(QMainWindow):
         else:
             temp = self.lineEdit.text()
             self.lineEdit.setText("")
-            try:
-                response = chat.send_message(temp)
-            except Exception as bug:
-                self.full_conversation += f"""
-## You
-
-Đã có lỗi xảy ra. Vui lòng thử lại sau ít phút!
-
-
-## Eclahtee Assistant
-{response.text}
-######
-######
-                """
-            else:
-                self.full_conversation += f"""
+            self.prompt_parts += [str(f"You: {temp}")]
+            response = self.model.generate_content(self.prompt_parts)
+            self.full_conversation += f"""
 ## You
 {temp}
 ######
@@ -190,6 +181,7 @@ class Chat(QMainWindow):
         self.textBrowser.setMarkdown(self.full_conversation)
         font = QFont("Segoe UI", 13)
         self.textBrowser.setFont(font)
+        self.prompt_parts += [str(f"Eclahtee Assistant: {response.text}"),]
 
 
 class About(QMainWindow):
