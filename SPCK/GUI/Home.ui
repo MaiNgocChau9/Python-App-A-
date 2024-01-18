@@ -418,16 +418,6 @@ QListWidget::item::selected{
                <property name="horizontalScrollBarPolicy">
                 <enum>Qt::ScrollBarAlwaysOff</enum>
                </property>
-               <item>
-                <property name="text">
-                 <string>Task a</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Task b</string>
-                </property>
-               </item>
               </widget>
              </item>
              <item>
