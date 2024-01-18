@@ -91,8 +91,8 @@ class Home(QMainWindow):
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
-        self.listWidget.addItems(self.all_task)
         self.pushButton_7.clicked.connect(self.remove_task)
+        self.listWidget.addItems(self.all_task)
     
     def remove_task(self):
         currentIndex = self.listWidget.currentRow()
