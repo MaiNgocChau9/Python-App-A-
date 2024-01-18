@@ -216,6 +216,12 @@ class About(QMainWindow):
     def __init__ (self):
         super().__init__()
         uic.loadUi("SPCK\\GUI\\About.ui", self)
+        
+        # Font
+        font = QFont("Segoe UI", 17)
+        font.setBold(True)
+        
+        self.label_8.setFont(font)
         self.label_2.mousePressEvent = lambda event: self.home_scr()
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
