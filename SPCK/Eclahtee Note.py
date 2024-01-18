@@ -96,6 +96,16 @@ class Home(QMainWindow):
         font_button.setBold(True)
         
         # UI
+#         self.textBrowser.setMarkdown(""""
+# <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+# <html><head><meta name="qrichtext" content="1" /><style type="text/css">
+# p, li { white-space: pre-wrap; }
+# </style></head><body style=" font-family:'Segoe UI'; font-size:8.25pt; font-weight:400; font-style:normal;">
+# <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI ';"><br /></p>
+# <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI '; font-size:16pt; font-weight:600;">Vasper Jance</span></p>
+# <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI '; font-size:8pt; font-weight:600;"><br /></p>
+# <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI '; font-size:14pt;">Welcome back, we've missed your smiling face!</span></p></body></html>
+#         """)
         self.label_9.setFont(font)
         self.label_11.setFont(font)
         self.pushButton_6.setFont(font_button)
@@ -215,13 +225,23 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
 class About(QMainWindow):
     def __init__ (self):
         super().__init__()
-        uic.loadUi("SPCK\\GUI\\About.ui", self)
-        
+        uic.loadUi("SPCK\\GUI\\About.ui", self)   
         # Font
         font = QFont("Segoe UI", 17)
         font.setBold(True)
-        
+        # UI
         self.label_8.setFont(font)
+        self.textBrowser.setMarkdown("""
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body style=" font-family:'Segoe UI'; font-size:8.25pt; font-weight:400; font-style:normal;">
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-size:18pt; font-weight:600;"><b>About me</b></span></p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:13pt;">Hi, my name is Mai Ngoc Chau, but you can call me Aurora.I like making interesting software like this.Thank you for taking the time to try my product.</span></p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:10pt;"><br /></p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:18pt; font-weight:600;"><b>About project</b></span></p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:13pt;">What is the name &quot;Eclahtee&quot;?<br />The name &quot;Eclahtee&quot; is a play on words of the phrase &quot;Life Note With Artificial Intelligence&quot; in reverse (Ecnegilletni Laicifitra Htiw Eton Efil). <br />In addition, it also sounds similar to the word &quot;Enlighten&quot;, which is appropriate for the meaning of the software as it has A.I integration.</span></p></body></html>
+            """)
         self.label_2.mousePressEvent = lambda event: self.home_scr()
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
