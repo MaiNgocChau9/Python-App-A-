@@ -18,7 +18,7 @@ full_conversation = ""
 class Login(QMainWindow):
     def __init__ (self):
         super().__init__()
-        uic.loadUi("SPCK\GUI\Login.ui", self)
+        uic.loadUi("SPCK\\GUI\\Login.ui", self)
         self.pushButton.clicked.connect(self.the_button_was_clicked)
         self.label_7.mousePressEvent = lambda event: self.register()
 
@@ -53,7 +53,7 @@ class Login(QMainWindow):
 class Register(QMainWindow):
     def __init__ (self):
         super().__init__()
-        uic.loadUi("SPCK\GUI\Register.ui", self)
+        uic.loadUi("SPCK\\GUI\\Register.ui", self)
         self.pushButton.clicked.connect(self.the_button_was_clicked)
         self.label_7.mousePressEvent = lambda event: self.login()
 
@@ -84,17 +84,29 @@ class Register(QMainWindow):
                 msg_box.exec()
 
 #Main
-class Main(QMainWindow):
-    full_conversation = ""
+class Home(QMainWindow):
     def __init__ (self):
         super().__init__()
-        uic.loadUi("SPCK\GUI\Home.ui", self)
+        uic.loadUi("SPCK\\GUI\\Home.ui", self)
+
+class Notes(QMainWindow):
+    def __init__ (self):
+        super().__init__()
+        uic.loadUi("SPCK\\GUI\\Notes.ui", self)
+
+class Chat(QMainWindow):
+    def __init__ (self):
+        super().__init__()
+        uic.loadUi("SPCK\\GUI\\Chat.ui", self)
 
 app = QApplication(sys.argv)
 # Các cửa sổ
 login_ui = Login()
 register_ui = Register()
-main_ui = Main()
+home_ui = Home()
+notes_ui = Notes()
+chat_ui = Chat()
+
 # Cửa sổ thực hiện
-login_ui.show()
+chat_ui.show()
 app.exec()

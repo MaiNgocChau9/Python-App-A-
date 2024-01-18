@@ -118,25 +118,16 @@ QLabel:hover{
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">QLabel{
-	max-height: 22px;
-	border: 2px solid white;
-	padding: 6px;
-	border-radius: 18px;
-}
-
-QLabel:hover{
-	max-height: 22px;
-	border: 2px solid gray;
-	padding: 6px;
-	border-radius: 18px;
-}</string>
+          <string notr="true">max-height: 22px;
+border: 2px solid black;
+padding: 6px;
+border-radius: 18px;</string>
          </property>
          <property name="text">
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>../Image/notes_d.png</pixmap>
+          <pixmap>../Image/notes_a.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
@@ -156,16 +147,25 @@ QLabel:hover{
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">max-height: 22px;
-border: 2px solid black;
-padding: 6px;
-border-radius: 18px;</string>
+          <string notr="true">QLabel{
+	max-height: 22px;
+	border: 2px solid white;
+	padding: 6px;
+	border-radius: 18px;
+}
+
+QLabel:hover{
+	max-height: 22px;
+	border: 2px solid gray;
+	padding: 6px;
+	border-radius: 18px;
+}</string>
          </property>
          <property name="text">
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap>../Image/chat_a.png</pixmap>
+          <pixmap>../Image/chat_d.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>true</bool>
