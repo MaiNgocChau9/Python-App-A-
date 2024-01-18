@@ -250,7 +250,14 @@ margin: 10px;</string>
 	border: 0px;
 	background-color: white;
 	margin-bottom: 0px;
+	padding: 10px;
 }</string>
+            </property>
+            <property name="verticalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
+            </property>
+            <property name="horizontalScrollBarPolicy">
+             <enum>Qt::ScrollBarAlwaysOff</enum>
             </property>
             <property name="html">
              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -286,6 +293,8 @@ margin-top: 0px;</string>
 	min-height: 35px;
 	border-radius: 18px;
 	padding-left: 10px;
+	margin: 0px;
+	margin-left: 10px;
 }
 
 QLineEdit:hover{
@@ -295,6 +304,8 @@ QLineEdit:hover{
 	min-height: 35px;
 	border-radius: 18px;
 	padding-left: 10px;
+	margin: 0px;
+	margin-left: 10px;
 }
 
 QLineEdit:pressed{
@@ -304,6 +315,8 @@ QLineEdit:pressed{
 	min-height: 35px;
 	border-radius: 18px;
 	padding-left: 10px;
+	margin: 0px;
+	margin-left: 10px;
 }</string>
             </property>
             <property name="placeholderText">
@@ -320,6 +333,8 @@ QLineEdit:pressed{
 	max-height: 35px;
 	min-height: 35px;
 	border-radius: 18px;
+	margin: 0px;
+	margin-right: 10px;
 }
 
 QPushButton:hover{
@@ -328,6 +343,8 @@ QPushButton:hover{
 	max-height: 35px;
 	min-height: 35px;
 	border-radius: 18px;
+	margin: 0px;
+	margin-right: 10px;
 }
 
 QPushButton:pressed{
@@ -336,6 +353,8 @@ QPushButton:pressed{
 	max-height: 35px;
 	min-height: 35px;
 	border-radius: 18px;
+	margin: 0px;
+	margin-right: 10px;
 }</string>
             </property>
             <property name="text">
