@@ -1,5 +1,5 @@
 #PyQt6
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QLabel
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QLabel, QListWidget
 from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtGui import QFont
 from PyQt6 import uic
@@ -96,16 +96,16 @@ class Home(QMainWindow):
         font_button.setBold(True)
         
         # UI
-#         self.textBrowser.setMarkdown(""""
-# <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-# <html><head><meta name="qrichtext" content="1" /><style type="text/css">
-# p, li { white-space: pre-wrap; }
-# </style></head><body style=" font-family:'Segoe UI'; font-size:8.25pt; font-weight:400; font-style:normal;">
-# <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI ';"><br /></p>
-# <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI '; font-size:16pt; font-weight:600;">Vasper Jance</span></p>
-# <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI '; font-size:8pt; font-weight:600;"><br /></p>
-# <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI '; font-size:14pt;">Welcome back, we've missed your smiling face!</span></p></body></html>
-#         """)
+        self.textBrowser.setMarkdown(""""
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body style=" font-family:'Segoe UI'; font-size:8.25pt; font-weight:400; font-style:normal;">
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI ';"><br /></p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI '; font-size:16pt; font-weight:600;">Vasper Jance</span></p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI '; font-size:8pt; font-weight:600;"><br /></p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI '; font-size:14pt;">Welcome back, we've missed your smiling face!</span></p></body></html>
+        """)
         self.label_9.setFont(font)
         self.label_11.setFont(font)
         self.pushButton_6.setFont(font_button)
@@ -115,7 +115,11 @@ class Home(QMainWindow):
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
         self.pushButton_7.clicked.connect(self.remove_task)
-        self.listWidget.addItems(self.all_task)
+        for task in self.all_task:
+            item = QtWidgets.QListWidgetItem(task)
+            item.setFlags(QtCore.Qt.ItemFlag.ItemIsUserCheckable|QtCore.Qt.ItemFlag.ItemIsEnabled)
+            item.setCheckState(QtCore.Qt.CheckState.Unchecked)
+            self.listWidget.addItem(item)
     
     def remove_task(self):
         currentIndex = self.listWidget.currentRow()
