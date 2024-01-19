@@ -2,6 +2,7 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QLabel, QListWidget, QInputDialog
 from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtGui import QFont, QMouseEvent
+from PyQt6.QtCore import QEvent
 from PyQt6 import uic
 import sys  
 
@@ -193,6 +194,7 @@ class Notes(QMainWindow):
     def on_item_clicked(self, item):
         text = self.listWidget_2.currentItem().text()
         note_name = text
+        print(note_name)
         edit_ui.show()
 
     def home_scr(self):
@@ -321,6 +323,18 @@ class Edit(QMainWindow):
         self.label.setText(note_name)
         with open(f"SPCK\\All Notes\\{note_name}", 'r') as file:
             self.textEdit.setText(file.read())
+    
+    def closeEvent(self, event):
+        result = QMessageBox.question(
+            self, "Confirmation", "Are you sure you want to close the application?",
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+        )
+
+        if result == QMessageBox.StandardButton.Yes:
+            event.accept()
+            self.destroy()
+        else:
+            event.ignore()
 
 app = QApplication(sys.argv)
 # Các cửa sổ
