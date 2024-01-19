@@ -1,7 +1,7 @@
 #PyQt6
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QLabel, QListWidget, QInputDialog
 from PyQt6 import QtWidgets, QtGui, QtCore
-from PyQt6.QtGui import QFont
+from PyQt6.QtGui import QFont, QMouseEvent
 from PyQt6 import uic
 import sys  
 
@@ -85,6 +85,10 @@ class Home(QMainWindow):
     all_task = []
     with open("SPCK\\data\\todo_list.ecl", 'r') as file: 
         all_task = file.read().splitlines() 
+    all_notes = []
+    files = os.listdir("SPCK\\All Notes")
+    for file in files: 
+        all_notes += [str(file)]
     def __init__ (self):
         super().__init__()
         uic.loadUi("SPCK\\GUI\\Home.ui", self)
@@ -96,7 +100,7 @@ class Home(QMainWindow):
         font_button.setBold(True)
         
         # UI
-        self.textBrowser.setMarkdown(""""
+        self.textBrowser.setMarkdown("""
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 <html><head><meta name="qrichtext" content="1" /><style type="text/css">
 p, li { white-space: pre-wrap; }
@@ -114,13 +118,23 @@ p, li { white-space: pre-wrap; }
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
-        self.pushButton_7.clicked.connect(self.remove_task)
+        self.pushButton_2.clicked.connect(self.notes_scr)
         self.pushButton_6.clicked.connect(self.add_task)
+        self.pushButton_7.clicked.connect(self.remove_task)
+        self.widget_8.mousePressEvent = self.on_mouse_press
+        self.listWidget_2.mousePressEvent = self.on_mouse_press
         for task in self.all_task:
             item = QtWidgets.QListWidgetItem(task)
             item.setFlags(QtCore.Qt.ItemFlag.ItemIsUserCheckable | QtCore.Qt.ItemFlag.ItemIsEnabled | QtCore.Qt.ItemFlag.ItemIsSelectable)
             item.setCheckState(QtCore.Qt.CheckState.Unchecked)
             self.listWidget.addItem(item)
+        for note in self.all_notes:
+            self.listWidget_2.addItem(note)
+
+    def on_mouse_press(self, event: QMouseEvent):
+        if self.widget_8.underMouse():
+            notes_ui.show()
+            self.close()
     
     def remove_task(self):
         currentIndex = self.listWidget.currentRow()
@@ -153,12 +167,25 @@ p, li { white-space: pre-wrap; }
         self.close()
 
 class Notes(QMainWindow):
+    all_notes = []
+    files = os.listdir("SPCK\\All Notes")
+    for file in files: 
+        all_notes += [str(file)]
     def __init__ (self):
         super().__init__()
         uic.loadUi("SPCK\\GUI\\Notes.ui", self)
+        # Font
+        font = QFont("Segoe UI", 14)
+        font.setBold(True)
+        font_button = QFont("Segoe UI", 10)
+        font_button.setBold(True)
         self.label_2.mousePressEvent = lambda event: self.home_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
+        self.pushButton.setFont(font_button)
+        self.pushButton_3.setFont(font_button)
+        for note in self.all_notes:
+            self.listWidget_2.addItem(note)
     
 
     def home_scr(self):
