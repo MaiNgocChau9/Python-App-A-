@@ -10,6 +10,8 @@ import google.generativeai as genai
 import os
 
 genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
+global note_name
+note_name = "text 1"
 
 #Login
 class Login(QMainWindow):
@@ -186,7 +188,12 @@ class Notes(QMainWindow):
         self.pushButton_3.setFont(font_button)
         for note in self.all_notes:
             self.listWidget_2.addItem(note)
+        self.listWidget_2.itemClicked.connect(self.on_item_clicked)
     
+    def on_item_clicked(self, item):
+        text = self.listWidget_2.currentItem().text()
+        note_name = text
+        edit_ui.show()
 
     def home_scr(self):
         home_ui.show()
@@ -272,7 +279,7 @@ class About(QMainWindow):
         font.setBold(True)
         # UI
         self.label_8.setFont(font)
-        self.textBrowser.setMarkdown("""
+        self.textBrowser.setHtml("""
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 <html><head><meta name="qrichtext" content="1" /><style type="text/css">
 p, li { white-space: pre-wrap; }
@@ -299,6 +306,22 @@ p, li { white-space: pre-wrap; }
         chat_ui.show()
         self.close()
 
+class Edit(QMainWindow):
+    def __init__ (self):
+        super().__init__()
+        uic.loadUi("SPCK\\GUI\\Note_edit.ui", self)
+        # Font
+        font_title = QFont("Segoe UI", 15)
+        font_title.setBold(True)
+        font_button = QFont("Segoe UI", 12)
+        font_button.setBold(True)
+        # UI
+        self.pushButton_6.setFont(font_button)
+        self.label.setFont(font_title)
+        self.label.setText(note_name)
+        with open(f"SPCK\\All Notes\\{note_name}", 'r') as file:
+            self.textEdit.setText(file.read())
+
 app = QApplication(sys.argv)
 # Các cửa sổ
 login_ui = Login()
@@ -307,6 +330,7 @@ home_ui = Home()
 notes_ui = Notes()
 chat_ui = Chat()
 about_ui = About()
+edit_ui = Edit()
 
 # Cửa sổ thực hiện
 home_ui.show()
