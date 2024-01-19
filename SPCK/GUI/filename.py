@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\Home - Copy.ui'
+# Form implementation generated from reading ui file '.\Home.ui'
 #
 # Created by: PyQt6 UI code generator 6.6.1
 #
@@ -246,15 +246,14 @@ class Ui_MainWindow(object):
 "\n"
 "QListWidget::item::selected{\n"
 "    height: 35px;\n"
-"    background-color: white;\n"
+"    background-color: #F4F4F4;\n"
 "    color: black;\n"
-"    border: 0px;\n"
+"    border-radius: 5px;\n"
 "}")
         self.listWidget.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.listWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.listWidget.setObjectName("listWidget")
         item = QtWidgets.QListWidgetItem()
-        item.setFlags(QtCore.Qt.ItemFlag.ItemIsUserCheckable|QtCore.Qt.ItemFlag.ItemIsEnabled)
         item.setCheckState(QtCore.Qt.CheckState.Unchecked)
         self.listWidget.addItem(item)
         self.verticalLayout_4.addWidget(self.listWidget)

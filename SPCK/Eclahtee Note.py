@@ -1,5 +1,5 @@
 #PyQt6
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QLabel, QListWidget
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QLabel, QListWidget, QInputDialog
 from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtGui import QFont
 from PyQt6 import uic
@@ -115,9 +115,10 @@ p, li { white-space: pre-wrap; }
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
         self.pushButton_7.clicked.connect(self.remove_task)
+        self.pushButton_6.clicked.connect(self.add_task)
         for task in self.all_task:
             item = QtWidgets.QListWidgetItem(task)
-            item.setFlags(QtCore.Qt.ItemFlag.ItemIsUserCheckable|QtCore.Qt.ItemFlag.ItemIsEnabled)
+            item.setFlags(QtCore.Qt.ItemFlag.ItemIsUserCheckable | QtCore.Qt.ItemFlag.ItemIsEnabled | QtCore.Qt.ItemFlag.ItemIsSelectable)
             item.setCheckState(QtCore.Qt.CheckState.Unchecked)
             self.listWidget.addItem(item)
     
@@ -129,6 +130,15 @@ p, li { white-space: pre-wrap; }
             for item in item_list:
                 file.write(f"{item}\n")
 
+    def add_task(self):
+        task_name = QInputDialog.getText(self, "New Taks", "Enter Task")[0]
+        if task_name != "":
+            item = QtWidgets.QListWidgetItem(task_name)
+            item.setFlags(QtCore.Qt.ItemFlag.ItemIsUserCheckable | QtCore.Qt.ItemFlag.ItemIsEnabled | QtCore.Qt.ItemFlag.ItemIsSelectable)
+            item.setCheckState(QtCore.Qt.CheckState.Unchecked)
+            self.listWidget.addItem(item)
+            with open("SPCK\\data\\todo_list.ecl", 'a') as file:
+                file.write(f"{task_name}\n")
 
     def notes_scr(self):
         notes_ui.show()

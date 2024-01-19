@@ -407,9 +407,9 @@ QListWidget::item::pressed{
 
 QListWidget::item::selected{
 	height: 35px;
-	background-color: white;
+	background-color: #F4F4F4;
 	color: black;
-	border: 0px;
+	border-radius: 5px;
 }</string>
                </property>
                <property name="verticalScrollBarPolicy">
