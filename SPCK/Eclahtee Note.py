@@ -325,16 +325,7 @@ class Edit(QMainWindow):
             self.textEdit.setText(file.read())
     
     def closeEvent(self, event):
-        result = QMessageBox.question(
-            self, "Confirmation", "Are you sure you want to close the application?",
-            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
-        )
-
-        if result == QMessageBox.StandardButton.Yes:
-            event.accept()
-            self.destroy()
-        else:
-            event.ignore()
+        self.destroy()
 
 app = QApplication(sys.argv)
 # Các cửa sổ
