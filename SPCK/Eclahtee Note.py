@@ -12,7 +12,7 @@ import os
 
 genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
 global note_name
-note_name = "text 1"
+note_name = os.listdir("SPCK\\All Notes")[0] #Lấy file đầu tiên
 
 #Login
 class Login(QMainWindow):
