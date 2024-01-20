@@ -28,3 +28,13 @@
   ### **Online**
   * Người dùng truy cập ghi chú của mình từ mọi nơi thông qua Internet.
   * Tích hợp với các ứng dụng khác, chẳng hạn như ứng dụng lịch (Google Calendar, Outlook Calendar, v.v), ứng dụng nhắc nhở (TickTick, Google Task, Todoist, v.v),...
+
+# DEMO
+## Home
+  ![image](https://github.com/MaiNgocChau9/Python-App-A-/assets/123575751/a4c9ac00-7a7c-48f1-8541-cbb6d863b33c)
+## Notes
+  ![image](https://github.com/MaiNgocChau9/Python-App-A-/assets/123575751/9796d58a-215f-474e-a6ab-0a95a9c5296b)
+## Chat
+  ![image](https://github.com/MaiNgocChau9/Python-App-A-/assets/123575751/f8d574b1-8337-492a-9ce3-cedf675b940e)
+## About
+  ![image](https://github.com/MaiNgocChau9/Python-App-A-/assets/123575751/01ff333c-c21b-49ef-a9c3-32cf0b1ebfca)
