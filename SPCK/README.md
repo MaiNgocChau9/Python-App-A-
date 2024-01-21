@@ -34,5 +34,9 @@
   ![Notes](https://github.com/MaiNgocChau9/Python-App-A-/assets/123575751/9796d58a-215f-474e-a6ab-0a95a9c5296b)
 ### Chat
   ![Chat](https://github.com/MaiNgocChau9/Python-App-A-/assets/123575751/f8d574b1-8337-492a-9ce3-cedf675b940e)
-## About
+### About
   ![About](https://github.com/MaiNgocChau9/Python-App-A-/assets/123575751/01ff333c-c21b-49ef-a9c3-32cf0b1ebfca)
+### Edit
+  ![Edit](https://github.com/MaiNgocChau9/Python-App-A-/assets/123575751/82f67caa-54b8-419c-aaa2-94c5235b9692)
+
+
