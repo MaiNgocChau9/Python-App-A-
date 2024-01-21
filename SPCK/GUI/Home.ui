@@ -429,23 +429,17 @@ QListWidget::item::selected{
               </widget>
              </item>
              <item>
-              <widget class="QWidget" name="widget_10" native="true">
-               <property name="styleSheet">
-                <string notr="true">border: 0px;</string>
+              <widget class="QPushButton" name="pushButton_6">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
                </property>
-               <layout class="QHBoxLayout" name="horizontalLayout_7">
-                <item>
-                 <widget class="QPushButton" name="pushButton_6">
-                  <property name="font">
-                   <font>
-                    <family>Segoe UI</family>
-                    <pointsize>10</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QPushButton{
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
 	border: 2px solid black;
 	height: 30px;
 	border-radius: 10px;
@@ -466,71 +460,20 @@ QPushButton::pressed{
 	border-radius: 10px;
 	background-color: rgb(234, 188, 59);
 }</string>
-                  </property>
-                  <property name="text">
-                   <string> New Task</string>
-                  </property>
-                  <property name="icon">
-                   <iconset>
-                    <normaloff>../Image/new.png</normaloff>../Image/new.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>16</width>
-                    <height>16</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="pushButton_7">
-                  <property name="font">
-                   <font>
-                    <family>Segoe UI</family>
-                    <pointsize>10</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QPushButton{
-	border: 2px solid black;
-	height: 30px;
-	border-radius: 10px;
-	background-color: #FFCE41;
-	color: white;
-}
-
-QPushButton::hover{
-	border: 3px solid black;
-	height: 30px;
-	border-radius: 10px;
-	background-color: #FFCE41;
-}
-
-QPushButton::pressed{
-	border: 3px solid black;
-	height: 30px;
-	border-radius: 10px;
-	background-color: rgb(234, 188, 59);
-}</string>
-                  </property>
-                  <property name="text">
-                   <string> Remove</string>
-                  </property>
-                  <property name="icon">
-                   <iconset>
-                    <normaloff>../Image/remove.png</normaloff>../Image/remove.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>16</width>
-                    <height>16</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               </property>
+               <property name="text">
+                <string> New Task</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>../Image/new.png</normaloff>../Image/new.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
               </widget>
              </item>
             </layout>
@@ -635,23 +578,17 @@ QListWidget::item::pressed{
               </widget>
              </item>
              <item>
-              <widget class="QWidget" name="widget_11" native="true">
-               <property name="styleSheet">
-                <string notr="true">border: 0px;</string>
+              <widget class="QPushButton" name="pushButton_2">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
                </property>
-               <layout class="QHBoxLayout" name="horizontalLayout_8">
-                <item>
-                 <widget class="QPushButton" name="pushButton_2">
-                  <property name="font">
-                   <font>
-                    <family>Segoe UI</family>
-                    <pointsize>10</pointsize>
-                    <weight>75</weight>
-                    <bold>true</bold>
-                   </font>
-                  </property>
-                  <property name="styleSheet">
-                   <string notr="true">QPushButton{
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
 	border: 2px solid black;
 	height: 30px;
 	border-radius: 10px;
@@ -672,23 +609,20 @@ QPushButton::pressed{
 	border-radius: 10px;
 	background-color: rgb(234, 188, 59);
 }</string>
-                  </property>
-                  <property name="text">
-                   <string> View All</string>
-                  </property>
-                  <property name="icon">
-                   <iconset>
-                    <normaloff>../Image/all_note_view.png</normaloff>../Image/all_note_view.png</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>18</width>
-                    <height>16</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+               </property>
+               <property name="text">
+                <string> View All</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>../Image/all_note_view.png</normaloff>../Image/all_note_view.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>18</width>
+                 <height>16</height>
+                </size>
+               </property>
               </widget>
              </item>
             </layout>

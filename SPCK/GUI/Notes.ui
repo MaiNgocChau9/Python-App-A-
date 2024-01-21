@@ -368,7 +368,7 @@ QListWidget::item::hover{
 }
 
 QListWidget::item::selected{
-	background-color: white;
+	background-color: rgb(250, 250, 250);
 	color: black;
 	height: 60px;
 	margin: 5px;
@@ -376,6 +376,7 @@ QListWidget::item::selected{
 	border-radius: 15px;
 	padding-left: 15px;
 	padding-right: 15px;
+	border: 2px solid gray;
 }</string>
             </property>
             <property name="verticalScrollBarPolicy">

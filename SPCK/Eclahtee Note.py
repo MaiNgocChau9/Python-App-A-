@@ -4,7 +4,8 @@ from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtGui import QFont, QMouseEvent
 from PyQt6.QtCore import QEvent
 from PyQt6 import uic
-import sys  
+import importlib
+import sys
 
 #Gemini API (Import + Setup)
 import google.generativeai as genai
@@ -107,14 +108,12 @@ class Home(QMainWindow):
         self.label_9.setFont(font)
         self.label_11.setFont(font)
         self.pushButton_6.setFont(font_button)
-        self.pushButton_7.setFont(font_button)
         self.pushButton_2.setFont(font_button)
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
         self.pushButton_2.clicked.connect(self.notes_scr)
         self.pushButton_6.clicked.connect(self.add_task)
-        self.pushButton_7.clicked.connect(self.remove_task)
         self.widget_8.mousePressEvent = self.on_mouse_press
         self.listWidget_2.mousePressEvent = self.on_mouse_press
         for task in self.all_task:
@@ -124,15 +123,17 @@ class Home(QMainWindow):
             self.listWidget.addItem(item)
         for note in self.all_notes:
             self.listWidget_2.addItem(note)
-        self.listWidget.itemClicked.connect(self.handle_item_click)
+        self.listWidget.itemClicked.connect(self.item_click)
     
-    def handle_item_click(self, item):
+    def item_click(self, item):
         local_item = self.all_task
         check_state = item.checkState()
         if check_state == QtCore.Qt.CheckState.Unchecked:
-            local_item.append(item.text())
-        if check_state == QtCore.Qt.CheckState.Checked:
+            item.setCheckState(QtCore.Qt.CheckState.Checked)
             local_item.remove(item.text())
+        if check_state == QtCore.Qt.CheckState.Checked:
+            item.setCheckState(QtCore.Qt.CheckState.Unchecked)
+            local_item.append(item.text())
         local_item.sort()
         print(local_item)
         with open("SPCK\\data\\todo_list.ecl", 'w', encoding='utf-8') as file:
@@ -144,6 +145,7 @@ class Home(QMainWindow):
             notes_ui.show()
             self.close()
     
+    """
     def remove_task(self):
         currentIndex = self.listWidget.currentRow()
         self.listWidget.takeItem(currentIndex)
@@ -151,6 +153,7 @@ class Home(QMainWindow):
         with open("SPCK\\data\\todo_list.ecl", 'w', encoding='utf-8') as file:
             for item in item_list:
                 file.write(f"{item}\n")
+    """
 
     def add_task(self):
         task_name = QInputDialog.getText(self, "New Taks", "Enter Task")[0]
@@ -419,4 +422,4 @@ about_ui = About()
 
 # Cửa sổ thực hiện
 home_ui.show()
-app.exec()
+sys.exit(app.exec())
