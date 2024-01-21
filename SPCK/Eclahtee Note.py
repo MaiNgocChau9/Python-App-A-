@@ -263,6 +263,18 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
         self.pushButton.clicked.connect(self.the_button_was_clicked)
+        self.textBrowser.setHtml("""
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:8pt;"><br /></p>
+<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
+<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
+<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
+<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:28pt; font-weight:600;">Hello</span></p>
+<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:18pt;">      How can I help you today?</p>
+            """)
 
     def home_scr(self):
         home_ui.show()
@@ -277,14 +289,13 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         self.close()
     
     def the_button_was_clicked(self):
-        if self.lineEdit.text().replace(" ", "") == "":
-            pass
-        else:
-            temp = self.lineEdit.text()
-            self.lineEdit.setText("")
-            self.prompt_parts += [str(f"You: {temp}")]
-            response = self.model.generate_content(self.prompt_parts)
-            self.full_conversation += f"""
+        try:
+            if self.lineEdit.text().replace(" ", "") != "":
+                temp = self.lineEdit.text()
+                self.lineEdit.setText("")
+                self.prompt_parts += [str(f"You: {temp}")]
+                response = self.model.generate_content(self.prompt_parts)
+                self.full_conversation += f"""
 ## You
 {temp}
 ######
@@ -294,10 +305,23 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
 ######
 ######
                 """
-        self.textBrowser.setMarkdown(self.full_conversation)
-        font = QFont("Segoe UI", 13)
-        self.textBrowser.setFont(font)
-        self.prompt_parts += [str(f"Eclahtee Assistant: {response.text}"),]
+            self.textBrowser.setMarkdown(self.full_conversation)
+            font = QFont("Segoe UI", 13)
+            self.textBrowser.setFont(font)
+            self.prompt_parts += [str(f"Eclahtee Assistant: {response.text}"),]
+        except Exception as e:
+            self.textBrowser.setHtml("""
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:8pt;"><br /></p>
+<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
+<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
+<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
+<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:28pt; font-weight:600;">Hello</span></p>
+<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:18pt;">      How can I help you today?</p>
+            """)
 
 
 class About(QMainWindow):
