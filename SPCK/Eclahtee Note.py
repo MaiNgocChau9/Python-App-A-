@@ -196,26 +196,34 @@ class Notes(QMainWindow):
         self.pushButton.clicked.connect(self.remove_note)
 
     def remove_note(self):
-        currentIndex = self.listWidget_2.currentRow()
-        self.listWidget_2.takeItem(currentIndex)
-        item_list = [self.listWidget_2.item(i).text() 
-        os.remove(f"SPCK\\All Notes\\{item_list[currentIndex]}")
+        try:
+            currentIndex = self.listWidget_2.currentRow()
+            self.listWidget_2.takeItem(currentIndex)
+            item_list = [self.listWidget_2.item(i).text() 
+            for i in range(self.listWidget_2.count())]
+            os.remove(f"SPCK\\All Notes\\{item_list[currentIndex]}")
+        except Exception as e:
+            pass
+            print("pass")
 
     def add_note(self):
         note_name = QInputDialog.getText(self, "New Notes", "Enter a note name")[0]
         if note_name != "":
             item = QtWidgets.QListWidgetItem(note_name)
             self.listWidget_2.addItem(item)
-            self.listWidget_2.setCurrentRow(self.listWidget_2.count() + 1)
             with open(os.path.join("SPCK\\All Notes", note_name), 'w', encoding='utf-8') as file: file.write("")
     
     def open_note(self, item):
-        text = self.listWidget_2.currentItem().text()
-        global note_name
-        note_name = text
-        print(note_name)
-        edit_ui = Edit()
-        edit_ui.show()
+        try:
+            text = self.listWidget_2.currentItem().text()
+            global note_name
+            note_name = text
+            print(note_name)
+            edit_ui = Edit()
+            edit_ui.show()
+        except Exception as e:
+            pass
+            print("pass")
 
     def home_scr(self):
         home_ui.show()
