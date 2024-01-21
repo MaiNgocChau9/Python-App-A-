@@ -360,8 +360,10 @@ p, li { white-space: pre-wrap; }
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:28pt; font-weight:600;">Hello</span></p>
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:18pt;">      How can I help you today?</p>
             """)
+            
             print("Bruh, something went wrong...")
             print(e)
+
             if "response.prompt_feedback" in str(e):
                 msg_box = QMessageBox()
                 msg_box.setWindowTitle("Error, something went wrong...")
@@ -390,6 +392,7 @@ p, li { white-space: pre-wrap; }
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:18pt; font-weight:600;"><b>About project</b></span></p>
 <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:13pt;">What is the name &quot;Eclahtee&quot;?<br />The name &quot;Eclahtee&quot; is a play on words of the phrase &quot;Life Note With Artificial Intelligence&quot; in reverse (Ecnegilletni Laicifitra Htiw Eton Efil). <br />In addition, it also sounds similar to the word &quot;Enlighten&quot;, which is appropriate for the meaning of the software as it has A.I integration.</span></p></body></html>
             """)
+
         self.label_2.mousePressEvent = lambda event: self.home_scr()
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
@@ -416,11 +419,13 @@ class Edit(QMainWindow):
         super().__init__()
         print("Edit:",note_name)
         uic.loadUi("SPCK\\GUI\\Note_edit.ui", self)
+
         # Font
         font_title = QFont("Segoe UI", 15)
         font_title.setBold(True)
         font_button = QFont("Segoe UI", 12)
         font_button.setBold(True)
+
         # UI
         self.pushButton_6.setFont(font_button)
         self.label.setFont(font_title)
