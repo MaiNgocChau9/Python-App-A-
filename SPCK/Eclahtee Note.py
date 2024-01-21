@@ -86,12 +86,13 @@ class Register(QMainWindow):
 #Main
 class Home(QMainWindow):
     all_task = []
-    with open("SPCK\\data\\todo_list.ecl", 'r') as file: 
+    with open("SPCK\\data\\todo_list.ecl", 'r', encoding='utf-8') as file: 
         all_task = file.read().splitlines() 
+
     all_notes = []
     files = os.listdir("SPCK\\All Notes")
     for file in files: 
-        all_notes += [str(file)]
+        all_notes.append(file)
     def __init__ (self):
         super().__init__()
         uic.loadUi("SPCK\\GUI\\Home.ui", self)
@@ -197,9 +198,7 @@ class Notes(QMainWindow):
         currentIndex = self.listWidget.currentRow()
         self.listWidget.takeItem(currentIndex)
         item_list = [self.listWidget.item(i).text() for i in range(self.listWidget.count())]
-        with open("SPCK\\data\\todo_list.ecl", 'w') as file:
-            for item in item_list:
-                file.write(f"{item}\n")
+        os.remove(f"SPCK\\All Notes\\{item_list[currentIndex]}")
 
     def add_note(self):
         task_name = QInputDialog.getText(self, "New Taks", "Enter Task")[0]
