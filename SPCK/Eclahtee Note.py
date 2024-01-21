@@ -266,6 +266,7 @@ Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng t
 Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, hài hước và sử dụng ngôn ngữ và phong cách châm biếm của GenZ.
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
     """,]
+    prompt_parts += ['You: Xin chào :)', 'Eclahtee Assistant: Xin chào bạn! 👉']
     def __init__ (self):
         super().__init__()
         uic.loadUi("SPCK\\GUI\\Chat.ui", self)
@@ -320,13 +321,14 @@ Tuy nhiên đối với việc code, lập trình hay viết văn thì tôi sẽ
 Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
 Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, hài hước và sử dụng ngôn ngữ và phong cách châm biếm của GenZ.
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
+Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
     """,]
+        self.prompt_parts += ['You: Xin chào :)', 'Eclahtee Assistant: Xin chào bạn! 👉']
     
     def the_button_was_clicked(self):
         try:
             if self.lineEdit.text().replace(" ", "") != "":
                 temp = self.lineEdit.text()
-                print(temp)
                 self.lineEdit.setText("")
                 self.prompt_parts += [str(f"You: {temp}")]
                 response = self.model.generate_content(self.prompt_parts)
@@ -343,8 +345,8 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
             self.textBrowser.setMarkdown(self.full_conversation)
             font = QFont("Segoe UI", 13)
             self.textBrowser.setFont(font)
-            print(response.text)
             self.prompt_parts += [str(f"Eclahtee Assistant: {response.text}"),]
+            print(self.prompt_parts)
         except Exception as e:
             self.textBrowser.setHtml("""
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
@@ -358,6 +360,14 @@ p, li { white-space: pre-wrap; }
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:28pt; font-weight:600;">Hello</span></p>
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:18pt;">      How can I help you today?</p>
             """)
+            print("Bruh, something went wrong...")
+            print(e)
+            if "response.prompt_feedback" in str(e):
+                msg_box = QMessageBox()
+                msg_box.setWindowTitle("Error, something went wrong...")
+                msg_box.setIcon(QMessageBox.Icon.Warning)
+                msg_box.setText("Trong câu hỏi của bạn sử dụng từ ngữ không phù hợp!!!")
+                msg_box.exec()
 
 
 class About(QMainWindow):
