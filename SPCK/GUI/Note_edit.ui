@@ -179,7 +179,7 @@ border-bottom: 1px solid black;</string>
             <property name="font">
              <font>
               <family>Segoe UI</family>
-              <pointsize>13</pointsize>
+              <pointsize>17</pointsize>
               <weight>75</weight>
               <bold>true</bold>
              </font>
@@ -196,7 +196,7 @@ margin-top: 5px;
 background-color: transparent;</string>
             </property>
             <property name="text">
-             <string>&lt;note_name&gt;</string>
+             <string>Note</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>

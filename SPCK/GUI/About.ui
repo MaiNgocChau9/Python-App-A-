@@ -234,6 +234,44 @@ border-radius: 18px;</string>
          </property>
         </widget>
        </item>
+       <item>
+        <widget class="QLabel" name="label_9">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel{
+	max-height: 22px;
+	border: 2px solid white;
+	padding: 6px;
+	border-radius: 18px;
+}
+
+QLabel:hover{
+	max-height: 22px;
+	border: 2px solid gray;
+	padding: 6px;
+	border-radius: 18px;
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>../Image/log_out.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </item>

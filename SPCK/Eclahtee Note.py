@@ -113,6 +113,7 @@ class Home(QMainWindow):
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
+        self.label_13.mousePressEvent = lambda event: self.log_out()
         self.pushButton_2.clicked.connect(self.notes_scr)
         self.pushButton_6.clicked.connect(self.add_task)
         self.widget_8.mousePressEvent = self.on_mouse_press
@@ -168,6 +169,10 @@ class Home(QMainWindow):
             with open("SPCK\\data\\todo_list.ecl", 'a', encoding='utf-8') as file:
                 file.write(f"{task_name}\n")
 
+    def log_out(self):
+        login_ui.show()
+        self.close()
+
     def notes_scr(self):
         notes_ui.show()
         self.close()
@@ -196,6 +201,7 @@ class Notes(QMainWindow):
         self.label_2.mousePressEvent = lambda event: self.home_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
+        self.label_8.mousePressEvent = lambda event: self.log_out()
         self.pushButton.setFont(font_button)
         self.pushButton_3.setFont(font_button)
         self.pushButton_4.setFont(font_button)
@@ -238,6 +244,10 @@ class Notes(QMainWindow):
     def home_scr(self):
         home_ui.show()
         self.close()
+    
+    def log_out(self):
+        login_ui.show()
+        self.close()
 
     def chat_scr(self):
         chat_ui.show()
@@ -273,6 +283,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         self.label_2.mousePressEvent = lambda event: self.home_scr()
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
+        self.label_8.mousePressEvent = lambda event: self.log_out()
         self.pushButton.clicked.connect(self.the_button_was_clicked)
         self.pushButton_2.clicked.connect(self.new_chat)
         self.textBrowser.setHtml("""
@@ -290,6 +301,10 @@ p, li { white-space: pre-wrap; }
 
     def home_scr(self):
         home_ui.show()
+        self.close()
+
+    def log_out(self):
+        login_ui.show()
         self.close()
 
     def notes_scr(self):
@@ -360,7 +375,7 @@ p, li { white-space: pre-wrap; }
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:28pt; font-weight:600;">Hello</span></p>
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:18pt;">      How can I help you today?</p>
             """)
-            
+
             print("Bruh, something went wrong...")
             print(e)
 
@@ -396,6 +411,7 @@ p, li { white-space: pre-wrap; }
         self.label_2.mousePressEvent = lambda event: self.home_scr()
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
+        self.label_9.mousePressEvent = lambda event: self.log_out()
         self.label_7.mousePressEvent = lambda event: self.open_github()
         self.label_8.mousePressEvent = lambda event: self.open_github()
 
@@ -404,6 +420,10 @@ p, li { white-space: pre-wrap; }
     
     def home_scr(self):
         home_ui.show()
+        self.close()
+
+    def log_out(self):
+        login_ui.show()
         self.close()
 
     def notes_scr(self):
