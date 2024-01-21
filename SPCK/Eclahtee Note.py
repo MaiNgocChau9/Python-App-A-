@@ -188,9 +188,10 @@ class Notes(QMainWindow):
         self.label_6.mousePressEvent = lambda event: self.about_scr()
         self.pushButton.setFont(font_button)
         self.pushButton_3.setFont(font_button)
+        self.pushButton_4.setFont(font_button)
         for note in self.all_notes:
             self.listWidget_2.addItem(note)
-        self.listWidget_2.itemClicked.connect(self.on_item_clicked)
+        self.pushButton_4.clicked.connect(self.open_note)
         self.pushButton_3.clicked.connect(self.add_note)
         self.pushButton.clicked.connect(self.remove_note)
 
@@ -208,7 +209,7 @@ class Notes(QMainWindow):
             self.listWidget_2.addItem(item)
             with open(os.path.join("SPCK\\All Notes", note_name), 'w', encoding='utf-8') as file: file.write("")
     
-    def on_item_clicked(self, item):
+    def open_note(self, item):
         text = self.listWidget_2.currentItem().text()
         global note_name
         note_name = text
@@ -341,7 +342,7 @@ class Edit(QMainWindow):
         self.pushButton_6.setFont(font_button)
         self.label.setFont(font_title)
         self.label.setText(note_name)
-        with open(f"SPCK\\All Notes\\{note_name}", 'r') as file:
+        with open(f"SPCK\\All Notes\\{note_name}", 'r', encoding = 'utf-8') as file:
             self.textEdit.setText(file.read())
     
     def closeEvent(self, event):

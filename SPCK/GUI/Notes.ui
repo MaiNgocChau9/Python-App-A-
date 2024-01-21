@@ -382,6 +382,54 @@ QListWidget::item::selected{
            <widget class="QWidget" name="widget_4" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
+              <widget class="QPushButton" name="pushButton_4">
+               <property name="font">
+                <font>
+                 <family>Segoe UI</family>
+                 <pointsize>10</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">QPushButton{
+	border: 1px solid black;
+	height: 30px;
+	border-radius: 10px;
+	background-color: #FFCE41;
+	color: white;
+}
+
+QPushButton::hover{
+	border: 2px solid black;
+	height: 30px;
+	border-radius: 10px;
+	background-color: #FFCE41;
+}
+
+QPushButton::pressed{
+	border: 2px solid black;
+	height: 30px;
+	border-radius: 10px;
+	background-color: rgb(234, 188, 59);
+}</string>
+               </property>
+               <property name="text">
+                <string>Open</string>
+               </property>
+               <property name="icon">
+                <iconset>
+                 <normaloff>../Image/all_note_view.png</normaloff>../Image/all_note_view.png</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>16</width>
+                 <height>16</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
               <widget class="QPushButton" name="pushButton_3">
                <property name="font">
                 <font>
