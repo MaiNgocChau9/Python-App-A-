@@ -11,8 +11,8 @@ import google.generativeai as genai
 import os
 
 genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
-global note_name
-note_name = os.listdir("SPCK\\All Notes")[0] #Lấy file đầu tiên
+# global note_name
+# note_name = os.listdir("SPCK\\All Notes")[0] #Lấy file đầu tiên
 
 #Login
 class Login(QMainWindow):
@@ -193,8 +193,10 @@ class Notes(QMainWindow):
     
     def on_item_clicked(self, item):
         text = self.listWidget_2.currentItem().text()
+        global note_name
         note_name = text
         print(note_name)
+        edit_ui = Edit()
         edit_ui.show()
 
     def home_scr(self):
@@ -311,6 +313,7 @@ p, li { white-space: pre-wrap; }
 class Edit(QMainWindow):
     def __init__ (self):
         super().__init__()
+        print("Edit:",note_name)
         uic.loadUi("SPCK\\GUI\\Note_edit.ui", self)
         # Font
         font_title = QFont("Segoe UI", 15)
@@ -335,7 +338,6 @@ home_ui = Home()
 notes_ui = Notes()
 chat_ui = Chat()
 about_ui = About()
-edit_ui = Edit()
 
 # Cửa sổ thực hiện
 home_ui.show()

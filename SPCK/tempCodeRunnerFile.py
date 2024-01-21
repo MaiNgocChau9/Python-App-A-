@@ -1,1 +1,1 @@
-print("Note:",note_name)
+closeEvent
