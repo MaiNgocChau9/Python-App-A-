@@ -326,6 +326,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         try:
             if self.lineEdit.text().replace(" ", "") != "":
                 temp = self.lineEdit.text()
+                print(temp)
                 self.lineEdit.setText("")
                 self.prompt_parts += [str(f"You: {temp}")]
                 response = self.model.generate_content(self.prompt_parts)
@@ -342,6 +343,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
             self.textBrowser.setMarkdown(self.full_conversation)
             font = QFont("Segoe UI", 13)
             self.textBrowser.setFont(font)
+            print(response.text)
             self.prompt_parts += [str(f"Eclahtee Assistant: {response.text}"),]
         except Exception as e:
             self.textBrowser.setHtml("""
