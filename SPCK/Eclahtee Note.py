@@ -134,6 +134,20 @@ p, li { white-space: pre-wrap; }
             self.listWidget.addItem(item)
         for note in self.all_notes:
             self.listWidget_2.addItem(note)
+        self.listWidget.itemClicked.connect(self.handle_item_click)
+    
+    def handle_item_click(self, item):
+        local_item = self.all_task
+        check_state = item.checkState()
+        if check_state == QtCore.Qt.CheckState.Unchecked:
+            local_item.append(item.text())
+        if check_state == QtCore.Qt.CheckState.Checked:
+            local_item.remove(item.text())
+        local_item.sort()
+        print(local_item)
+        with open("SPCK\\data\\todo_list.ecl", 'w', encoding='utf-8') as file:
+            for item in local_item:
+                file.write(f"{item}\n")
 
     def on_mouse_press(self, event: QMouseEvent):
         if self.widget_8.underMouse():
