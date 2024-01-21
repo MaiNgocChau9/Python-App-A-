@@ -546,7 +546,7 @@ margin-bottom: 0px;</string>
                 <item>
                  <widget class="QLabel" name="label_10">
                   <property name="styleSheet">
-                   <string notr="true">max-width: 50px;
+                   <string notr="true">max-width: 60px;
 max-height: 50px;</string>
                   </property>
                   <property name="text">
