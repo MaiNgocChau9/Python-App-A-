@@ -143,7 +143,7 @@ p, li { white-space: pre-wrap; }
         currentIndex = self.listWidget.currentRow()
         self.listWidget.takeItem(currentIndex)
         item_list = [self.listWidget.item(i).text() for i in range(self.listWidget.count())]
-        with open("SPCK\\data\\todo_list.ecl", 'w') as file:
+        with open("SPCK\\data\\todo_list.ecl", 'w', encoding='utf-8') as file:
             for item in item_list:
                 file.write(f"{item}\n")
 
@@ -154,7 +154,7 @@ p, li { white-space: pre-wrap; }
             item.setFlags(QtCore.Qt.ItemFlag.ItemIsUserCheckable | QtCore.Qt.ItemFlag.ItemIsEnabled | QtCore.Qt.ItemFlag.ItemIsSelectable)
             item.setCheckState(QtCore.Qt.CheckState.Unchecked)
             self.listWidget.addItem(item)
-            with open("SPCK\\data\\todo_list.ecl", 'a') as file:
+            with open("SPCK\\data\\todo_list.ecl", 'a', encoding='utf-8') as file:
                 file.write(f"{task_name}\n")
 
     def notes_scr(self):
@@ -190,6 +190,26 @@ class Notes(QMainWindow):
         for note in self.all_notes:
             self.listWidget_2.addItem(note)
         self.listWidget_2.itemClicked.connect(self.on_item_clicked)
+        self.pushButton_3.clicked.connect(self.add_note)
+        self.pushButton.clicked.connect(self.remove_note)
+
+    def remove_note(self):
+        currentIndex = self.listWidget.currentRow()
+        self.listWidget.takeItem(currentIndex)
+        item_list = [self.listWidget.item(i).text() for i in range(self.listWidget.count())]
+        with open("SPCK\\data\\todo_list.ecl", 'w') as file:
+            for item in item_list:
+                file.write(f"{item}\n")
+
+    def add_note(self):
+        task_name = QInputDialog.getText(self, "New Taks", "Enter Task")[0]
+        if task_name != "":
+            item = QtWidgets.QListWidgetItem(task_name)
+            item.setFlags(QtCore.Qt.ItemFlag.ItemIsUserCheckable | QtCore.Qt.ItemFlag.ItemIsEnabled | QtCore.Qt.ItemFlag.ItemIsSelectable)
+            item.setCheckState(QtCore.Qt.CheckState.Unchecked)
+            self.listWidget.addItem(item)
+            with open("SPCK\\data\\todo_list.ecl", 'a', encoding='utf-8') as file:
+                file.write(f"{task_name}\n")
     
     def on_item_clicked(self, item):
         text = self.listWidget_2.currentItem().text()
