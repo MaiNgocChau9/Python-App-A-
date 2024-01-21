@@ -350,7 +350,7 @@ padding: 0px;</string>
 	border: 2px solid #faae2b;
 	max-height: 35px;
 	min-height: 35px;
-	border-radius: 18px;
+	border-radius: 19px;
 	margin: 0px;
 	margin-left: 10px;
 }
@@ -360,7 +360,7 @@ QPushButton:hover{
 	border: 3px solid #faae2b;
 	max-height: 35px;
 	min-height: 35px;
-	border-radius: 18px;
+	border-radius: 19px;
 	margin: 0px;
 	margin-left: 10px;
 }
@@ -370,9 +370,8 @@ QPushButton:pressed{
 	border: 3px solid #faae2b;
 	max-height: 35px;
 	min-height: 35px;
-	border-radius: 18px;
+	border-radius: 19px;
 	margin: 0px;
-	margin-right: 10px;
 	margin-left: 10px;
 }</string>
             </property>
