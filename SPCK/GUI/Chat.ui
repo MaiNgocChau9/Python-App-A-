@@ -56,12 +56,20 @@ margin: 5px;</string>
          </property>
          <property name="styleSheet">
           <string notr="true">min-height: 34px;
-min-width: 31px;
+max-height: 34px;
+min-width: 34px;
+max-width: 34px;
 border: 2px solid black;
 border-radius: 18px;</string>
          </property>
          <property name="text">
-          <string>U</string>
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap>../Image/icon.png</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
