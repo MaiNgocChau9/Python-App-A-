@@ -4,6 +4,7 @@ from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtGui import QFont, QMouseEvent
 from PyQt6.QtCore import QEvent
 from PyQt6 import uic
+import webbrowser
 import importlib
 import sys
 
@@ -380,6 +381,11 @@ p, li { white-space: pre-wrap; }
         self.label_2.mousePressEvent = lambda event: self.home_scr()
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
+        self.label_7.mousePressEvent = lambda event: self.open_github()
+        self.label_8.mousePressEvent = lambda event: self.open_github()
+
+    def open_github(self):
+        webbrowser.open("https://github.com/MaiNgocChau9")
     
     def home_scr(self):
         home_ui.show()
