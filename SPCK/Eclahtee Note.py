@@ -418,5 +418,5 @@ chat_ui = Chat()
 about_ui = About()
 
 # Cửa sổ thực hiện
-home_ui.show()
+login_ui.show()
 app.exec()
