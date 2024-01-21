@@ -199,7 +199,6 @@ class Notes(QMainWindow):
         currentIndex = self.listWidget_2.currentRow()
         self.listWidget_2.takeItem(currentIndex)
         item_list = [self.listWidget_2.item(i).text() 
-        for i in range(self.listWidget_2.count())]
         os.remove(f"SPCK\\All Notes\\{item_list[currentIndex]}")
 
     def add_note(self):
@@ -207,6 +206,7 @@ class Notes(QMainWindow):
         if note_name != "":
             item = QtWidgets.QListWidgetItem(note_name)
             self.listWidget_2.addItem(item)
+            self.listWidget_2.setCurrentRow(self.listWidget_2.count() + 1)
             with open(os.path.join("SPCK\\All Notes", note_name), 'w', encoding='utf-8') as file: file.write("")
     
     def open_note(self, item):
