@@ -126,7 +126,9 @@ class Home(QMainWindow):
         self.listWidget.itemClicked.connect(self.item_click)
     
     def item_click(self, item):
-        local_item = self.all_task
+        local_item = []
+        with open("SPCK\\data\\todo_list.ecl", 'r', encoding='utf-8') as file: 
+            local_item = file.read().splitlines()
         check_state = item.checkState()
         if check_state == QtCore.Qt.CheckState.Unchecked:
             item.setCheckState(QtCore.Qt.CheckState.Checked)
