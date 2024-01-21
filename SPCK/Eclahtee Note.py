@@ -92,7 +92,7 @@ class Home(QMainWindow):
     all_notes = []
     files = os.listdir("SPCK\\All Notes")
     for file in files: 
-        all_notes.append(file)
+        if file != "hidden_note": all_notes.append(file)
     def __init__ (self):
         super().__init__()
         uic.loadUi("SPCK\\GUI\\Home.ui", self)
@@ -174,7 +174,7 @@ class Notes(QMainWindow):
     all_notes = []
     files = os.listdir("SPCK\\All Notes")
     for file in files: 
-        all_notes += [str(file)]
+        if file != "hidden_note": all_notes += [str(file)]
     def __init__ (self):
         super().__init__()
         uic.loadUi("SPCK\\GUI\\Notes.ui", self)
@@ -196,15 +196,14 @@ class Notes(QMainWindow):
         self.pushButton.clicked.connect(self.remove_note)
 
     def remove_note(self):
+        currentIndex = self.listWidget_2.currentRow()
+        item_list = [self.listWidget_2.item(i).text() for i in range(self.listWidget_2.count())]
+        os.remove(f"SPCK\\All Notes\\{item_list[currentIndex]}")
         try:
-            currentIndex = self.listWidget_2.currentRow()
             self.listWidget_2.takeItem(currentIndex)
-            item_list = [self.listWidget_2.item(i).text() 
-            for i in range(self.listWidget_2.count())]
-            os.remove(f"SPCK\\All Notes\\{item_list[currentIndex]}")
+            print(item_list[currentIndex])
         except Exception as e:
-            pass
-            print("pass")
+            print(e)
 
     def add_note(self):
         note_name = QInputDialog.getText(self, "New Notes", "Enter a note name")[0]
@@ -212,6 +211,7 @@ class Notes(QMainWindow):
             item = QtWidgets.QListWidgetItem(note_name)
             self.listWidget_2.addItem(item)
             with open(os.path.join("SPCK\\All Notes", note_name), 'w', encoding='utf-8') as file: file.write("")
+            print("Finish")
     
     def open_note(self, item):
         try:
