@@ -195,20 +195,18 @@ class Notes(QMainWindow):
         self.pushButton.clicked.connect(self.remove_note)
 
     def remove_note(self):
-        currentIndex = self.listWidget.currentRow()
-        self.listWidget.takeItem(currentIndex)
-        item_list = [self.listWidget.item(i).text() for i in range(self.listWidget.count())]
+        currentIndex = self.listWidget_2.currentRow()
+        self.listWidget_2.takeItem(currentIndex)
+        item_list = [self.listWidget_2.item(i).text() 
+        for i in range(self.listWidget_2.count())]
         os.remove(f"SPCK\\All Notes\\{item_list[currentIndex]}")
 
     def add_note(self):
-        task_name = QInputDialog.getText(self, "New Taks", "Enter Task")[0]
-        if task_name != "":
-            item = QtWidgets.QListWidgetItem(task_name)
-            item.setFlags(QtCore.Qt.ItemFlag.ItemIsUserCheckable | QtCore.Qt.ItemFlag.ItemIsEnabled | QtCore.Qt.ItemFlag.ItemIsSelectable)
-            item.setCheckState(QtCore.Qt.CheckState.Unchecked)
-            self.listWidget.addItem(item)
-            with open("SPCK\\data\\todo_list.ecl", 'a', encoding='utf-8') as file:
-                file.write(f"{task_name}\n")
+        note_name = QInputDialog.getText(self, "New Notes", "Enter a note name")[0]
+        if note_name != "":
+            item = QtWidgets.QListWidgetItem(note_name)
+            self.listWidget_2.addItem(item)
+            with open(os.path.join("SPCK\\All Notes", note_name), 'w', encoding='utf-8') as file: file.write("")
     
     def on_item_clicked(self, item):
         text = self.listWidget_2.currentItem().text()
