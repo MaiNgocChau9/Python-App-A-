@@ -1,1 +1,1 @@
-keep_me_login: 0
+logged: 0

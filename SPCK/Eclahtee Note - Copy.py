@@ -16,6 +16,14 @@ genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
 global note_name
 note_name = os.listdir("SPCK\\All Notes")[0] #Lấy file đầu tiên
 
+
+global logged
+with open("SPCK\\data\\account.ecl", "r") as f:
+    lines = f.readlines()
+    logged = int(lines[0].split(":")[1])
+
+print(logged)
+
 #Login
 class Login(QMainWindow):
     def __init__ (self):
@@ -37,13 +45,18 @@ class Login(QMainWindow):
                 msg_box.setText("Đăng nhập thành công!")
                 msg_box.exec()
                 login_ui.hide()
-                main_ui.show()
+                home_ui.show()
+                with open("SPCK\\data\\account.ecl", "r+") as f:
+                    f.write("logged: 1")
             else: 
                 msg_box = QMessageBox()
-                msg_box.setWindowTitle("Caution")
-                msg_box.setIcon(QMessageBox.Icon.Warning)
-                msg_box.setText("Vui lòng đánh dấu vào \"Keep me login\"")
+                msg_box.setWindowTitle("Success")
+                msg_box.setText("Đăng nhập thành công!")
                 msg_box.exec()
+                login_ui.hide()
+                home_ui.show()
+                with open("SPCK\\data\\account.ecl", "r+") as f:
+                    f.write("logged: 0")
         else:
                 msg_box = QMessageBox()
                 msg_box.setWindowTitle("Lỗi")
@@ -170,6 +183,8 @@ class Home(QMainWindow):
                 file.write(f"{task_name}\n")
 
     def log_out(self):
+        with open("SPCK\\data\\account.ecl", "r+") as f:
+            f.write("logged: 0")
         login_ui.show()
         self.close()
 
@@ -240,6 +255,8 @@ class Notes(QMainWindow):
         self.close()
     
     def log_out(self):
+        with open("SPCK\\data\\account.ecl", "r+") as f:
+            f.write("logged: 0")
         login_ui.show()
         self.close()
 
@@ -298,6 +315,8 @@ p, li { white-space: pre-wrap; }
         self.close()
 
     def log_out(self):
+        with open("SPCK\\data\\account.ecl", "r+") as f:
+            f.write("logged: 0")
         login_ui.show()
         self.close()
 
@@ -417,6 +436,8 @@ p, li { white-space: pre-wrap; }
         self.close()
 
     def log_out(self):
+        with open("SPCK\\data\\account.ecl", "r+") as f:
+            f.write("logged: 0")
         login_ui.show()
         self.close()
 
@@ -559,5 +580,10 @@ about_ui = About()
 edit_ui = Edit()
 
 # Cửa sổ thực hiện
-home_ui.show()
+
+if logged == 1:
+    home_ui.show()
+elif logged == 0:
+    login_ui.show()
+
 sys.exit(app.exec())
