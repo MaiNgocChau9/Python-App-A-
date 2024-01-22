@@ -9,7 +9,7 @@
 ### **Giao diện thân thiện** 
   * Eclahtee có giao diện đơn giản, dễ sử dụng. Tạo, chỉnh sửa, xóa bỏ ghi chú, tạo danh sách việc cần làm (Todo list) chỉ với vài thao tác đơn giản. 🖥️
 
-### **Ứng dụng thực tết**
+### **Ứng dụng thực tế**
   * **Học tập:** Giúp học sinh, sinh viên ghi chú bài giảng, tài liệu học tập một cách dễ dàng và hiệu quả. 📚
   * **Ý tưởng Sáng tạo:** Trong ghi chú, nhập và lưu trữ ý tưởng của bạn mọi lúc, mọi nơi. 💡
 
