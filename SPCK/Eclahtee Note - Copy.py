@@ -104,7 +104,7 @@ class Register(QMainWindow):
                     msg_box.setIcon(QMessageBox.Icon.Warning)
                     msg_box.setText("Mật khẩu không hợp lệ!")
                     msg_box.exec()
-                    
+
 #Main
 class Home(QMainWindow):
     all_task = []
