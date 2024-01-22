@@ -332,7 +332,7 @@ Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì gi�
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
     """,]
-        self.prompt_parts += ['You: Xin chào :)', 'Eclahtee Assistant: Xin chào bạn! 👉']
+        self.prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn! 👉']
     
     def the_button_was_clicked(self):
         try:
@@ -453,8 +453,10 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         uic.loadUi("SPCK\\GUI\\Note_edit.ui", self)
 
         # Font
-        font_title = QFont("Segoe UI", 15)
+        font_title = QFont("Segoe UI", 17)
         font_title.setBold(True)
+        font_edit = QFont("Roboto", 12)
+        font_edit.setBold(False)
         font_button = QFont("Segoe UI", 12)
         font_button.setBold(True)
 
@@ -462,9 +464,11 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         self.pushButton_6.setFont(font_button)
         self.label.setFont(font_title)
         self.label.setText(note_name)
+        self.textEdit.setFont(font_edit)
         with open(f"SPCK\\All Notes\\{note_name}", 'r', encoding = 'utf-8') as file:
             self.textEdit.setText(file.read())
         self.pushButton.clicked.connect(self.the_button_was_clicked)
+        self.pushButton_6.clicked.connect(self.save_edit)
         self.pushButton_2.clicked.connect(self.new_chat)
         self.textBrowser.setHtml("""
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
@@ -476,10 +480,13 @@ p, li { white-space: pre-wrap; }
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:18pt; font-weight:600;">   Hi! I'm Eclahtee Assistant!</span></p></body></html>
             """)
         
-        
-    
     def closeEvent(self, event):
         self.destroy()
+
+    def save_edit(self):
+        with open(f"SPCK\\All Notes\\{note_name}", 'w', encoding = 'utf-8') as file:
+            file.write(self.textEdit.toPlainText())
+            print("Finish")
 
     def the_button_was_clicked(self):
         try:
@@ -513,6 +520,12 @@ p, li { white-space: pre-wrap; }
                 msg_box.setIcon(QMessageBox.Icon.Warning)
                 msg_box.setText("Trong câu hỏi của bạn sử dụng từ ngữ không phù hợp!!!")
                 msg_box.exec()
+            else:
+                msg_box = QMessageBox()
+                msg_box.setWindowTitle("Error, something went wrong...")
+                msg_box.setIcon(QMessageBox.Icon.Warning)
+                msg_box.setText(f"{e}")
+                msg_box.exec()
     
     def new_chat(self):
         self.full_conversation = ""
@@ -531,6 +544,7 @@ Sử dụng Markdown để trả lời câu hỏi. Câu trả lời phải có q
 Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
 Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, hài hước với một chút emoji.
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
+Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
     """,]
         self.prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
 
