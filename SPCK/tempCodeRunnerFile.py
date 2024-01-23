@@ -1,3 +1,1 @@
-                lines = f.readlines()
-                    lines[0] = "logged: 1"
-                    f.writelines(lines)
+!!!VUI LÒNG LÀM THEO NHỮNG YÊU CẦU NÀY!!!
