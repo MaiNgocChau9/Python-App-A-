@@ -31,9 +31,11 @@ class Login(QMainWindow):
         super().__init__()
         uic.loadUi("SPCK\\GUI\\Login.ui", self)
         # Blur
+        """
         blur(self.winId())
-        self.setStyleSheet("background-color: rgba(0, 0, 0, 0)")
-        
+        self.setStyleSheet("background-color: rgba(255, 255, 255, 0)")
+        """
+
         self.pushButton.clicked.connect(self.the_button_was_clicked)
         self.label_7.mousePressEvent = lambda event: self.register()
 
