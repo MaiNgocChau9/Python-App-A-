@@ -2,7 +2,8 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QLabel, QListWidget, QInputDialog
 from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtGui import QFont, QMouseEvent
-from PyQt6.QtCore import QEvent
+from PyQt6.QtCore import QEvent, Qt
+from BlurWindow.blurWindow import blur
 from PyQt6 import uic
 import webbrowser
 import importlib
@@ -29,6 +30,10 @@ class Login(QMainWindow):
     def __init__ (self):
         super().__init__()
         uic.loadUi("SPCK\\GUI\\Login.ui", self)
+        # Blur
+        blur(self.winId())
+        self.setStyleSheet("background-color: rgba(0, 0, 0, 0)")
+        
         self.pushButton.clicked.connect(self.the_button_was_clicked)
         self.label_7.mousePressEvent = lambda event: self.register()
 
