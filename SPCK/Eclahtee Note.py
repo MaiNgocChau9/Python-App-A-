@@ -23,7 +23,8 @@ import google.generativeai as genai
 import os
 
 genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
-# global note_name
+global note_name_edit
+note_name_edit = ""
 # note_name = os.listdir("SPCK\\All Notes")[0] #Lấy file đầu tiên
 
 #Login
@@ -241,15 +242,14 @@ class Notes(QMainWindow):
     
     def open_note(self, item):
         try:
-            text = self.listWidget_2.currentItem().text()
-            global note_name
-            note_name = text
-            print(note_name)
-            edit_ui = Edit()
+            note_name_edit = self.listWidget_2.currentItem().text()
+            print(note_name_edit)
+            edit_ui = Edit(note_name_edit)
             edit_ui.show()
         except Exception as e:
             pass
             print("pass")
+            print(e)
 
     def home_scr(self):
         home_ui.show()
@@ -445,9 +445,9 @@ p, li { white-space: pre-wrap; }
         self.close()
 
 class Edit(QMainWindow):
-    def __init__ (self):
+    def __init__ (self, note_name_edit):
         super().__init__()
-        print("Edit:",note_name)
+        print("Edit:",note_name_edit)
         uic.loadUi("SPCK\\GUI\\Note_edit.ui", self)
 
         # Font
@@ -459,12 +459,12 @@ class Edit(QMainWindow):
         # UI
         self.pushButton_6.setFont(font_button)
         self.label.setFont(font_title)
-        self.label.setText(note_name)
-        with open(f"SPCK\\All Notes\\{note_name}", 'r', encoding = 'utf-8') as file:
+        self.label.setText(note_name_edit)
+        self.show()
+        with open(f"SPCK\\All Notes\\{note_name_edit}", 'r', encoding = 'utf-8') as file:
+            print(f"SPCK\\All Notes\\{note_name_edit}")
             self.textEdit.setText(file.read())
-    
-    def closeEvent(self, event):
-        self.destroy()
+            print("NOTE:\n",file.read())
 
 app = QApplication(sys.argv)
 # Các cửa sổ
