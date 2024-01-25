@@ -1,9 +1,18 @@
 #PyQt6
+"""
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QLabel, QListWidget, QInputDialog
 from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtGui import QFont, QMouseEvent
-from PyQt6.QtCore import QEvent, Qt
-from BlurWindow.blurWindow import blur
+from PyQt6.QtCore import QEvent
+"""
+from PyQt6.QtWidgets import *
+from PyQt6 import *
+from PyQt6.QtGui import *
+from PyQt6.QtCore import *
+from PyQt6 import uic
+import webbrowser
+import importlib
+import sys
 from PyQt6 import uic
 import webbrowser
 import importlib
@@ -471,17 +480,16 @@ class Edit(QMainWindow):
     Top_k = Mức độ chi tiết
     """
     generation_config = {"temperature": 1,"top_p": 1,"top_k": 1,"max_output_tokens": 100000}
-    safety_settings = [{"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},]
 
-    model = genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config,safety_settings=safety_settings)
+    model = genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config)
     full_conversation = ""
     prompt_parts = ["""
-System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ. 
-Sử dụng Markdown để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch, kết quả đúng và thật chi tiết. 
+System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ nhân tạo.
+Sử dụng Markdown để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch, kết quả đúng, ngắn gọn
 Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
-Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, hài hước một chút emoji cũng được.
+Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, kết hợp với emoji. Một chút hài hước cũng được.
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
-Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
+\"Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.\"
     """,]
     prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
     def __init__ (self):
@@ -579,9 +587,9 @@ p, li { white-space: pre-wrap; }
 System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ nhân tạo.
 Sử dụng Markdown để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch, kết quả đúng, ngắn gọn
 Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
-Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, hài hước với một chút emoji.
+Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, kết hợp với emoji.
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
-Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
+\"Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.\"
     """,]
         self.prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
 

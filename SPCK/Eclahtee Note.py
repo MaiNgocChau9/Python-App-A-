@@ -1,8 +1,18 @@
 #PyQt6
+"""
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QMessageBox, QLabel, QListWidget, QInputDialog
 from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtGui import QFont, QMouseEvent
 from PyQt6.QtCore import QEvent
+"""
+from PyQt6.QtWidgets import *
+from PyQt6 import *
+from PyQt6.QtGui import *
+from PyQt6.QtCore import *
+from PyQt6 import uic
+import webbrowser
+import importlib
+import sys
 from PyQt6 import uic
 import webbrowser
 import importlib

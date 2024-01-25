@@ -37,12 +37,11 @@ background-color: white;</string>
     <item>
      <widget class="QWidget" name="widget" native="true">
       <property name="styleSheet">
-       <string notr="true">max-width: 50px;
-background-color: white;
-border-radius: 15px;
-border: 3px solid black;
+       <string notr="true">max-width: 54px;
+background-color: #FBFBFA;
+border-right: 2px solid #F5F5F4;
 padding: 0px;
-margin: 5px;</string>
+margin: 0px;</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
@@ -98,7 +97,7 @@ border-radius: 18px;</string>
          <property name="styleSheet">
           <string notr="true">QLabel{
 	max-height: 22px;
-	border: 2px solid white;
+	border: 2px solid #FBFBFA;
 	padding: 6px;
 	border-radius: 18px;
 }
@@ -136,7 +135,7 @@ QLabel:hover{
          <property name="styleSheet">
           <string notr="true">QLabel{
 	max-height: 22px;
-	border: 2px solid white;
+	border: 2px solid #FBFBFA;
 	padding: 6px;
 	border-radius: 18px;
 }
@@ -216,7 +215,7 @@ border-radius: 18px;</string>
          <property name="styleSheet">
           <string notr="true">QLabel{
 	max-height: 22px;
-	border: 2px solid white;
+	border: 2px solid #FBFBFA;
 	padding: 6px;
 	border-radius: 18px;
 }
@@ -254,7 +253,7 @@ QLabel:hover{
          <property name="styleSheet">
           <string notr="true">QLabel{
 	max-height: 22px;
-	border: 2px solid white;
+	border: 2px solid #FBFBFA;
 	padding: 6px;
 	border-radius: 18px;
 }

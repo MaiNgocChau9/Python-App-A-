@@ -1,1 +1,3 @@
-255, 255, 255, 0
+        # blur(self.winId())
+
+        # self.setStyleSheet("background-color: rgba(0, 0, 0, 0)")
