@@ -6,7 +6,6 @@ from PyQt6.QtGui import QFont, QMouseEvent
 from PyQt6.QtCore import QEvent
 """
 from PyQt6.QtWidgets import *
-import threading
 from PyQt6 import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import *
