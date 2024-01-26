@@ -1,4 +1,6 @@
-        background = self.capture_widget_background(main_widget)
-        palette = main_widget.palette()
-        palette.setBrush(QPalette.ColorRole.Window, QBrush(QColor(255, 255, 255, 128), Qt.BrushStyle.SolidPattern))
-        main_widget.setPalette(palette)
+import geshi
+
+geshi = geshi.Geshi("python")
+geshi.set_code("print('Hello, world!')")
+highlighted_code = geshi.highlight()
+print(highlighted_code)
