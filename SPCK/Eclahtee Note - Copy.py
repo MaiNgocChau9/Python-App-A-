@@ -6,6 +6,7 @@ from PyQt6.QtGui import QFont, QMouseEvent
 from PyQt6.QtCore import QEvent
 """
 from PyQt6.QtWidgets import *
+from threading import Thread
 from PyQt6 import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import *
@@ -271,6 +272,7 @@ class Notes(QMainWindow):
         text = self.listWidget_2.currentItem().text()
         note_name = text
         print(note_name)
+        edit_ui = Edit(note_name)
         edit_ui.show()
 
     def home_scr(self):
@@ -492,7 +494,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
 \"Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.\"
     """,]
     prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
-    def __init__ (self):
+    def __init__ (self, note_name):
         super().__init__()
         print("Edit:",note_name)
         uic.loadUi("SPCK\\GUI\\Note_edit.ui", self)
@@ -511,6 +513,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         self.label.setText(note_name)
         self.textEdit.setFont(font_edit)
         with open(f"SPCK\\All Notes\\{note_name}", 'r', encoding = 'utf-8') as file:
+            print(file.read())
             self.textEdit.setText(file.read())
         self.pushButton.clicked.connect(self.the_button_was_clicked)
         self.pushButton_6.clicked.connect(self.save_edit)
@@ -524,9 +527,6 @@ p, li { white-space: pre-wrap; }
 <p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:18pt; font-weight:600;">   Hi! I'm Eclahtee Assistant!</span></p></body></html>
             """)
-        
-    def closeEvent(self, event):
-        self.destroy()
 
     def save_edit(self):
         with open(f"SPCK\\All Notes\\{note_name}", 'w', encoding = 'utf-8') as file:
@@ -601,7 +601,6 @@ home_ui = Home()
 notes_ui = Notes()
 chat_ui = Chat()
 about_ui = About()
-edit_ui = Edit()
 
 # Cửa sổ thực hiện
 

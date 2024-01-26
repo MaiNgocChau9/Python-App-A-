@@ -446,7 +446,7 @@ p, li { white-space: pre-wrap; }
 
 class Edit(QMainWindow):
     def __init__ (self, note_name_edit):
-        super().__init__()
+        super().__init__(self.show())
         print("Edit:",note_name_edit)
         uic.loadUi("SPCK\\GUI\\Note_edit.ui", self)
 
