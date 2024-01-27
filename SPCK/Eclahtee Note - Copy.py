@@ -454,7 +454,10 @@ class Search(QMainWindow):
         self.label_6.mousePressEvent = lambda event: self.about_scr()
         self.pushButton.setFont(font_button)
         self.pushButton_4.setFont(font_button)
+
         self.pushButton_2.clicked.connect(self.search)
+        self.pushButton_4.clicked.connect(self.open_note)
+        self.pushButton.clicked.connect(self.remove_note)
 
     def home_scr(self):
         home_ui.show()
@@ -484,15 +487,30 @@ class Search(QMainWindow):
         files = os.listdir("SPCK\\All Notes")
         for file in files: 
             if file != "hidden_note": all_notes += [str(file)]
-        print(all_notes)
         print(self.lineEdit.text())
         for note in all_notes:
             if self.lineEdit.text().lower() in note.lower():
                 search_notes.append(note)
-        print(search_notes)
         self.listWidget_2.clear()
         for note in search_notes:
             self.listWidget_2.addItem(note)
+
+    def remove_note(self):
+        currentIndex = self.listWidget_2.currentRow()
+        item_list = [self.listWidget_2.item(i).text() for i in range(self.listWidget_2.count())]
+        os.remove(f"SPCK\\All Notes\\{item_list[currentIndex]}")
+        try:
+            self.listWidget_2.takeItem(currentIndex)
+            print(item_list[currentIndex])
+        except Exception as e:
+            print(e)
+    
+    def open_note(self, item):
+        text = self.listWidget_2.currentItem().text()
+        note_name = text
+        print(note_name)
+        edit_ui = Edit(note_name)
+        edit_ui.show()
 
 
 class About(QMainWindow):
