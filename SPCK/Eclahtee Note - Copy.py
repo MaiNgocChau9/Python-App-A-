@@ -150,6 +150,7 @@ class Home(QMainWindow):
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
         self.label_13.mousePressEvent = lambda event: self.log_out()
+        self.label_14.mousePressEvent = lambda event: self.search_scr()
         self.pushButton_2.clicked.connect(self.notes_scr)
         self.pushButton_6.clicked.connect(self.add_task)
         self.widget_8.mousePressEvent = self.on_mouse_press
@@ -222,6 +223,10 @@ class Home(QMainWindow):
     def about_scr(self):
         about_ui.show()
         self.close()
+    
+    def search_scr(self):
+        search_ui.show()
+        self.close()
 
 class Notes(QMainWindow):
     all_notes = []
@@ -240,6 +245,7 @@ class Notes(QMainWindow):
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
         self.label_8.mousePressEvent = lambda event: self.log_out()
+        self.label_10.mousePressEvent = lambda event: self.search_scr()
         self.pushButton.setFont(font_button)
         self.pushButton_3.setFont(font_button)
         self.pushButton_4.setFont(font_button)
@@ -276,6 +282,10 @@ class Notes(QMainWindow):
 
     def home_scr(self):
         home_ui.show()
+        self.close()
+    
+    def search_scr(self):
+        search_ui.show()
         self.close()
     
     def log_out(self):
@@ -320,6 +330,7 @@ Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_6.mousePressEvent = lambda event: self.about_scr()
         self.label_8.mousePressEvent = lambda event: self.log_out()
+        self.label_10.mousePressEvent = lambda event: self.search_scr()
         self.pushButton.clicked.connect(self.the_button_was_clicked)
         self.pushButton_2.clicked.connect(self.new_chat)
         self.textBrowser.setHtml("""
@@ -347,6 +358,10 @@ p, li { white-space: pre-wrap; }
 
     def notes_scr(self):
         notes_ui.show()
+        self.close()
+    
+    def search_scr(self):
+        search_ui.show()
         self.close()
 
     def about_scr(self):
@@ -424,6 +439,61 @@ p, li { white-space: pre-wrap; }
                 msg_box.setText("Trong câu hỏi của bạn sử dụng từ ngữ không phù hợp!!!")
                 msg_box.exec()
 
+class Search(QMainWindow):
+    def __init__ (self):
+        super().__init__()
+        uic.loadUi("SPCK\\GUI\\Search.ui", self)
+        font = QFont("Segoe UI", 14)
+        font.setBold(True)
+        font_button = QFont("Segoe UI", 10)
+        font_button.setBold(True)
+        self.label_2.mousePressEvent = lambda event: self.home_scr()
+        self.label_9.mousePressEvent = lambda event: self.notes_scr()
+        self.label_4.mousePressEvent = lambda event: self.chat_scr()
+        self.label_8.mousePressEvent = lambda event: self.log_out()
+        self.label_6.mousePressEvent = lambda event: self.about_scr()
+        self.pushButton.setFont(font_button)
+        self.pushButton_4.setFont(font_button)
+        self.pushButton_2.clicked.connect(self.search)
+
+    def home_scr(self):
+        home_ui.show()
+        self.close()
+    
+    def about_scr(self):
+        about_ui.show()
+        self.close()
+
+    def log_out(self):
+        with open("SPCK\\data\\account.ecl", "r+") as f:
+            f.write("logged: 0")
+        login_ui.show()
+        self.close()
+
+    def notes_scr(self):
+        notes_ui.show()
+        self.close()
+
+    def chat_scr(self):
+        chat_ui.show()
+        self.close()
+
+    def search(self):
+        all_notes = []
+        search_notes = []
+        files = os.listdir("SPCK\\All Notes")
+        for file in files: 
+            if file != "hidden_note": all_notes += [str(file)]
+        print(all_notes)
+        print(self.lineEdit.text())
+        for note in all_notes:
+            if self.lineEdit.text().lower() in note.lower():
+                search_notes.append(note)
+        print(search_notes)
+        self.listWidget_2.clear()
+        for note in search_notes:
+            self.listWidget_2.addItem(note)
+
 
 class About(QMainWindow):
     def __init__ (self):
@@ -450,6 +520,7 @@ p, li { white-space: pre-wrap; }
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
         self.label_9.mousePressEvent = lambda event: self.log_out()
+        self.label_10.mousePressEvent = lambda event: self.search_scr()
         self.label_7.mousePressEvent = lambda event: self.open_github()
         self.label_8.mousePressEvent = lambda event: self.open_github()
 
@@ -458,6 +529,10 @@ p, li { white-space: pre-wrap; }
     
     def home_scr(self):
         home_ui.show()
+        self.close()
+
+    def search_scr(self):
+        search_ui.show()
         self.close()
 
     def log_out(self):
@@ -600,12 +675,12 @@ home_ui = Home()
 notes_ui = Notes()
 chat_ui = Chat()
 about_ui = About()
+search_ui = Search()
 
 # Cửa sổ thực hiện
 
 if logged == 1:
     home_ui.show()
 elif logged == 0:
-    login_ui.show()
-
+    search_ui.show()
 sys.exit(app.exec())
