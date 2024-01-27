@@ -23,8 +23,6 @@ import google.generativeai as genai
 import os
 
 genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
-global note_name
-note_name = os.listdir("SPCK\\All Notes")[0] #Lấy file đầu tiên
 
 #Keep me login
 global logged
@@ -686,6 +684,8 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         self.prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
 
 app = QApplication(sys.argv)
+app.setStyle(QStyleFactory.create("Macintosh"))
+
 # Các cửa sổ
 login_ui = Login()
 register_ui = Register()
