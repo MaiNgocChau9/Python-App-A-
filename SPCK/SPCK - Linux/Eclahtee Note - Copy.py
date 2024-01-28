@@ -283,7 +283,7 @@ class Notes(QMainWindow):
     
     def open_note(self, item):
         global note_name
-        note_name = self.listWidget_2.currentItem().text()
+        note_name = self.listWidget_2.currentItem().toPlainText()
         print(note_name)
         edit_ui.show()
         open_edit = 1
