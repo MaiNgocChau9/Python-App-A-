@@ -24,6 +24,8 @@ import google.generativeai as genai
 import os
 
 genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
+global note_name
+note_name = ""
 
 #Keep me login
 global logged
@@ -280,10 +282,9 @@ class Notes(QMainWindow):
             print("Finish")
     
     def open_note(self, item):
-        text = self.listWidget_2.currentItem().text()
-        note_name = text
+        global note_name
+        note_name = self.listWidget_2.currentItem().text()
         print(note_name)
-        edit_ui = Edit(note_name)
         edit_ui.show()
 
     def home_scr(self):
@@ -612,20 +613,23 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         font_button.setBold(True)
 
         # UI
-        print("Lô mấy nhóc")
         self.pushButton_6.setFont(font_button)
         self.label.setFont(font_title)
         self.label.setText(note_name)
         self.textEdit.setFont(font_edit)
-        with open(f"All Notes//{note_name}", 'r', encoding = 'utf-8') as file:
-            print(file.read())
-            self.textEdit.setText(file.read())
-        self.setStyleSheet("background-color: white; color: black;")
-        self.setWindowTitle("Eclahtee - Edit")
-        self.pushButton.clicked.connect(self.the_button_was_clicked)
-        self.pushButton_6.clicked.connect(self.save_edit)
-        self.pushButton_2.clicked.connect(self.new_chat)
-        self.textBrowser.setHtml("""
+        if note_name.replace(" ", "") != "":
+            with open(f"All Notes//{note_name}", 'r', encoding = 'utf-8') as file:
+                print(file.read())
+                self.textEdit.setText(file.read())
+        else:
+            self.textEdit.setText("")
+            self.setStyleSheet("background-color: white; color: black;")
+            self.setWindowTitle("Eclahtee - Edit")
+            self.pushButton.clicked.connect(self.the_button_was_clicked)
+            self.pushButton_6.clicked.connect(self.save_edit)
+            self.pushButton_2.clicked.connect(self.new_chat)
+            self.pushButton_3.clicked.connect(self.reload)
+            self.textBrowser.setHtml("""
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 <html><head><meta name="qrichtext" content="1" /><style type="text/css">
 p, li { white-space: pre-wrap; }
@@ -636,9 +640,17 @@ p, li { white-space: pre-wrap; }
             """)
 
     def save_edit(self):
-        with open(f"All Notes//{self.note_name}", 'w', encoding = 'utf-8') as file:
+        global note_name
+        with open(f"All Notes//{note_name}", 'w', encoding = 'utf-8') as file:
             file.write(self.textEdit.toPlainText())
             print("Finish")
+    
+    def reload(self):
+        global note_name
+        print("Note Name:", note_name)
+        self.label.setText(note_name)
+        with open(f"All Notes//{note_name}", 'r', encoding = 'utf-8') as file:
+            self.textEdit.setText(str(file.read()))
 
     def the_button_was_clicked(self):
         try:
@@ -710,6 +722,7 @@ notes_ui = Notes()
 chat_ui = Chat()
 about_ui = About()
 search_ui = Search()
+edit_ui = Edit(note_name)
 
 # Cửa sổ thực hiện
 
