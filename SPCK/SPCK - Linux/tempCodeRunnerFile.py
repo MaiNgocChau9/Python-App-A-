@@ -1,0 +1,1 @@
+self.setStyleSheet("background-color: white; color: black")
