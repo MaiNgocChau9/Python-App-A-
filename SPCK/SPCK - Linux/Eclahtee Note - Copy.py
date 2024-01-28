@@ -24,11 +24,12 @@ import google.generativeai as genai
 import os
 
 genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
-global note_name
+global note_name, edit_reload, logged, open_edit
 note_name = ""
+edit_reload = 0
+open_edit = 0
 
 #Keep me login
-global logged
 with open("data/account.ecl", "r") as f:
     lines = f.readlines()
     logged = int(lines[0].split(":")[1])
@@ -36,7 +37,7 @@ with open("data/account.ecl", "r") as f:
 print(logged)
 
 #Login
-class Login(QMainWindow):
+class Login(QMainWindow):   
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI//Login.ui", self)
@@ -49,7 +50,6 @@ class Login(QMainWindow):
         self.setWindowTitle("Eclahtee - Login")
         self.pushButton.clicked.connect(self.the_button_was_clicked)
         self.label_7.mousePressEvent = lambda event: self.register()
-
     
     def register(self):
         register_ui.show()
@@ -286,6 +286,8 @@ class Notes(QMainWindow):
         note_name = self.listWidget_2.currentItem().text()
         print(note_name)
         edit_ui.show()
+        open_edit = 1
+        edit_ui.reload()
 
     def home_scr(self):
         home_ui.show()
@@ -613,6 +615,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         font_button.setBold(True)
 
         # UI
+        self.closeEvent = lambda event: print("Close")
         self.pushButton_6.setFont(font_button)
         self.label.setFont(font_title)
         self.label.setText(note_name)
@@ -628,7 +631,6 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
             self.pushButton.clicked.connect(self.the_button_was_clicked)
             self.pushButton_6.clicked.connect(self.save_edit)
             self.pushButton_2.clicked.connect(self.new_chat)
-            self.pushButton_3.clicked.connect(self.reload)
             self.textBrowser.setHtml("""
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
 <html><head><meta name="qrichtext" content="1" /><style type="text/css">
@@ -646,6 +648,7 @@ p, li { white-space: pre-wrap; }
             print("Finish")
     
     def reload(self):
+        print("Reload")
         global note_name
         print("Note Name:", note_name)
         self.label.setText(note_name)

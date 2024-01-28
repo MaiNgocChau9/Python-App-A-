@@ -305,46 +305,6 @@ QPushButton::pressed{
             </property>
            </widget>
           </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_3">
-            <property name="font">
-             <font>
-              <family>Sans Serif</family>
-              <pointsize>11</pointsize>
-              <bold>true</bold>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">QPushButton{
-	border: 2px solid black;
-	height: 30px;
-	border-radius: 10px;
-	background-color: #FFCE41;
-	color: white;
-	max-width: 80px;
-}
-
-QPushButton::hover{
-	border: 3px solid black;
-	height: 30px;
-	border-radius: 10px;
-	background-color: #FFCE41;
-	max-width: 80px;
-}
-
-QPushButton::pressed{
-	border: 3px solid black;
-	height: 30px;
-	border-radius: 10px;
-	background-color: rgb(234, 188, 59);
-	max-width: 80px;
-}</string>
-            </property>
-            <property name="text">
-             <string>Reload</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </widget>
        </item>
