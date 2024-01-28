@@ -710,7 +710,7 @@ Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì gi�
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 \"Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.\"
     """,]
-        self.prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
+        self.prompt_parts += ["You: Xin chào", "Eclahtee Assistant: Xin chào bạn!"]
 
 app = QApplication(sys.argv)
 
