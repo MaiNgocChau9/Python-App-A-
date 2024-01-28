@@ -701,7 +701,6 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         self.prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
 
 app = QApplication(sys.argv)
-app.setWindowIcon(QIcon("icon.ico"))
 
 # Các cửa sổ
 login_ui = Login()
