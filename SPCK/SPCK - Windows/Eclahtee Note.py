@@ -29,7 +29,7 @@ edit_reload = 0
 open_edit = 0
 
 #Keep me login
-with open("SPCK\SPCK - Windows\\data\\account.ecl", "r") as f:
+with open("data\\account.ecl", "r") as f:
     lines = f.readlines()
     logged = int(lines[0].split(":")[1])
 
@@ -282,7 +282,7 @@ class Notes(QMainWindow):
     
     def open_note(self, item):
         global note_name
-        note_name = self.listWidget_2.currentItem().toPlainText()
+        note_name = self.listWidget_2.currentItem().text()
         print(note_name)
         edit_ui.show()
         open_edit = 1
