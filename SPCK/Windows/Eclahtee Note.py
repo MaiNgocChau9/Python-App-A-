@@ -33,8 +33,6 @@ with open("data\\account.ecl", "r") as f:
     lines = f.readlines()
     logged = int(lines[0].split(":")[1])
 
-print(logged)
-
 #Login
 class Login(QMainWindow):   
     def __init__ (self):
@@ -181,7 +179,6 @@ class Home(QMainWindow):
             item.setCheckState(QtCore.Qt.CheckState.Unchecked)
             local_item.append(item.text())
         local_item.sort()
-        print(local_item)
         with open("data\\todo_list.ecl", 'w', encoding='utf-8') as file:
             for item in local_item:
                 file.write(f"{item}\n")
@@ -268,7 +265,6 @@ class Notes(QMainWindow):
         os.remove(f"All Notes\\{item_list[currentIndex]}")
         try:
             self.listWidget_2.takeItem(currentIndex)
-            print(item_list[currentIndex])
         except Exception as e:
             print(e)
 
@@ -278,12 +274,10 @@ class Notes(QMainWindow):
             item = QtWidgets.QListWidgetItem(note_name)
             self.listWidget_2.addItem(item)
             with open(os.path.join("All Notes", note_name), 'w', encoding='utf-8') as file: file.write("")
-            print("Finish")
     
     def open_note(self, item):
         global note_name
         note_name = self.listWidget_2.currentItem().text()
-        print(note_name)
         edit_ui.show()
         open_edit = 1
         edit_ui.reload()
@@ -424,7 +418,6 @@ Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee
             font = QFont("Segoe UI", 13)
             self.textBrowser.setFont(font)
             self.prompt_parts += [str(f"Eclahtee Assistant: {response.text}"),]
-            print(self.prompt_parts)
         except Exception as e:
             self.textBrowser.setHtml("""
 <!DOCTYPE HTML PUBLIC "-\\W3C\\DTD HTML 4.0\\EN" "http:\\www.w3.org/TR/REC-html40/strict.dtd">
@@ -499,7 +492,6 @@ class Search(QMainWindow):
         files = os.listdir("All Notes")
         for file in files: 
             if file != "hidden_note": all_notes += [str(file)]
-        print(self.lineEdit.text())
         for note in all_notes:
             if self.lineEdit.text().lower() in note.lower():
                 search_notes.append(note)
@@ -513,14 +505,12 @@ class Search(QMainWindow):
         os.remove(f"All Notes\\{item_list[currentIndex]}")
         try:
             self.listWidget_2.takeItem(currentIndex)
-            print(item_list[currentIndex])
         except Exception as e:
             print(e)
     
     def open_note(self, item):
         text = self.listWidget_2.currentItem().text()
         note_name = text
-        print(note_name)
         edit_ui = Edit(note_name)
         edit_ui.show()
 
@@ -602,7 +592,6 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
     prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
     def __init__ (self, note_name):
         super().__init__()
-        print("Edit:",note_name)
         uic.loadUi("GUI\\Note_edit.ui", self)
 
         # Font
@@ -614,14 +603,13 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         font_button.setBold(True)
 
         # UI
-        self.closeEvent = lambda event: print("Close")
+        # self.closeEvent = lambda event: print("Close")
         self.pushButton_6.setFont(font_button)
         self.label.setFont(font_title)
         self.label.setText(note_name)
         self.textEdit.setFont(font_edit)
         if note_name.replace(" ", "") != "":
             with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file:
-                print(file.read())
                 self.textEdit.setText(file.read())
         else:
             self.textEdit.setText("")
@@ -644,12 +632,9 @@ p, li { white-space: pre-wrap; }
         global note_name
         with open(f"All Notes\\{note_name}", 'w', encoding = 'utf-8') as file:
             file.write(self.textEdit.toPlainText())
-            print("Finish")
     
     def reload(self):
-        print("Reload")
         global note_name
-        print("Note Name:", note_name)
         self.label.setText(note_name)
         with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file:
             self.textEdit.setText(str(file.read()))
@@ -675,7 +660,6 @@ p, li { white-space: pre-wrap; }
             font = QFont("Segoe UI", 13)
             self.textBrowser.setFont(font)
             self.prompt_parts += [str(f"Eclahtee Assistant: {response.text}"),]
-            print(self.prompt_parts)
         except Exception as e:
             print("Bruh, something went wrong...")
             print(e)
