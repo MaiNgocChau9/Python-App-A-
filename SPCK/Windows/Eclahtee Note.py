@@ -509,10 +509,11 @@ class Search(QMainWindow):
             print(e)
     
     def open_note(self, item):
-        text = self.listWidget_2.currentItem().text()
-        note_name = text
-        edit_ui = Edit(note_name)
+        global note_name
+        note_name = self.listWidget_2.currentItem().text()
         edit_ui.show()
+        open_edit = 1
+        edit_ui.reload()
 
 
 class About(QMainWindow):
