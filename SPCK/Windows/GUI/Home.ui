@@ -533,9 +533,10 @@ max-height: 10px;</string>
     border: 2px solid white;
 	max-height: 5px;
 	margin: 0px;
+	margin-left: 10px;
 }
 QProgressBar::chunk {
-    background-color: #2196F3;
+    background-color: #FFCE41;
     border-radius: 2px;
 }</string>
                   </property>
@@ -553,7 +554,8 @@ QProgressBar::chunk {
                 <item>
                  <widget class="QLabel" name="label">
                   <property name="styleSheet">
-                   <string notr="true">margin: 0px;</string>
+                   <string notr="true">margin: 0px;
+margin-right: 10px;</string>
                   </property>
                   <property name="text">
                    <string>4/5 Task</string>
