@@ -1,0 +1,19 @@
+<đơn hàng>
+  <khách hàng>
+    <tên>John Doe</tên>
+    <địa chỉ>123 Main Street</địa chỉ>
+    <thành phố>Anytown</thành phố>
+    <tiểu bang>CA</tiểu bang>
+    <mã zip>12345</mã zip>
+  </khách hàng>
+  <mặt hàng>
+    <tên>Sách</tên>
+    <giá>10,99</giá>
+    <số lượng>1</số lượng>
+  </mặt hàng>
+  <mặt hàng>
+    <tên>Áo thun</tên>
+    <giá>19,99</giá>
+    <số lượng>2</số lượng>
+  </mặt hàng>
+</đơn hàng>

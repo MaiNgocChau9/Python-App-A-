@@ -1,6 +1,9 @@
-import geshi
+def saveNote(self):
+        options = QFileDialog.Options()
+        options |= QFileDialog.ReadOnly
+        file_name, _ = QFileDialog.getSaveFileName(self, "Save Note", "", "Text Files (*.txt);;All Files (*)", options=options)
 
-geshi = geshi.Geshi("python")
-geshi.set_code("print('Hello, world!')")
-highlighted_code = geshi.highlight()
-print(highlighted_code)
+        if file_name:
+            with open(file_name, 'w') as file:
+                file.write(self.text_edit.toPlainText())
+                print(self.text_edit.toPlainText())
