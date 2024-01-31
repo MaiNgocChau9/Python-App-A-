@@ -314,26 +314,57 @@ QPushButton::pressed{
 margin-left: 1px;
 margin-right: 1px;
 border: 2px solid black;
-min-height: 30px;
-max-height: 30px;</string>
+min-height: 35px;
+max-height: 35px;
+padding-bottom: 5px;
+border-radius: 0px;</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
            <widget class="QPushButton" name="pushButton_3">
             <property name="font">
              <font>
+              <family>Times New Roman</family>
               <pointsize>11</pointsize>
               <weight>75</weight>
+              <italic>false</italic>
               <bold>true</bold>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">margin: 0px;
-border: 0px;
-min-height: 18px;
-max-height: 18px;
-min-width: 18px;
-max-width: 18px;</string>
+             <string notr="true">QPushButton{
+	margin: 0px;
+	border: 0px;
+	min-height: 25px;
+	max-height: 25px;
+	min-width: 25px;
+	max-width: 25px;
+	background-color: white;
+	border-radius: 8px;
+	padding: 0px;
+}
+QPushButton::hover{
+	margin: 0px;
+	border: 0px;
+	min-height: 25px;
+	max-height: 25px;
+	min-width: 25px;
+	max-width: 25px;
+	background-color: #eeeeee;	
+	border-radius: 8px;
+	padding: 0px;
+}
+QPushButton::pressed{
+	margin: 0px;
+	border: 0px;
+	min-height: 25px;
+	max-height: 25px;
+	min-width: 25px;
+	max-width: 25px;
+	background-color: gray;	
+	border-radius: 8px;
+	padding: 0px;
+}</string>
             </property>
             <property name="text">
              <string>B</string>
@@ -344,17 +375,45 @@ max-width: 18px;</string>
            <widget class="QPushButton" name="pushButton_4">
             <property name="font">
              <font>
-              <pointsize>10</pointsize>
+              <family>Times New Roman</family>
+              <pointsize>11</pointsize>
               <italic>true</italic>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">margin: 0px;
-border: 0px;
-min-height: 18px;
-max-height: 18px;
-min-width: 18px;
-max-width: 18px;</string>
+             <string notr="true">QPushButton{
+	margin: 0px;
+	border: 0px;
+	min-height: 25px;
+	max-height: 25px;
+	min-width: 25px;
+	max-width: 25px;
+	background-color: white;
+	border-radius: 8px;
+	padding: 0px;
+}
+QPushButton::hover{
+	margin: 0px;
+	border: 0px;
+	min-height: 25px;
+	max-height: 25px;
+	min-width: 25px;
+	max-width: 25px;
+	background-color: #eeeeee;	
+	border-radius: 8px;
+	padding: 0px;
+}
+QPushButton::pressed{
+	margin: 0px;
+	border: 0px;
+	min-height: 25px;
+	max-height: 25px;
+	min-width: 25px;
+	max-width: 25px;
+	background-color: gray;	
+	border-radius: 8px;
+	padding: 0px;
+}</string>
             </property>
             <property name="text">
              <string>I</string>
@@ -362,12 +421,116 @@ max-width: 18px;</string>
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox">
+           <widget class="QPushButton" name="pushButton_5">
+            <property name="font">
+             <font>
+              <family>Times New Roman</family>
+              <pointsize>11</pointsize>
+              <italic>false</italic>
+              <underline>true</underline>
+             </font>
+            </property>
             <property name="styleSheet">
-             <string notr="true">margin: 0px;
-border: 0px;
-min-height: 18px;
-max-height: 18px;</string>
+             <string notr="true">QPushButton{
+	margin: 0px;
+	border: 0px;
+	min-height: 25px;
+	max-height: 25px;
+	min-width: 25px;
+	max-width: 25px;
+	background-color: white;
+	border-radius: 8px;
+	padding: 0px;
+}
+QPushButton::hover{
+	margin: 0px;
+	border: 0px;
+	min-height: 25px;
+	max-height: 25px;
+	min-width: 25px;
+	max-width: 25px;
+	background-color: #eeeeee;	
+	border-radius: 8px;
+	padding: 0px;
+}
+QPushButton::pressed{
+	margin: 0px;
+	border: 0px;
+	min-height: 25px;
+	max-height: 25px;
+	min-width: 25px;
+	max-width: 25px;
+	background-color: gray;	
+	border-radius: 8px;
+	padding: 0px;
+}</string>
+            </property>
+            <property name="text">
+             <string>U</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox">
+            <property name="font">
+             <font>
+              <kerning>false</kerning>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox{
+	margin: 0px;
+	border: 0px;
+	min-height: 25px;
+	max-height: 25px;
+	background-color: white;
+	border-radius: 8px;
+	padding: 0px;
+	padding-left: 10px;
+	border: 1px solid #b8b8b8;
+}
+
+QComboBox::hover{
+	margin: 0px;
+	border: 0px;
+	min-height: 25px;
+	max-height: 25px;
+	background-color: #eeeeee;	
+	border-radius: 8px;
+	padding: 0px;
+	padding-left: 10px;
+	border: 1px solid #b8b8b8;
+}
+
+QComboBox::drop-down {
+    border-color: transparent;
+}
+
+QComboBox::on {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+	background-color: red;
+	min-height: 50px;
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+QComboBox::QAbstractItemView {
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+	background-color: green;
+	min-height: 100px;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+}</string>
+            </property>
+            <property name="duplicatesEnabled">
+             <bool>false</bool>
+            </property>
+            <property name="frame">
+             <bool>true</bool>
             </property>
             <item>
              <property name="text">

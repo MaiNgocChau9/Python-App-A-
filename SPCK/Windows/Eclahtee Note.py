@@ -10,10 +10,7 @@ from PyQt6 import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
-import webbrowser
-import importlib
-import sys
-from PyQt6 import uic
+import matplotlib.font_manager
 import webbrowser
 import importlib
 import sys
@@ -27,6 +24,8 @@ global note_name, edit_reload, logged, open_edit
 note_name = ""
 edit_reload = 0
 open_edit = 0
+# Lấy danh sách font
+all_fonts = [matplotlib.font_manager.FontProperties(fname=font).get_name() for font in matplotlib.font_manager.findSystemFonts(fontpaths=None, fontext='ttf')]
 
 #Keep me login
 with open("data\\account.ecl", "r") as f:
@@ -603,12 +602,26 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         font_button = QFont("Segoe UI", 12)
         font_button.setBold(True)
 
+        # Font edit
+        bold_button = QFont("Times New Roman", 11)
+        bold_button.setBold(True)
+        italic_button = QFont("Times New Roman", 11)
+        italic_button.setItalic(True)
+
         # UI
-        # self.closeEvent = lambda event: print("Close")
+        self.closeEvent = lambda event: print("Close")
         self.pushButton_6.setFont(font_button)
+        self.pushButton_3.setFont(bold_button)
+        self.pushButton_4.setFont(italic_button)
+        self.pushButton_3.clicked.connect(self.setBold)
+        self.pushButton_4.clicked.connect(self.setItalic)
         self.label.setFont(font_title)
         self.label.setText(note_name)
         self.textEdit.setFont(font_edit)
+        for font in all_fonts:
+            if font != "Times New Roman":
+                self.comboBox.addItem(font)
+
         if note_name.replace(" ", "") != "":
             with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file:
                 self.textEdit.setText(file.read())
@@ -629,10 +642,40 @@ p, li { white-space: pre-wrap; }
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:18pt; font-weight:600;">   Hi! I'm Eclahtee Assistant!</span></p></body></html>
             """)
 
+    def setBold(self):
+        cursor = self.textEdit.textCursor()
+        format_bold = QTextCharFormat()
+        format_bold.setFontWeight(QFont.Weight.Bold)
+
+        if cursor.hasSelection():
+            current_format = cursor.charFormat()
+            if current_format.fontWeight() == QFont.Weight.Normal:
+                cursor.mergeCharFormat(format_bold)
+            else:
+                format_bold.setFontWeight(QFont.Weight.Normal)
+                cursor.mergeCharFormat(format_bold)
+        self.textEdit.setTextCursor(cursor)
+        
+    def setItalic(self):
+        cursor = self.textEdit.textCursor()
+        format_italic = QTextCharFormat()
+        format_italic.setFontItalic(True)
+
+        if cursor.hasSelection():
+            current_format = cursor.charFormat()
+            print(current_format.fontItalic())
+            if current_format.fontItalic() == False:
+                cursor.mergeCharFormat(format_italic)
+            elif current_format.fontItalic() == True:
+                format_italic.setFontItalic(False)
+                cursor.mergeCharFormat(format_italic)
+        self.textEdit.setTextCursor(cursor)
+
     def save_edit(self):
         global note_name
         with open(f"All Notes\\{note_name}", 'w', encoding = 'utf-8') as file:
             file.write(self.textEdit.toPlainText())
+            print(self.textEdit.toPlainText())
     
     def reload(self):
         global note_name
