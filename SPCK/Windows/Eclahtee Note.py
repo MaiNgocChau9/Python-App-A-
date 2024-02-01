@@ -704,7 +704,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         italic_button.setItalic(True)
 
         # UI
-        self.closeEvent = lambda event: print("Close")
+        self.closeEvent = lambda event: self.new_chat()
         self.pushButton_6.setFont(font_button)
         self.pushButton_3.setFont(bold_button)
         self.pushButton_4.setFont(italic_button)
