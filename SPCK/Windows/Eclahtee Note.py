@@ -49,10 +49,7 @@ class Login(QMainWindow):
 
         # Font
         self.label.setPixmap(QtGui.QPixmap("captcha.png"))
-        self.label.setStyleSheet(f"background-color: {self.pixel_color};"
-"padding: 5px;"
-"border-radius: 20px;"
-"border: 1px solid gray;")
+        self.label.setStyleSheet(f"background-color: {self.pixel_color}; padding: 5px; border-radius: 20px; border: 1px solid gray;")
         self.label_5.setFont(QFont("Segoe UI", 22))
         self.label_8.setFont(QFont("Segoe UI", 10))
         self.label_2.setFont(QFont("Segoe UI", 10))
@@ -77,10 +74,7 @@ class Login(QMainWindow):
         self.image = Image.open('captcha.png')
         self.pixel_color = '#%02x%02x%02x' % self.image.getpixel((0, 0))
         self.label.setPixmap(QtGui.QPixmap("captcha.png"))
-        self.label.setStyleSheet(f"background-color: {self.pixel_color};"
-"padding: 5px;"
-"border-radius: 20px;"
-"border: 1px solid gray;")
+        self.label.setStyleSheet(f"background-color: {self.pixel_color}; padding: 5px; border-radius: 20px; border: 1px solid gray;")
 
     def the_button_was_clicked(self):
         if self.lineEdit_3.text() == "admin@example.com" and self.lineEdit_2.text() == "admin":
@@ -90,7 +84,7 @@ class Login(QMainWindow):
                     msg_box.setWindowTitle("Success")
                     msg_box.setText("Đăng nhập thành công!")
                     msg_box.exec()
-                    login_ui.hide()
+                    self.close()
                     home_ui.show()
                     with open("data\\account.ecl", "r+") as f:
                         f.write("logged: 1")
@@ -99,7 +93,7 @@ class Login(QMainWindow):
                     msg_box.setWindowTitle("Success")
                     msg_box.setText("Đăng nhập thành công!")
                     msg_box.exec()
-                    login_ui.hide()
+                    self.close()
                     home_ui.show()
                     with open("data\\account.ecl", "r+") as f:
                         f.write("logged: 0")
