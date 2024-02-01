@@ -5,13 +5,17 @@ from PyQt6 import QtWidgets, QtGui, QtCore
 from PyQt6.QtGui import QFont, QMouseEvent
 from PyQt6.QtCore import QEvent
 """
+from captcha.image import ImageCaptcha
 from PyQt6.QtWidgets import *
 from PyQt6 import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
+from PIL import Image
 import webbrowser
 import importlib
+import random
+import string
 import sys
 
 #Gemini API (Import + Setup)

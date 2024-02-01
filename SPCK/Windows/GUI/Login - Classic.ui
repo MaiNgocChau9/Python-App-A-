@@ -10,6 +10,12 @@
     <height>510</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="minimumSize">
    <size>
     <width>655</width>
@@ -151,7 +157,7 @@ QLineEdit:focus{
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>397</x>
       <y>60</y>
       <width>201</width>
       <height>51</height>
@@ -163,7 +169,7 @@ QLineEdit:focus{
      </font>
     </property>
     <property name="text">
-     <string>Welcome</string>
+     <string>Welcome back</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -197,7 +203,7 @@ QPushButton:hover{
 }</string>
     </property>
     <property name="text">
-     <string>Register</string>
+     <string>Login</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
@@ -215,7 +221,7 @@ QPushButton:hover{
      </font>
     </property>
     <property name="text">
-     <string>Already have an account?</string>
+     <string>Do not have an account?</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -240,7 +246,7 @@ QPushButton:hover{
      <string notr="true">color: rgb(3, 148, 252);</string>
     </property>
     <property name="text">
-     <string>Login now</string>
+     <string>Register now</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -267,7 +273,7 @@ QPushButton:hover{
      <rect>
       <x>350</x>
       <y>360</y>
-      <width>191</width>
+      <width>111</width>
       <height>17</height>
      </rect>
     </property>
@@ -277,7 +283,7 @@ QPushButton:hover{
      </font>
     </property>
     <property name="text">
-     <string>I agree to Eclahtee's terms</string>
+     <string>Keep me login</string>
     </property>
    </widget>
   </widget>
