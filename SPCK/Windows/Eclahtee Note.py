@@ -229,7 +229,7 @@ class Home(QMainWindow):
                 file.write(f"{item}\n")
         temp = 100 - len(local_item)/len(self.all_task) * 100
         self.progressBar.setValue(round(temp))
-        self.label.setText(f"{len(self.all_task) - len(local_item)}/{len(self.all_task)} task")
+        self.label.setText(f"{len(self.all_task) - len(local_item)}/{len(self.all_task)}")
 
     def on_mouse_press(self, event: QMouseEvent):
         if self.widget_8.underMouse():
