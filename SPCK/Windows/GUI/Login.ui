@@ -19,7 +19,7 @@
   <property name="maximumSize">
    <size>
     <width>655</width>
-    <height>510</height>
+    <height>1000</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -29,50 +29,12 @@
    <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="lineEdit">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>190</y>
-      <width>301</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit{
-	padding: 10px;
-	border: 2px solid rgb(214, 214, 214);
-	border-radius: 20px;
-}
-
-QLineEdit:hover{
-	padding: 10px;
-	border: 2px solid gray;
-	border-radius: 20px;
-}
-
-QLineEdit:focus{
-	padding: 10px;
-	border: 2px solid gray;
-	border-radius: 20px;
-}</string>
-    </property>
-    <property name="inputMask">
-     <string/>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="placeholderText">
-     <string>example@example.com</string>
-    </property>
-   </widget>
    <widget class="QLineEdit" name="lineEdit_2">
     <property name="geometry">
      <rect>
       <x>340</x>
-      <y>300</y>
-      <width>301</width>
+      <y>180</y>
+      <width>281</width>
       <height>51</height>
      </rect>
     </property>
@@ -108,38 +70,20 @@ QLineEdit:focus{
      <string>Password</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>350</x>
-      <y>160</y>
-      <width>41</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>10</pointsize>
-      <bold>false</bold>
-      <kerning>false</kerning>
-     </font>
-    </property>
-    <property name="text">
-     <string>Email</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
       <x>350</x>
-      <y>270</y>
+      <y>150</y>
       <width>61</width>
       <height>21</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Segoe UI</family>
       <pointsize>10</pointsize>
+      <weight>50</weight>
       <bold>false</bold>
       <kerning>false</kerning>
      </font>
@@ -151,7 +95,7 @@ QLineEdit:focus{
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>270</x>
       <y>60</y>
       <width>201</width>
       <height>51</height>
@@ -159,11 +103,12 @@ QLineEdit:focus{
     </property>
     <property name="font">
      <font>
-      <pointsize>21</pointsize>
+      <family>Segoe UI</family>
+      <pointsize>22</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>Welcome</string>
+     <string>Welcome back</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
@@ -172,14 +117,15 @@ QLineEdit:focus{
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>400</y>
+      <x>275</x>
+      <y>410</y>
       <width>111</width>
       <height>51</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Segoe UI</family>
       <pointsize>13</pointsize>
      </font>
     </property>
@@ -197,14 +143,14 @@ QPushButton:hover{
 }</string>
     </property>
     <property name="text">
-     <string>Register</string>
+     <string>Login</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>470</y>
+      <x>225</x>
+      <y>480</y>
       <width>141</width>
       <height>16</height>
      </rect>
@@ -215,7 +161,7 @@ QPushButton:hover{
      </font>
     </property>
     <property name="text">
-     <string>Already have an account?</string>
+     <string>Do not have an account?</string>
     </property>
     <property name="alignment">
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -224,8 +170,8 @@ QPushButton:hover{
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>515</x>
-      <y>470</y>
+      <x>370</x>
+      <y>480</y>
       <width>91</width>
       <height>16</height>
      </rect>
@@ -233,6 +179,7 @@ QPushButton:hover{
     <property name="font">
      <font>
       <pointsize>9</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -240,20 +187,20 @@ QPushButton:hover{
      <string notr="true">color: rgb(3, 148, 252);</string>
     </property>
     <property name="text">
-     <string>Login now</string>
+     <string>Register now</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>0</y>
-      <width>271</width>
-      <height>511</height>
+      <x>150</x>
+      <y>10</y>
+      <width>151</width>
+      <height>151</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color: transparent;</string>
     </property>
     <property name="text">
      <string/>
@@ -261,23 +208,213 @@ QPushButton:hover{
     <property name="pixmap">
      <pixmap>../Image/OIG-removebg-preview.png</pixmap>
     </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QCheckBox" name="checkBox">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>360</y>
-      <width>191</width>
+      <x>280</x>
+      <y>380</y>
+      <width>111</width>
       <height>17</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Segoe UI</family>
       <pointsize>10</pointsize>
      </font>
     </property>
     <property name="text">
-     <string>I agree to Eclahtee's terms</string>
+     <string>Keep me login</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>180</y>
+      <width>291</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+	padding: 10px;
+	border: 2px solid rgb(214, 214, 214);
+	border-radius: 20px;
+}
+
+QLineEdit:hover{
+	padding: 10px;
+	border: 2px solid gray;
+	border-radius: 20px;
+}
+
+QLineEdit:focus{
+	padding: 10px;
+	border: 2px solid gray;
+	border-radius: 20px;
+}</string>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string>Email</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>150</y>
+      <width>41</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <kerning>false</kerning>
+     </font>
+    </property>
+    <property name="text">
+     <string>Email</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>260</y>
+      <width>291</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: white;
+padding: 15px;
+border-radius: 20px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>../captcha.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>260</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Segoe UI</family>
+      <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <kerning>false</kerning>
+     </font>
+    </property>
+    <property name="text">
+     <string>Captcha</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_4">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>290</y>
+      <width>221</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLineEdit{
+	padding: 10px;
+	border: 2px solid rgb(214, 214, 214);
+	border-radius: 20px;
+}
+
+QLineEdit:hover{
+	padding: 10px;
+	border: 2px solid gray;
+	border-radius: 20px;
+}
+
+QLineEdit:focus{
+	padding: 10px;
+	border: 2px solid gray;
+	border-radius: 20px;
+}</string>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="echoMode">
+     <enum>QLineEdit::Normal</enum>
+    </property>
+    <property name="placeholderText">
+     <string>Captcha</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>290</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	border-radius: 20px;
+	background-color: white;
+	border: 2px solid rgb(214, 214, 214);
+}
+
+QPushButton::hover{
+	border-radius: 20px;
+	background-color: #f0f0f0;
+	border: 2px solid rgb(214, 214, 214);
+}
+
+QPushButton::pressed{
+	border-radius: 20px;
+	background-color: #e6e6e6;
+	border: 2px solid rgb(214, 214, 214);
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../Image/regenerate.png</normaloff>../Image/regenerate.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>18</width>
+      <height>18</height>
+     </size>
     </property>
    </widget>
   </widget>

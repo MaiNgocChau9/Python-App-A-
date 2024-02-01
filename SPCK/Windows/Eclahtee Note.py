@@ -37,14 +37,30 @@ with open("data\\account.ecl", "r") as f:
 
 #Login
 class Login(QMainWindow):   
+    # Setup
+    image = ImageCaptcha(width=280, height=90)
+    captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+    image.write(captcha_text, 'captcha.png')
+    image = Image.open('captcha.png')
+    pixel_color = '#%02x%02x%02x' % image.getpixel((0, 0))
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI\\Login.ui", self)
-        # Blur
-        """
-        blur(self.winId())
-        self.setStyleSheet("background-color: rgba(255, 255, 255, 0)")
-        """
+
+        # Font
+        self.label.setPixmap(QtGui.QPixmap("captcha.png"))
+        self.label.setStyleSheet(f"background-color: {self.pixel_color};"
+"padding: 5px;"
+"border-radius: 20px;"
+"border: 1px solid gray;")
+        self.label_5.setFont(QFont("Segoe UI", 22))
+        self.label_8.setFont(QFont("Segoe UI", 10))
+        self.label_2.setFont(QFont("Segoe UI", 10))
+        self.label_3.setFont(QFont("Segoe UI", 10))
+        self.label_6.setFont(QFont("MS Shell Dlg 2", 9))
+        self.label_7.setFont(QFont("MS Shell Dlg 2", 9))
+        self.pushButton_2.clicked.connect(self.regenerate_captcha)
+        self.checkBox.setFont(QFont("Segoe UI", 10))
         self.setStyleSheet("background-color: white; color: black")
         self.setWindowTitle("Eclahtee - Login")
         self.pushButton.clicked.connect(self.the_button_was_clicked)
@@ -54,32 +70,51 @@ class Login(QMainWindow):
         register_ui.show()
         login_ui.hide()
 
+    def regenerate_captcha(self):
+        self.image = ImageCaptcha(width=280, height=90)
+        self.captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+        self.image.write(self.captcha_text, 'captcha.png')
+        self.image = Image.open('captcha.png')
+        self.pixel_color = '#%02x%02x%02x' % self.image.getpixel((0, 0))
+        self.label.setPixmap(QtGui.QPixmap("captcha.png"))
+        self.label.setStyleSheet(f"background-color: {self.pixel_color};"
+"padding: 5px;"
+"border-radius: 20px;"
+"border: 1px solid gray;")
+
     def the_button_was_clicked(self):
-        if self.lineEdit.text() == "admin@example.com" and self.lineEdit_2.text() == "admin":
-            if self.checkBox.isChecked(): 
-                msg_box = QMessageBox()
-                msg_box.setWindowTitle("Success")
-                msg_box.setText("Đăng nhập thành công!")
-                msg_box.exec()
-                login_ui.hide()
-                home_ui.show()
-                with open("data\\account.ecl", "r+") as f:
-                    f.write("logged: 1")
-            else: 
-                msg_box = QMessageBox()
-                msg_box.setWindowTitle("Success")
-                msg_box.setText("Đăng nhập thành công!")
-                msg_box.exec()
-                login_ui.hide()
-                home_ui.show()
-                with open("data\\account.ecl", "r+") as f:
-                    f.write("logged: 0")
-        else:
+        if self.lineEdit_3.text() == "admin@example.com" and self.lineEdit_2.text() == "admin":
+            if self.lineEdit_4.text() == self.captcha_text:
+                if self.checkBox.isChecked(): 
+                    msg_box = QMessageBox()
+                    msg_box.setWindowTitle("Success")
+                    msg_box.setText("Đăng nhập thành công!")
+                    msg_box.exec()
+                    login_ui.hide()
+                    home_ui.show()
+                    with open("data\\account.ecl", "r+") as f:
+                        f.write("logged: 1")
+                else: 
+                    msg_box = QMessageBox()
+                    msg_box.setWindowTitle("Success")
+                    msg_box.setText("Đăng nhập thành công!")
+                    msg_box.exec()
+                    login_ui.hide()
+                    home_ui.show()
+                    with open("data\\account.ecl", "r+") as f:
+                        f.write("logged: 0")
+            else:
                 msg_box = QMessageBox()
                 msg_box.setWindowTitle("Lỗi")
                 msg_box.setIcon(QMessageBox.Icon.Warning)
-                msg_box.setText("Email hoặc mật khẩu sai")
+                msg_box.setText("Mã captcha sai")
                 msg_box.exec()
+        else:
+            msg_box = QMessageBox()
+            msg_box.setWindowTitle("Lỗi")
+            msg_box.setIcon(QMessageBox.Icon.Warning)
+            msg_box.setText("Email hoặc mật khẩu sai")
+            msg_box.exec()
 
 #Register
 class Register(QMainWindow):
