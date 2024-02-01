@@ -203,14 +203,17 @@ class Home(QMainWindow):
         self.pushButton_6.clicked.connect(self.add_task)
         self.widget_8.mousePressEvent = self.on_mouse_press
         self.listWidget_2.mousePressEvent = self.on_mouse_press
+        self.listWidget.itemClicked.connect(self.item_click)
+        self.progressBar.setValue(0)
+        self.label.setText(f"0/{len(self.all_task)}")
         for task in self.all_task:
             item = QtWidgets.QListWidgetItem(task)
             item.setFlags(QtCore.Qt.ItemFlag.ItemIsUserCheckable | QtCore.Qt.ItemFlag.ItemIsEnabled | QtCore.Qt.ItemFlag.ItemIsSelectable)
             item.setCheckState(QtCore.Qt.CheckState.Unchecked)
             self.listWidget.addItem(item)
+
         for note in self.all_notes:
             self.listWidget_2.addItem(note)
-        self.listWidget.itemClicked.connect(self.item_click)
     
     def item_click(self, item):
         local_item = []
@@ -255,6 +258,13 @@ class Home(QMainWindow):
             self.listWidget.addItem(item)
             with open("data\\todo_list.ecl", 'a', encoding='utf-8') as file:
                 file.write(f"{task_name}\n")
+                self.all_task.append(task_name)
+            local_item = []
+            with open("data\\todo_list.ecl", 'r', encoding='utf-8') as file: 
+                local_item = file.read().splitlines()
+            temp = 100 - len(local_item)/len(self.all_task) * 100
+            self.progressBar.setValue(round(temp))
+            self.label.setText(f"{len(self.all_task) - len(local_item)}/{len(self.all_task)}")
 
     def log_out(self):
         with open("data\\account.ecl", "r+") as f:
