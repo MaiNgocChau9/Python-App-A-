@@ -1,19 +1,29 @@
     def save_edit(self):
         global note_name
-        with open(f"All Notes\\{note_name}", 'w', encoding='utf-8') as file:
-            cursor = self.textEdit.textCursor()
+        tree = ET.ElementTree(ET.Element('notes'))
+        root = tree.getroot()
 
-            # Di chuyển con trỏ về đầu văn bản
-            cursor.movePosition(QTextCursor.MoveOperation.Start, QTextCursor.MoveMode.MoveAnchor)
+        cursor = self.textEdit.textCursor()
+        cursor.movePosition(QTextCursor.MoveOperation.Start, QTextCursor.MoveMode.MoveAnchor)
 
-            # Lặp qua từng đoạn trong văn bản
-            while not cursor.atEnd():
-                # Lấy định dạng của đoạn hiện tại
-                block = cursor.block()
-                char_format = block.charFormat()
+        while not cursor.atEnd():
+            block = cursor.block()
+            char_format = block.charFormat()
 
-                # Ghi thông tin định dạng vào tệp tin
-                file.write(f"{block.text()}|{char_format.font().toString()}|{char_format.fontWeight()}|{char_format.fontItalic()}\n")
+            note_element = ET.SubElement(root, 'note')
+            text_element = ET.SubElement(note_element, 'text')
+            text_element.text = block.text()
 
-                # Di chuyển con trỏ đến đoạn tiếp theo
-                cursor.movePosition(QTextCursor.MoveOperation.NextBlock, QTextCursor.MoveMode.MoveAnchor)
+            font_element = ET.SubElement(note_element, 'font')
+            font_element.text = char_format.font().toString()
+
+            weight_element = ET.SubElement(note_element, 'weight')
+            weight_element.text = str(char_format.fontWeight())
+
+            italic_element = ET.SubElement(note_element, 'italic')
+            italic_element.text = str(char_format.fontItalic())
+
+            cursor.movePosition(QTextCursor.MoveOperation.NextBlock)
+            print(cursor.atEnd())
+
+        tree.write(f"All Notes\\{note_name}.xml")

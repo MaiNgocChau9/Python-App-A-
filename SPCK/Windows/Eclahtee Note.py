@@ -615,6 +615,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         self.pushButton_4.setFont(italic_button)
         self.pushButton_3.clicked.connect(self.setBold)
         self.pushButton_4.clicked.connect(self.setItalic)
+        self.pushButton_5.clicked.connect(self.setUnderline)
         self.label.setFont(font_title)
         self.label.setText(note_name)
         self.textEdit.setFont(font_edit)
@@ -645,11 +646,11 @@ p, li { white-space: pre-wrap; }
     def setBold(self):
         cursor = self.textEdit.textCursor()
         format_bold = QTextCharFormat()
-        format_bold.setFontWeight(QFont.Weight.Bold)
 
         if cursor.hasSelection():
             current_format = cursor.charFormat()
             if current_format.fontWeight() == QFont.Weight.Normal:
+                format_bold.setFontWeight(QFont.Weight.Bold)
                 cursor.mergeCharFormat(format_bold)
             else:
                 format_bold.setFontWeight(QFont.Weight.Normal)
@@ -659,29 +660,44 @@ p, li { white-space: pre-wrap; }
     def setItalic(self):
         cursor = self.textEdit.textCursor()
         format_italic = QTextCharFormat()
-        format_italic.setFontItalic(True)
 
         if cursor.hasSelection():
             current_format = cursor.charFormat()
             print(current_format.fontItalic())
             if current_format.fontItalic() == False:
+                format_italic.setFontItalic(True)
                 cursor.mergeCharFormat(format_italic)
             elif current_format.fontItalic() == True:
                 format_italic.setFontItalic(False)
                 cursor.mergeCharFormat(format_italic)
         self.textEdit.setTextCursor(cursor)
 
+    def setUnderline(self):
+        cursor = self.textEdit.textCursor()
+        format_underline = QTextCharFormat()
+
+        if cursor.hasSelection():
+            current_format = cursor.charFormat()
+            print(current_format.fontUnderline())
+            if not current_format.fontUnderline():
+                format_underline.setFontUnderline(True)
+                cursor.mergeCharFormat(format_underline)
+            else:
+                format_underline.setFontUnderline(False)
+                cursor.mergeCharFormat(format_underline)
+
+        self.textEdit.setTextCursor(cursor)
+
     def save_edit(self):
         global note_name
         with open(f"All Notes\\{note_name}", 'w', encoding = 'utf-8') as file:
-            file.write(self.textEdit.toPlainText())
-            print(self.textEdit.toPlainText())
+            file.write(self.textEdit.toHtml())
     
     def reload(self):
         global note_name
         self.label.setText(note_name)
         with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file:
-            self.textEdit.setText(str(file.read()))
+            self.textEdit.setHtml(file.read())
 
     def the_button_was_clicked(self):
         try:

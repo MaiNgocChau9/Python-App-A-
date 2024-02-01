@@ -482,7 +482,6 @@ QPushButton::pressed{
 	margin: 0px;
 	border: 0px;
 	min-height: 25px;
-	max-height: 25px;
 	background-color: white;
 	border-radius: 8px;
 	padding: 0px;
@@ -494,7 +493,6 @@ QComboBox::hover{
 	margin: 0px;
 	border: 0px;
 	min-height: 25px;
-	max-height: 25px;
 	background-color: #eeeeee;	
 	border-radius: 8px;
 	padding: 0px;
