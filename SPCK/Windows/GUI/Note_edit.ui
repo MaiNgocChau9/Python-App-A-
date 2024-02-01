@@ -471,70 +471,49 @@ QPushButton::pressed{
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox">
+           <widget class="QPushButton" name="pushButton_7">
             <property name="font">
              <font>
-              <kerning>false</kerning>
+              <family>Times New Roman</family>
+              <pointsize>11</pointsize>
+              <weight>50</weight>
+              <italic>false</italic>
+              <bold>false</bold>
+              <underline>false</underline>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QComboBox{
+             <string notr="true">QPushButton{
+	border: 1px solid #b8b8b8;
 	margin: 0px;
-	border: 0px;
 	min-height: 25px;
+	max-height: 25px;
 	background-color: white;
 	border-radius: 8px;
 	padding: 0px;
-	padding-left: 10px;
-	border: 1px solid #b8b8b8;
 }
-
-QComboBox::hover{
+QPushButton::hover{
+	border: 1px solid #b8b8b8;
 	margin: 0px;
-	border: 0px;
 	min-height: 25px;
+	max-height: 25px;
 	background-color: #eeeeee;	
 	border-radius: 8px;
 	padding: 0px;
-	padding-left: 10px;
+}
+QPushButton::pressed{
 	border: 1px solid #b8b8b8;
-}
-
-QComboBox::drop-down {
-    border-color: transparent;
-}
-
-QComboBox::on {
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-	background-color: red;
-	min-height: 50px;
 	margin: 0px;
+	min-height: 25px;
+	max-height: 25px;
+	background-color: gray;	
+	border-radius: 8px;
 	padding: 0px;
-	border: 0px;
-}
-
-QComboBox::QAbstractItemView {
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-	background-color: green;
-	min-height: 100px;
-	padding: 0px;
-	margin: 0px;
-	border: 0px;
 }</string>
             </property>
-            <property name="duplicatesEnabled">
-             <bool>false</bool>
+            <property name="text">
+             <string>Change Font</string>
             </property>
-            <property name="frame">
-             <bool>true</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>Times New Roman</string>
-             </property>
-            </item>
            </widget>
           </item>
          </layout>

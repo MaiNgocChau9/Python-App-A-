@@ -10,7 +10,6 @@ from PyQt6 import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
-import matplotlib.font_manager
 import webbrowser
 import importlib
 import sys
@@ -25,7 +24,7 @@ note_name = ""
 edit_reload = 0
 open_edit = 0
 # Lấy danh sách font
-all_fonts = [matplotlib.font_manager.FontProperties(fname=font).get_name() for font in matplotlib.font_manager.findSystemFonts(fontpaths=None, fontext='ttf')]
+font_edit = "Times New Roman"
 
 #Keep me login
 with open("data\\account.ecl", "r") as f:
@@ -616,12 +615,10 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         self.pushButton_3.clicked.connect(self.setBold)
         self.pushButton_4.clicked.connect(self.setItalic)
         self.pushButton_5.clicked.connect(self.setUnderline)
+        self.pushButton_7.mousePressEvent = lambda event: choosefont_ui.show()
         self.label.setFont(font_title)
         self.label.setText(note_name)
         self.textEdit.setFont(font_edit)
-        for font in all_fonts:
-            if font != "Times New Roman":
-                self.comboBox.addItem(font)
 
         if note_name.replace(" ", "") != "":
             with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file:
@@ -685,6 +682,17 @@ p, li { white-space: pre-wrap; }
             else:
                 format_underline.setFontUnderline(False)
                 cursor.mergeCharFormat(format_underline)
+
+        self.textEdit.setTextCursor(cursor)
+
+    def change_font(self, font_edit):
+        cursor = self.textEdit.textCursor()
+        format_font = QTextCharFormat()
+
+        if cursor.hasSelection():
+            new_font = QFont(font_edit)
+            format_font.setFont(new_font)
+            cursor.mergeCharFormat(format_font)
 
         self.textEdit.setTextCursor(cursor)
 
@@ -757,6 +765,23 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
 \"Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.\"
     """,]
         self.prompt_parts += ["You: Xin chào", "Eclahtee Assistant: Xin chào bạn!"]
+    
+class Choosefont(QMainWindow):
+    def __init__ (self):
+        super().__init__()
+        uic.loadUi("GUI\\Choose_font.ui", self)
+
+        # Font
+        font_title = QFont("Segoe UI", 15)
+        font_title.setBold(True)
+        self.label.setFont(font_title)
+        self.pushButton_2.clicked.connect(self.font)
+        self.pushButton.clicked.connect(self.close)
+    
+    def font(self):
+        font_edit = self.fontComboBox.currentFont().family()
+        edit_ui.change_font(font_edit)
+        self.close()
 
 app = QApplication(sys.argv)
 
@@ -768,6 +793,7 @@ notes_ui = Notes()
 chat_ui = Chat()
 about_ui = About()
 search_ui = Search()
+choosefont_ui = Choosefont()
 edit_ui = Edit(note_name)
 
 # Cửa sổ thực hiện
