@@ -1,2 +1,4 @@
-        captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
-        image.write(captcha_text, 'captcha.png')
+if logged == 1:
+#     home_ui.show()
+# elif logged == 0:
+#     login_ui.show()

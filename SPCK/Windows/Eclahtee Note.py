@@ -54,8 +54,10 @@ class Login(QMainWindow):
         self.label_8.setFont(QFont("Segoe UI", 10))
         self.label_2.setFont(QFont("Segoe UI", 10))
         self.label_3.setFont(QFont("Segoe UI", 10))
-        self.label_6.setFont(QFont("MS Shell Dlg 2", 9))
-        self.label_7.setFont(QFont("MS Shell Dlg 2", 9))
+        self.label_6.setFont(QFont("Segoe UI", 10))
+        label_7_font = QFont("Segoe UI", 10)
+        label_7_font.setBold(True)
+        self.label_7.setFont(label_7_font)
         self.pushButton_2.clicked.connect(self.regenerate_captcha)
         self.checkBox.setFont(QFont("Segoe UI", 10))
         self.setStyleSheet("background-color: white; color: black")
@@ -68,6 +70,18 @@ class Login(QMainWindow):
         login_ui.hide()
 
     def regenerate_captcha(self):
+        self.image = ImageCaptcha(width=280, height=90)
+        self.captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+        self.image.write(self.captcha_text, 'captcha.png')
+        self.image = Image.open('captcha.png')
+        self.pixel_color = '#%02x%02x%02x' % self.image.getpixel((0, 0))
+        self.label.setPixmap(QtGui.QPixmap("captcha.png"))
+        self.label.setStyleSheet(f"background-color: {self.pixel_color}; padding: 5px; border-radius: 20px; border: 1px solid gray;")
+
+    def reload_ui(self):
+        self.lineEdit_2.setText("")
+        self.lineEdit_3.setText("")
+        self.lineEdit_4.setText("")
         self.image = ImageCaptcha(width=280, height=90)
         self.captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
         self.image.write(self.captcha_text, 'captcha.png')
@@ -243,6 +257,7 @@ class Home(QMainWindow):
         with open("data\\account.ecl", "r+") as f:
             f.write("logged: 0")
         login_ui.show()
+        login_ui.reload_ui()
         self.close()
 
     def notes_scr(self):
@@ -332,6 +347,7 @@ class Notes(QMainWindow):
         with open("data\\account.ecl", "r+") as f:
             f.write("logged: 0")
         login_ui.show()
+        login_ui.reload_ui()
         self.close()
 
     def chat_scr(self):
@@ -396,6 +412,7 @@ p, li { white-space: pre-wrap; }
         with open("data\\account.ecl", "r+") as f:
             f.write("logged: 0")
         login_ui.show()
+        login_ui.reload()
         self.close()
 
     def notes_scr(self):
@@ -514,6 +531,7 @@ class Search(QMainWindow):
         with open("data\\account.ecl", "r+") as f:
             f.write("logged: 0")
         login_ui.show()
+        login_ui.reload_ui()
         self.close()
 
     def notes_scr(self):
@@ -600,6 +618,7 @@ p, li { white-space: pre-wrap; }
         with open("data\\account.ecl", "r+") as f:
             f.write("logged: 0")
         login_ui.show()
+        login_ui.reload_ui()
         self.close()
 
     def notes_scr(self):
