@@ -43,11 +43,12 @@ class Login(QMainWindow):
     image.write(captcha_text, 'captcha.png')
     image = Image.open('captcha.png')
     pixel_color = '#%02x%02x%02x' % image.getpixel((0, 0))
+
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI\\Login.ui", self)
 
-        # Font
+        # Font UI
         self.label.setPixmap(QtGui.QPixmap("captcha.png"))
         self.label.setStyleSheet(f"background-color: {self.pixel_color}; padding: 5px; border-radius: 20px; border: 1px solid gray;")
         self.label_5.setFont(QFont("Segoe UI", 22))
@@ -58,6 +59,8 @@ class Login(QMainWindow):
         label_7_font = QFont("Segoe UI", 10)
         label_7_font.setBold(True)
         self.label_7.setFont(label_7_font)
+
+        # Action
         self.pushButton_2.clicked.connect(self.regenerate_captcha)
         self.checkBox.setFont(QFont("Segoe UI", 10))
         self.setStyleSheet("background-color: white; color: black")
@@ -416,6 +419,8 @@ p, li { white-space: pre-wrap; }
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:28pt; font-weight:600;">Hello</span></p>
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:18pt;">      How can I help you today?</p>
             """)
+        shortcut = QShortcut(QKeySequence("Return"), self)
+        shortcut.activated.connect(self.the_button_was_clicked)
 
     def home_scr(self):
         home_ui.show()
@@ -454,6 +459,7 @@ p, li { white-space: pre-wrap; }
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:28pt; font-weight:600;">Hello</span></p>
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:18pt;">      How can I help you today?</p>
             """)
+
         self.prompt_parts = ["""
 System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng thường xuyên \"emoji\" trong mỗi câu trả lời.
 Sử dụng Markdown và Tables để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. 
@@ -463,6 +469,7 @@ Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì gi�
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
     """,]
+
         self.prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
     
     def the_button_was_clicked(self):
@@ -482,12 +489,37 @@ Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee
 ######
 ######
                 """
+
             self.textBrowser.setMarkdown(self.full_conversation)
             font = QFont("Segoe UI", 13)
             self.textBrowser.setFont(font)
             self.prompt_parts += [str(f"Eclahtee Assistant: {response.text}"),]
+
         except Exception as e:
-            self.textBrowser.setHtml("""
+            if "response.prompt_feedback" in str(e):
+                msg_box = QMessageBox()
+                msg_box.setWindowTitle("Error, something went wrong...")
+                msg_box.setIcon(QMessageBox.Icon.Warning)
+                msg_box.setText("Trong câu hỏi của bạn sử dụng từ ngữ không phù hợp!!!")
+                msg_box.exec()
+
+            elif "cannot access local variable 'response' where it is not associated with a value" in str(e):
+                if self.full_conversation == "":
+                    self.textBrowser.setHtml("""
+<!DOCTYPE HTML PUBLIC "-\\W3C\\DTD HTML 4.0\\EN" "http:\\www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:8pt;"><br /></p>
+<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
+<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
+<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
+<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:28pt; font-weight:600;">Hello</span></p>
+<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:18pt; align: center">        How can I help you today?</p>
+                """)
+                    
+            else:
+                self.textBrowser.setHtml("""
 <!DOCTYPE HTML PUBLIC "-\\W3C\\DTD HTML 4.0\\EN" "http:\\www.w3.org/TR/REC-html40/strict.dtd">
 <html><head><meta name="qrichtext" content="1" /><style type="text/css">
 p, li { white-space: pre-wrap; }
@@ -498,17 +530,9 @@ p, li { white-space: pre-wrap; }
 <p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:28pt; font-weight:600;">Hello</span></p>
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:18pt;">      How can I help you today?</p>
-            """)
-
-            print("Bruh, something went wrong...")
-            print(e)
-
-            if "response.prompt_feedback" in str(e):
-                msg_box = QMessageBox()
-                msg_box.setWindowTitle("Error, something went wrong...")
-                msg_box.setIcon(QMessageBox.Icon.Warning)
-                msg_box.setText("Trong câu hỏi của bạn sử dụng từ ngữ không phù hợp!!!")
-                msg_box.exec()
+                """)
+                print("Bruh, something went wrong...")
+                print(e)
 
 class Search(QMainWindow):
     def __init__ (self):
