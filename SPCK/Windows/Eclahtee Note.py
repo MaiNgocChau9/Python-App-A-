@@ -229,10 +229,7 @@ class Home(QMainWindow):
         self.close()
 
 class Notes(QMainWindow):
-    all_notes = []
-    files = os.listdir("All Notes")
-    for file in files: 
-        if file != "hidden_note": all_notes += [str(file)]
+    all_notes = os.listdir("All Notes")
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI\\Notes.ui", self)
@@ -267,11 +264,20 @@ class Notes(QMainWindow):
             print(e)
 
     def add_note(self):
+        global_all_note = os.listdir("All Notes")
         note_name = QInputDialog.getText(self, "New Notes", "Enter a note name")[0]
         if note_name != "":
-            item = QtWidgets.QListWidgetItem(note_name)
-            self.listWidget_2.addItem(item)
-            with open(os.path.join("All Notes", note_name), 'w', encoding='utf-8') as file: file.write("")
+            if note_name not in global_all_note:
+                item = QtWidgets.QListWidgetItem(note_name)
+                self.listWidget_2.addItem(item)
+                with open(os.path.join("All Notes", note_name), 'w', encoding='utf-8') as file: file.write("")
+            else:
+                msg_box = QMessageBox()
+                msg_box.setWindowTitle("Lỗi")
+                msg_box.setIcon(QMessageBox.Icon.Warning)
+                msg_box.setText("Tên ghi chú đã tồn tại!")
+                msg_box.exec()
+                notes_ui.add_note()
     
     def open_note(self, item):
         global note_name
