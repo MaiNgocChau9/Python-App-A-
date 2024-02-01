@@ -227,6 +227,9 @@ class Home(QMainWindow):
         with open("data\\todo_list.ecl", 'w', encoding='utf-8') as file:
             for item in local_item:
                 file.write(f"{item}\n")
+        temp = 100 - len(local_item)/len(self.all_task) * 100
+        self.progressBar.setValue(round(temp))
+        self.label.setText(f"{len(self.all_task) - len(local_item)}/{len(self.all_task)} task")
 
     def on_mouse_press(self, event: QMouseEvent):
         if self.widget_8.underMouse():
