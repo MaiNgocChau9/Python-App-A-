@@ -282,9 +282,10 @@ class Notes(QMainWindow):
     def open_note(self, item):
         global note_name
         note_name = self.listWidget_2.currentItem().text()
-        edit_ui.show()
-        open_edit = 1
-        edit_ui.reload()
+        if note_name in os.listdir("All Notes"):
+            edit_ui.show()
+            open_edit = 1
+            edit_ui.reload()
 
     def home_scr(self):
         home_ui.show()
