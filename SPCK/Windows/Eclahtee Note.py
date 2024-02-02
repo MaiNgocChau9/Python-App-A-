@@ -726,6 +726,8 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
             self.pushButton.clicked.connect(self.the_button_was_clicked)
             self.pushButton_6.clicked.connect(self.save_edit)
             self.pushButton_2.clicked.connect(self.new_chat)
+            self.pushButton_8.clicked.connect(lambda: self.set_font_size_down(self.spinBox.value()-2))
+            self.pushButton_9.clicked.connect(lambda: self.set_font_size_up(self.spinBox.value()+2))
             self.textBrowser.setHtml("""
 <!DOCTYPE HTML PUBLIC "-\\W3C\\DTD HTML 4.0\\EN" "http:\\www.w3.org/TR/REC-html40/strict.dtd">
 <html><head><meta name="qrichtext" content="1" /><style type="text/css">
@@ -778,7 +780,48 @@ p, li { white-space: pre-wrap; }
             else:
                 format_underline.setFontUnderline(False)
                 cursor.mergeCharFormat(format_underline)
+        self.textEdit.setTextCursor(cursor)
+    
+    def set_font_size_down(self, size):
+        cursor = self.textEdit.textCursor()
+        format_font_size = QTextCharFormat()
 
+        if cursor.hasSelection():
+            current_format = cursor.charFormat()
+            current_font = current_format.font()
+
+            # Tạo một bản sao của font hiện tại và đặt kích thước mới
+            new_font = current_font
+
+            if size <= 8:
+                new_font.setPointSize(8)
+            else:
+                new_font.setPointSize(size)
+
+            format_font_size.setFont(new_font)
+            cursor.mergeCharFormat(format_font_size)
+            self.spinBox.setValue(self.spinBox.value()-2)
+        self.textEdit.setTextCursor(cursor)
+
+    def set_font_size_up(self, size):
+        cursor = self.textEdit.textCursor()
+        format_font_size = QTextCharFormat()
+
+        if cursor.hasSelection():
+            current_format = cursor.charFormat()
+            current_font = current_format.font()
+
+            # Tạo một bản sao của font hiện tại và đặt kích thước mới
+            new_font = current_font
+
+            if size >= 72:
+                new_font.setPointSize(72)
+            else:
+                new_font.setPointSize(size)
+
+            format_font_size.setFont(new_font)
+            cursor.mergeCharFormat(format_font_size)
+            self.spinBox.setValue(self.spinBox.value()+2)
         self.textEdit.setTextCursor(cursor)
 
     def change_font(self, font_edit):
