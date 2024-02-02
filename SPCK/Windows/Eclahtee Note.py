@@ -726,8 +726,6 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
             self.pushButton.clicked.connect(self.the_button_was_clicked)
             self.pushButton_6.clicked.connect(self.save_edit)
             self.pushButton_2.clicked.connect(self.new_chat)
-            self.pushButton_8.clicked.connect(lambda: self.set_font_size_down(self.spinBox.value()-2))
-            self.pushButton_9.clicked.connect(lambda: self.set_font_size_up(self.spinBox.value()+2))
             self.textBrowser.setHtml("""
 <!DOCTYPE HTML PUBLIC "-\\W3C\\DTD HTML 4.0\\EN" "http:\\www.w3.org/TR/REC-html40/strict.dtd">
 <html><head><meta name="qrichtext" content="1" /><style type="text/css">
