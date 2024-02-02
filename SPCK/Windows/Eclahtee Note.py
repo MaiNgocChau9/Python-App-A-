@@ -781,48 +781,6 @@ p, li { white-space: pre-wrap; }
                 format_underline.setFontUnderline(False)
                 cursor.mergeCharFormat(format_underline)
         self.textEdit.setTextCursor(cursor)
-    
-    def set_font_size_down(self, size):
-        cursor = self.textEdit.textCursor()
-        format_font_size = QTextCharFormat()
-
-        if cursor.hasSelection():
-            current_format = cursor.charFormat()
-            current_font = current_format.font()
-
-            # Tạo một bản sao của font hiện tại và đặt kích thước mới
-            new_font = current_font
-
-            if size <= 8:
-                new_font.setPointSize(8)
-            else:
-                new_font.setPointSize(size)
-
-            format_font_size.setFont(new_font)
-            cursor.mergeCharFormat(format_font_size)
-            self.spinBox.setValue(self.spinBox.value()-2)
-        self.textEdit.setTextCursor(cursor)
-
-    def set_font_size_up(self, size):
-        cursor = self.textEdit.textCursor()
-        format_font_size = QTextCharFormat()
-
-        if cursor.hasSelection():
-            current_format = cursor.charFormat()
-            current_font = current_format.font()
-
-            # Tạo một bản sao của font hiện tại và đặt kích thước mới
-            new_font = current_font
-
-            if size >= 72:
-                new_font.setPointSize(72)
-            else:
-                new_font.setPointSize(size)
-
-            format_font_size.setFont(new_font)
-            cursor.mergeCharFormat(format_font_size)
-            self.spinBox.setValue(self.spinBox.value()+2)
-        self.textEdit.setTextCursor(cursor)
 
     def change_font(self, font_edit):
         cursor = self.textEdit.textCursor()
