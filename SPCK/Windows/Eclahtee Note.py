@@ -790,6 +790,48 @@ p, li { white-space: pre-wrap; }
                 cursor.mergeCharFormat(format_underline)
         self.textEdit.setTextCursor(cursor)
 
+    def change_font(self, font_edit):
+        cursor = self.textEdit.textCursor()
+        format_font = QTextCharFormat()
+        current_format = cursor.charFormat()
+
+        # Check format
+        temp = [current_format.fontUnderline(), current_format.fontItalic(), current_format.fontWeight() == QFont.Weight.Bold]
+        print("Temp:", temp)
+
+        # Format
+        format_underline = QTextCharFormat()
+        format_italic = QTextCharFormat()
+        format_bold = QTextCharFormat()
+
+        # Change font format
+        if cursor.hasSelection():
+            new_font = QFont(font_edit)
+            format_font.setFont(new_font)
+            cursor.mergeCharFormat(format_font)
+        self.textEdit.setTextCursor(cursor)
+
+        # Underline
+        if temp[0] == True:
+            current_format = cursor.charFormat()
+            format_underline.setFontUnderline(True)
+            cursor.mergeCharFormat(format_underline)
+        self.textEdit.setTextCursor(cursor)
+
+        # Italic
+        if temp[1] == True:
+            current_format = cursor.charFormat()
+            format_italic.setFontItalic(True)
+            cursor.mergeCharFormat(format_italic)
+        self.textEdit.setTextCursor(cursor)
+
+        # Bold
+        if temp[2] == True:
+            current_format = cursor.charFormat()
+            format_bold.setFontWeight(QFont.Weight.Bold)
+            cursor.mergeCharFormat(format_bold)
+        self.textEdit.setTextCursor(cursor)    
+
     def insert_image(self):
         filename, _ = QFileDialog.getOpenFileName(self, 'Chèn ảnh', ".", "Images (*.png *.xpm *.jpg *.bmp *.gif)")
         if filename:
@@ -804,17 +846,6 @@ p, li { white-space: pre-wrap; }
                 cursor = self.textEdit.textCursor()
                 cursor.insertImage(image, filename)
 
-
-    def change_font(self, font_edit):
-        cursor = self.textEdit.textCursor()
-        format_font = QTextCharFormat()
-
-        if cursor.hasSelection():
-            new_font = QFont(font_edit)
-            format_font.setFont(new_font)
-            cursor.mergeCharFormat(format_font)
-
-        self.textEdit.setTextCursor(cursor)
 
     def save_edit(self):
         global note_name
