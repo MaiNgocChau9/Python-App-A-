@@ -546,6 +546,8 @@ p, li { white-space: pre-wrap; }
 class Search(QMainWindow):
     def __init__ (self):
         super().__init__()
+
+        # Base UI
         uic.loadUi("GUI\\Search.ui", self)
         font = QFont("Segoe UI", 14)
         font.setBold(True)
@@ -561,9 +563,12 @@ class Search(QMainWindow):
         self.pushButton.setFont(font_button)
         self.pushButton_4.setFont(font_button)
 
+        # Functions
         self.pushButton_2.clicked.connect(self.search)
         self.pushButton_4.clicked.connect(self.open_note)
         self.pushButton.clicked.connect(self.remove_note)
+        shortcut = QShortcut(QKeySequence("Return"), self)
+        shortcut.activated.connect(self.search)
 
     def home_scr(self):
         home_ui.show()
