@@ -720,6 +720,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         self.pushButton_3.clicked.connect(self.setBold)
         self.pushButton_4.clicked.connect(self.setItalic)
         self.pushButton_5.clicked.connect(self.setUnderline)
+        self.pushButton_8.clicked.connect(self.insert_image)
         self.pushButton_7.mousePressEvent = lambda event: choosefont_ui.show()
         self.label.setFont(font_title)
         self.label.setText(note_name)
@@ -788,6 +789,21 @@ p, li { white-space: pre-wrap; }
                 format_underline.setFontUnderline(False)
                 cursor.mergeCharFormat(format_underline)
         self.textEdit.setTextCursor(cursor)
+
+    def insert_image(self):
+        filename, _ = QFileDialog.getOpenFileName(self, 'Chèn ảnh', ".", "Images (*.png *.xpm *.jpg *.bmp *.gif)")
+        if filename:
+            image = QImage(filename)
+            if image.isNull():
+                msg_box = QMessageBox()
+                msg_box.setWindowTitle("Lỗi")
+                msg_box.setIcon(QMessageBox.Icon.Warning)
+                msg_box.setText("Chèn hình ảnh không thành công")
+                msg_box.exec()
+            else:
+                cursor = self.textEdit.textCursor()
+                cursor.insertImage(image, filename)
+
 
     def change_font(self, font_edit):
         cursor = self.textEdit.textCursor()
