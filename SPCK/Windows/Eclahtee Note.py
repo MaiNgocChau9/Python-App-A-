@@ -607,7 +607,7 @@ class Search(QMainWindow):
             msg_box = QMessageBox()
             msg_box.setWindowTitle("Lỗi")
             msg_box.setIcon(QMessageBox.Icon.Warning)
-            msg_box.setText("┗( T﹏T )┛\nKhông tìm thấy ghi chú liên quan")
+            msg_box.setText("┗( T__T )┛\nKhông tìm thấy ghi chú liên quan")
             msg_box.exec()
         else:
             for note in search_notes:
