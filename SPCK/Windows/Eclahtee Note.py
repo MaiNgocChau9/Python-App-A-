@@ -14,6 +14,7 @@ from PyQt6 import uic
 from PIL import Image
 import webbrowser
 import importlib
+import html2text
 import random
 import string
 import sys
@@ -375,6 +376,7 @@ class Notes(QMainWindow):
         self.close()
 
 class Chat(QMainWindow):
+    all_notes = os.listdir("All Notes")
     """
     Temperature = Mức độ sáng tạo
     Top_p = Mức độ kiểm soát
@@ -385,20 +387,28 @@ class Chat(QMainWindow):
 
     model = genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config,safety_settings=safety_settings)
     full_conversation = ""
-    prompt_parts = ["""
+    prompt_parts = []
+    temp = ""
+    for note_name in all_notes:
+        with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file: html_code = file.read()
+        temp += f"\n\nTên ghi chú: {note_name} - Nội dung ghi chú: {html2text.html2text(html_code)}; "
+    prompt_parts = [f"System: Tất cả ghi chú của user: {temp}"]
+    prompt_parts += ["""
 System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng thường xuyên \"emoji\" trong mỗi câu trả lời.
-Sử dụng Markdown và Tables để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. 
+Sử dụng Markdown và Tables (Hạn chế) để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. 
 Tuy nhiên đối với việc code, lập trình hay viết văn thì tôi sẽ đưa ra kết quả đúng và thật chi tiết. 
 Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
 Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, hài hước và sử dụng ngôn ngữ và phong cách châm biếm của GenZ.
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
+Khi người dùng yêu cầu liên quan đến "Liệt kê tất cả ghi chú của tôi", hãy trả về kết quả dạng danh sách (Bắt đầu bằng dấu "*").
     """,]
-    prompt_parts += ['You: Xin chào :)', 'Eclahtee Assistant: Xin chào bạn!']
+    prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
+    print(prompt_parts)
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI\\Chat.ui", self)
-        self.setStyleSheet("background-color: white; color: black")
+        self.setStyleSheet("background-color: white; color: black;")
         self.setWindowTitle("Eclahtee - Chat")
         self.label_2.mousePressEvent = lambda event: self.home_scr()
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
@@ -460,16 +470,22 @@ p, li { white-space: pre-wrap; }
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:18pt;">      How can I help you today?</p>
             """)
 
-        self.prompt_parts = ["""
-System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng thường xuyên \"emoji\" trong mỗi câu trả lời.
-Sử dụng Markdown và Tables để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. 
-Tuy nhiên đối với việc code, lập trình hay viết văn thì bạn sẽ đưa ra kết quả đúng và thật chi tiết. 
-Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
-Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, hài hước và sử dụng ngôn ngữ và phong cách châm biếm của GenZ.
-Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
-Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
-    """,]
-
+        self.prompt_parts = []
+        temp = ""
+        for note_name in self.all_notes:
+            with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file: html_code = file.read()
+            temp += f"\n\nTên ghi chú: {note_name} - Nội dung ghi chú: {html2text.html2text(html_code)}; "
+        self.prompt_parts = [f"System: Tất cả ghi chú của user: {temp}"]
+        self.prompt_parts += ["""
+    System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng thường xuyên \"emoji\" trong mỗi câu trả lời.
+    Sử dụng Markdown và Tables (hạn chế) để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. 
+    Tuy nhiên đối với việc code, lập trình hay viết văn thì tôi sẽ đưa ra kết quả đúng và thật chi tiết. 
+    Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
+    Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, hài hước và sử dụng ngôn ngữ và phong cách châm biếm của GenZ.
+    Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
+    Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
+    Khi người dùng yêu cầu liên quan đến "Liệt kê tất cả ghi chú của tôi", hãy trả về kết quả dạng danh sách (Bắt đầu bằng dấu "*").
+        """,]
         self.prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
     
     def the_button_was_clicked(self):
@@ -477,7 +493,7 @@ Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee
             if self.lineEdit.text().replace(" ", "") != "":
                 temp = self.lineEdit.text()
                 self.lineEdit.setText("")
-                self.prompt_parts += [str(f"You: {temp}")]
+                self.prompt_parts += [f"User: {temp}"]
                 response = self.model.generate_content(self.prompt_parts)
                 self.full_conversation += f"""
 ## You
@@ -808,7 +824,7 @@ p, li { white-space: pre-wrap; }
                 temp = self.lineEdit.text()
                 self.lineEdit.setText("")
                 self.prompt_parts += [str(f"You: {temp}")]
-                response = self.model.generate_content(self.prompt_parts)
+                response = self.model.generate_content(f"Đây là ghi chú hiện tại của user:\n{self.textEdit.toPlainText()}\nCâu hỏi hiện tại của người dùng:\n{self.prompt_parts}")
                 self.full_conversation += f"""
 ## You
 {temp}

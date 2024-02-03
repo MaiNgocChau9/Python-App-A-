@@ -1,3 +1,1 @@
-    """)
-                print("Bruh, something went wrong...")
-                print(e)
+all_notes = os.listdir("All Notes")
