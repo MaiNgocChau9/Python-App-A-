@@ -598,8 +598,15 @@ class Search(QMainWindow):
             if self.lineEdit.text().lower() in note.lower():
                 search_notes.append(note)
         self.listWidget_2.clear()
-        for note in search_notes:
-            self.listWidget_2.addItem(note)
+        if search_notes == []:
+            msg_box = QMessageBox()
+            msg_box.setWindowTitle("Lỗi")
+            msg_box.setIcon(QMessageBox.Icon.Warning)
+            msg_box.setText("┗( T﹏T )┛\nKhông tìm thấy ghi chú liên quan")
+            msg_box.exec()
+        else:
+            for note in search_notes:
+                self.listWidget_2.addItem(note)
 
     def remove_note(self):
         currentIndex = self.listWidget_2.currentRow()
