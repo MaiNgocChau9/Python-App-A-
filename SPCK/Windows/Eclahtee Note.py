@@ -632,7 +632,7 @@ class Search(QMainWindow):
             prompt_parts += ["System: Bạn là một A.I tìm kiếm, khi user đưa vào thông tin mô tả hãy trả về kết quả về những ghi chú liên quan. Format: <Tên ghi chú 1>;<Tên ghi chú thứ 2>; (Ý là ngăn cách bằng dấu \";\" và Dính liền)",]
 
             # Generate response
-            prompt_parts += ["user: Châu Phi"]
+            prompt_parts += [f"user: {self.lineEdit.text()}"]
             generation_config = {"temperature": 1,"top_p": 1,"top_k": 1,"max_output_tokens": 1000}
             model = genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config)
             response = model.generate_content(prompt_parts)
