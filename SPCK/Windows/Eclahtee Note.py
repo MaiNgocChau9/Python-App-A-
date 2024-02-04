@@ -49,6 +49,7 @@ class Login(QMainWindow):
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI\\Login.ui", self)
+        self.setWindowIcon(QtGui.QIcon('icon.ico'))
 
         # Font UI
         self.label.setPixmap(QtGui.QPixmap("captcha.png"))
@@ -134,6 +135,8 @@ class Register(QMainWindow):
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI\\Register.ui", self)
+        self.setWindowIcon(QtGui.QIcon('icon.ico'))
+
         self.setStyleSheet("background-color: white; color: black")
         self.setWindowTitle("Eclahtee - Register")
         self.pushButton.clicked.connect(self.the_button_was_clicked)
@@ -185,6 +188,7 @@ class Home(QMainWindow):
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI\\Home.ui", self)
+        self.setWindowIcon(QtGui.QIcon('icon.ico'))
         
         # Font
         font = QFont("Segoe UI", 14)
@@ -299,6 +303,8 @@ class Notes(QMainWindow):
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI\\Notes.ui", self)
+        self.setWindowIcon(QtGui.QIcon('icon.ico'))
+
         # Font
         font = QFont("Segoe UI", 14)
         font.setBold(True)
@@ -409,6 +415,8 @@ Khi người dùng yêu cầu liên quan đến "Liệt kê tất cả ghi chú 
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI\\Chat.ui", self)
+        self.setWindowIcon(QtGui.QIcon('icon.ico'))
+
         self.setStyleSheet("background-color: white; color: black;")
         self.setWindowTitle("Eclahtee - Chat")
         self.label_2.mousePressEvent = lambda event: self.home_scr()
@@ -558,6 +566,8 @@ class Search(QMainWindow):
 
         # Base UI
         uic.loadUi("GUI\\Search.ui", self)
+        self.setWindowIcon(QtGui.QIcon('icon.ico'))
+
         font = QFont("Segoe UI", 14)
         font.setBold(True)
         font_button = QFont("Segoe UI", 10)
@@ -701,7 +711,8 @@ class Search(QMainWindow):
 class About(QMainWindow):
     def __init__ (self):
         super().__init__()
-        uic.loadUi("GUI\\About.ui", self)   
+        uic.loadUi("GUI\\About.ui", self) 
+        self.setWindowIcon(QtGui.QIcon('icon.ico'))  
         # Font
         font = QFont("Segoe UI", 17)
         font.setBold(True)
@@ -792,6 +803,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
     def __init__ (self, note_name):
         super().__init__()
         uic.loadUi("GUI\\Note_edit.ui", self)
+        self.setWindowIcon(QtGui.QIcon('icon.ico'))
 
         # Font
         font_title = QFont("Segoe UI", 17)
@@ -1052,6 +1064,7 @@ class Choosefont(QMainWindow):
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI\\Choose_font.ui", self)
+        self.setWindowIcon(QtGui.QIcon('icon.ico'))
 
         # Font
         font_title = QFont("Segoe UI", 15)
