@@ -352,6 +352,7 @@ class Notes(QMainWindow):
             edit_ui.show()
             open_edit = 1
             edit_ui.reload()
+            self.close()
 
     def home_scr(self):
         home_ui.show()
@@ -806,7 +807,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         italic_button.setItalic(True)
 
         # UI
-        self.closeEvent = lambda event: self.new_chat()
+        self.closeEvent = lambda event: notes_ui.show()
         self.pushButton_6.setFont(font_button)
         self.pushButton_3.setFont(bold_button)
         self.pushButton_4.setFont(italic_button)
@@ -947,6 +948,27 @@ p, li { white-space: pre-wrap; }
         self.label.setText(note_name)
         with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file:
             self.textEdit.setHtml(file.read())
+        self.full_conversation = ""
+        self.textBrowser.setHtml("""
+<!DOCTYPE HTML PUBLIC "-\\W3C\\DTD HTML 4.0\\EN" "http:\\www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
+<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
+<p align="center" styl  e="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p>
+<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:18pt; font-weight:600;">   Hi! I'm Eclahtee Assistant!</span></p></body></html>
+            """)
+        self.prompt_parts = ["""
+System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ nhân tạo.
+Sử dụng Markdown để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch, kết quả chính xác.
+Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
+Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, kết hợp với emoji.
+Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
+\"Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.\"
+Trả lời theo ngôn ngữ tự nhiên tôi và bạn.
+Nếu người dùng nói một số câu nói như "Oh", "Woww",... nhớ là hãy trả lời một cách vui vẻ lên nha.
+    """,]
+        self.prompt_parts += ["You: Xin chào", "Eclahtee Assistant: Xin chào bạn!"]
 
     def the_button_was_clicked(self):
         try:
@@ -954,7 +976,15 @@ p, li { white-space: pre-wrap; }
                 temp = self.lineEdit.text()
                 self.lineEdit.setText("")
                 self.prompt_parts += [str(f"You: {temp}")]
-                response = self.model.generate_content(f"Đây là ghi chú hiện tại của user:\n{self.textEdit.toPlainText()}\nCâu hỏi hiện tại của người dùng:\n{self.prompt_parts}")
+                check_generation_config = {"temperature": 1,"top_p": 1,"top_k": 1,"max_output_tokens": 5,}
+                check_model = genai.GenerativeModel(model_name="gemini-pro",generation_config=check_generation_config)
+                check_generation_config = ["System: Nếu câu hỏi có yêu cầu liên quan đến việc đọc tất cả nội dung ghi chú hãy trả lời \"true\", không thì trả lời \"false\". Phần lớn hãy trả lời \"true\" vì người dùng thường hay yêu cầu lấy câu trả lời trực tiếp từ ghi chú lắm.", "Câu hỏi:" + str(self.prompt_parts),]
+                check_response = check_model.generate_content(check_generation_config)
+                print(check_response.text)
+                if check_response.text == "true":
+                    response = self.model.generate_content(f"Đây là ghi chú hiện tại của user:\n{self.textEdit.toPlainText()}\n\nCâu hỏi hiện tại của người dùng:\n{self.prompt_parts}")
+                else:
+                    response = self.model.generate_content(self.prompt_parts)
                 self.full_conversation += f"""
 ## You
 {temp}
