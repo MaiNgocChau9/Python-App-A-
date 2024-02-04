@@ -1,4 +1,3 @@
-import webbrowser
 
 # PyQt6
 from PyQt6.QtWidgets import *
@@ -15,17 +14,22 @@ import importlib
 import random
 import string
 
-# AI
+# Gemini API Setup
 import google.generativeai as genai
 import html2text
 import os
-
 genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
+
+# Some thing very cool =)
+import webbrowser
+
+# Setup global variables
 global note_name, edit_reload, logged, open_edit
 note_name = ""
 edit_reload = 0
 open_edit = 0
-# Lấy danh sách font
+
+# Default font
 font_edit = "Times New Roman"
 
 #Keep me login
