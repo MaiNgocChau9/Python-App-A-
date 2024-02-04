@@ -1,20 +1,23 @@
-#PyQt6
-from captcha.image import ImageCaptcha
+import webbrowser
+
+# PyQt6
 from PyQt6.QtWidgets import *
 from PyQt6 import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import *
 from PyQt6 import uic
-from PIL import Image
-import webbrowser
-import importlib
-import html2text
-import random
-import string
 import sys
 
-#Gemini API (Import + Setup)
+# Captcha
+from captcha.image import ImageCaptcha
+from PIL import Image
+import importlib
+import random
+import string
+
+# AI
 import google.generativeai as genai
+import html2text
 import os
 
 genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
