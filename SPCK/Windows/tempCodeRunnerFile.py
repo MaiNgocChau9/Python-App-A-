@@ -1,1 +1,1 @@
-if self.lineEdit.text().lower() in note.lower():
+self.lineEdit.setText("")

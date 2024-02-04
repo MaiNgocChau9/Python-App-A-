@@ -397,6 +397,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
 Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
 Khi người dùng yêu cầu liên quan đến "Liệt kê tất cả ghi chú của tôi", hãy trả về kết quả dạng danh sách (Bắt đầu bằng dấu "*").""",]
     prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
+    print(prompt_parts)
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI\\Chat.ui", self)
@@ -837,6 +838,7 @@ p, li { white-space: pre-wrap; }
 
         if cursor.hasSelection():
             current_format = cursor.charFormat()
+            print(current_format.fontItalic())
             if current_format.fontItalic() == False:
                 format_italic.setFontItalic(True)
                 cursor.mergeCharFormat(format_italic)
@@ -851,6 +853,7 @@ p, li { white-space: pre-wrap; }
 
         if cursor.hasSelection():
             current_format = cursor.charFormat()
+            print(current_format.fontUnderline())
             if not current_format.fontUnderline():
                 format_underline.setFontUnderline(True)
                 cursor.mergeCharFormat(format_underline)
@@ -866,6 +869,7 @@ p, li { white-space: pre-wrap; }
 
         # Check format
         temp = [current_format.fontUnderline(), current_format.fontItalic(), current_format.fontWeight() == QFont.Weight.Bold]
+        print("Temp:", temp)
 
         # Format
         format_underline = QTextCharFormat()
