@@ -24,10 +24,10 @@ genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
 import webbrowser
 
 # Setup global variables
-global note_name, edit_reload, logged, open_edit
+global note_name, edit_reload, logged, last_ui
 note_name = ""
 edit_reload = 0
-open_edit = 0
+last_ui = ""
 
 # Default font
 font_edit = "Times New Roman"
@@ -350,9 +350,10 @@ class Notes(QMainWindow):
         note_name = self.listWidget_2.currentItem().text()
         if note_name in os.listdir("All Notes"):
             edit_ui.show()
-            open_edit = 1
             edit_ui.reload()
             self.close()
+            global last_ui
+            last_ui = "Notes"
 
     def home_scr(self):
         home_ui.show()
@@ -690,11 +691,11 @@ class Search(QMainWindow):
             print(e)
     
     def open_note(self, item):
-        global note_name
-        note_name = self.listWidget_2.currentItem().text()
         edit_ui.show()
-        open_edit = 1
         edit_ui.reload()
+        self.close()
+        global last_ui
+        last_ui = "Search"
 
 
 class About(QMainWindow):
@@ -807,7 +808,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         italic_button.setItalic(True)
 
         # UI
-        self.closeEvent = lambda event: notes_ui.show()
+        self.closeEvent = lambda event: self.open_last_ui()
         self.pushButton_6.setFont(font_button)
         self.pushButton_3.setFont(bold_button)
         self.pushButton_4.setFont(italic_button)
@@ -1036,6 +1037,16 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
 \"Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.\"
     """,]
         self.prompt_parts += ["You: Xin chào", "Eclahtee Assistant: Xin chào bạn!"]
+    
+    def open_last_ui(self):
+        print("RUN!!!")
+        print(last_ui)
+        if last_ui == "Notes":
+            notes_ui.show()
+            self.close()
+        elif last_ui == "Search":
+            search_ui.show()
+            self.close()
     
 class Choosefont(QMainWindow):
     def __init__ (self):
