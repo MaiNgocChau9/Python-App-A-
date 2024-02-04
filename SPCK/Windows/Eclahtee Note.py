@@ -1084,4 +1084,6 @@ if logged == 1:
 elif logged == 0:
     login_ui.show()
 
-sys.exit(app.exec())
+# sys.exit(app.exec())
+app.exec()
+os.remove("captcha.png")
