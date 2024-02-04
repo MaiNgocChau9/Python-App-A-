@@ -1,4 +1,3 @@
-
 # PyQt6
 from PyQt6.QtWidgets import *
 from PyQt6 import *
@@ -14,14 +13,15 @@ import importlib
 import random
 import string
 
+# Some thing very cool =)
+import webbrowser
+
 # Gemini API Setup
 import google.generativeai as genai
 import html2text
 import os
-genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
 
-# Some thing very cool =)
-import webbrowser
+genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
 
 # Setup global variables
 global note_name, edit_reload, logged, last_ui
@@ -40,7 +40,7 @@ with open("data\\account.ecl", "r") as f:
 #Login
 class Login(QMainWindow):   
     # Setup
-    image = ImageCaptcha(width=280, height=90)
+    image = ImageCaptcha(width=280, height=90, fonts=['times'])
     captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
     image.write(captcha_text, 'captcha.png')
     image = Image.open('captcha.png')
@@ -75,7 +75,7 @@ class Login(QMainWindow):
         login_ui.hide()
 
     def regenerate_captcha(self):
-        self.image = ImageCaptcha(width=280, height=90)
+        self.image = ImageCaptcha(width=280, height=90, fonts=['times'])
         self.captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
         self.image.write(self.captcha_text, 'captcha.png')
         self.image = Image.open('captcha.png')
@@ -87,7 +87,7 @@ class Login(QMainWindow):
         self.lineEdit_2.setText("")
         self.lineEdit_3.setText("")
         self.lineEdit_4.setText("")
-        self.image = ImageCaptcha(width=280, height=90)
+        self.image = ImageCaptcha(width=280, height=90, fonts=['times'])
         self.captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
         self.image.write(self.captcha_text, 'captcha.png')
         self.image = Image.open('captcha.png')

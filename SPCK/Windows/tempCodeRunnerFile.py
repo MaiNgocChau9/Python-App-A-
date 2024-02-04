@@ -1,1 +1,1 @@
-self.lineEdit.setText("")
+sys.exit(app.exec())
