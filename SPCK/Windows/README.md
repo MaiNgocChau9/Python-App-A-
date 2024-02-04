@@ -13,6 +13,9 @@
   * **Học tập:** Giúp học sinh, sinh viên ghi chú bài giảng, tài liệu học tập một cách dễ dàng và hiệu quả. 📚
   * **Ý tưởng Sáng tạo:** Trong ghi chú, nhập và lưu trữ ý tưởng của bạn mọi lúc, mọi nơi. 💡
 
+## **Cách Sử Dụng**
+* Mở thư mục Windows lên. Và nhập lệnh này: pip install -r requirements.txt
+
 ## **Định Hướng Phát Triển**
   
 ### **Tích hợp Pomodoro**
