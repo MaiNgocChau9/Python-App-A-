@@ -1,1 +1,1 @@
-all_notes = os.listdir("All Notes")
+if self.lineEdit.text().lower() in note.lower():

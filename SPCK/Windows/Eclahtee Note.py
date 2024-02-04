@@ -544,6 +544,7 @@ p, li { white-space: pre-wrap; }
                 print(e)
 
 class Search(QMainWindow):
+    ai_search = False
     def __init__ (self):
         super().__init__()
 
@@ -562,10 +563,12 @@ class Search(QMainWindow):
         self.label_6.mousePressEvent = lambda event: self.about_scr()
         self.pushButton.setFont(font_button)
         self.pushButton_4.setFont(font_button)
+        self.pushButton_3.setFont(font_button)
 
         # Functions
         self.pushButton_2.clicked.connect(self.search)
         self.pushButton_4.clicked.connect(self.open_note)
+        self.pushButton_3.clicked.connect(self.switch_to_search_ai)
         self.pushButton.clicked.connect(self.remove_note)
         shortcut = QShortcut(QKeySequence("Return"), self)
         shortcut.activated.connect(self.search)
@@ -594,24 +597,81 @@ class Search(QMainWindow):
         self.close()
 
     def search(self):
-        all_notes = []
+        # Base variables
+        all_notes = os.listdir("All Notes")
         search_notes = []
         files = os.listdir("All Notes")
-        for file in files: 
-            if file != "hidden_note": all_notes += [str(file)]
-        for note in all_notes:
-            if self.lineEdit.text().lower() in note.lower():
-                search_notes.append(note)
-        self.listWidget_2.clear()
-        if search_notes == []:
+
+        # Search
+
+        if self.ai_search == False: # Chế độ tìm kiếm thông thường
+            self.listWidget_2.clear()
+
+            for note in all_notes:
+                if self.lineEdit.text().lower() in note.lower():
+                    search_notes.append(note)
+            if search_notes == []: # Nếu không tìm thấy ghi chú liên quan
+                msg_box = QMessageBox()
+                msg_box.setWindowTitle("Lỗi")
+                msg_box.setIcon(QMessageBox.Icon.Warning)
+                msg_box.setText("┗( T__T )┛\nKhông tìm thấy ghi chú liên quan")
+                msg_box.exec()
+            
+            elif search_notes != []: # Nếu tìm thấy ghi chú liên quan
+                for note in search_notes:
+                    self.listWidget_2.addItem(note)
+        
+        elif self.ai_search == True:
+            # Setup prompt parts
+            prompt_parts = []
+            temp = ""
+            for note_name in all_notes:
+                with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file: html_code = file.read()
+                temp += f"\n\nTên ghi chú: {note_name} - Nội dung ghi chú: {html2text.html2text(html_code)}; "
+            prompt_parts = [f"System: Tất cả ghi chú của user: {temp}"]
+            prompt_parts += ["System: Bạn là một A.I tìm kiếm, khi user đưa vào thông tin mô tả hãy trả về kết quả về những ghi chú liên quan. Format: <Tên ghi chú 1>;<Tên ghi chú thứ 2>; (Ý là ngăn cách bằng dấu \";\" và Dính liền)",]
+
+            # Generate response
+            prompt_parts += ["user: Châu Phi"]
+            generation_config = {"temperature": 1,"top_p": 1,"top_k": 1,"max_output_tokens": 1000}
+            model = genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config)
+            response = model.generate_content(prompt_parts)
+            search_notes = response.text.split(";")
+
+            # Display response
+            self.listWidget_2.clear() # Xóa dữ liệu trong listWidget_2
+
+            # Add response to listWidget_2
+            if search_notes == []: # Nếu không tìm thấy ghi chú liên quan
+                msg_box = QMessageBox()
+                msg_box.setWindowTitle("Lỗi")
+                msg_box.setIcon(QMessageBox.Icon.Warning)
+                msg_box.setText("┗( T__T )┛\nKhông tìm thấy ghi chú liên quan")
+                msg_box.exec()
+        
+            elif search_notes != []: # Nếu tìm thấy ghi chú liên quan
+                for note in search_notes:
+                    if note in all_notes:
+                        self.listWidget_2.addItem(note)
+
+    def switch_to_search_ai(self):
+        if self.pushButton_3.text() == "Use A.I Search Mode":
+            self.pushButton_3.setText("Use Normal Search Mode")
+            self.ai_search = True
             msg_box = QMessageBox()
-            msg_box.setWindowTitle("Lỗi")
-            msg_box.setIcon(QMessageBox.Icon.Warning)
-            msg_box.setText("┗( T__T )┛\nKhông tìm thấy ghi chú liên quan")
+            msg_box.setWindowTitle("Thành công")
+            msg_text = "Đã chuyển sang chế độ tìm kiếm bằng A.I\nHãy thử nhập mô tả ghi chú vào thanh tìm kiếm!"
+            msg_box.setText(msg_text)
             msg_box.exec()
-        else:
-            for note in search_notes:
-                self.listWidget_2.addItem(note)
+
+        elif self.pushButton_3.text() == "Use Normal Search Mode":
+            self.pushButton_3.setText("Use A.I Search Mode")
+            self.ai_search = False
+            msg_box = QMessageBox()
+            msg_box.setWindowTitle("Thành công")
+            msg_text = "Đã chuyển sang chế độ tìm kiếm thông thường"
+            msg_box.setText(msg_text)
+            msg_box.exec()
 
     def remove_note(self):
         currentIndex = self.listWidget_2.currentRow()
