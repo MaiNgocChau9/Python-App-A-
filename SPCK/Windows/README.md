@@ -14,7 +14,7 @@
   * **Ý tưởng Sáng tạo:** Trong ghi chú, nhập và lưu trữ ý tưởng của bạn mọi lúc, mọi nơi. 💡
 
 ## **Cách Sử Dụng**
-* Mở thư mục Windows lên. Và nhập lệnh này: pip install -r requirements.txt
+* Mở thư mục Windows lên. Và nhập lệnh này: ```pip install -r requirements.txt```
 
 ## **Định Hướng Phát Triển**
   
