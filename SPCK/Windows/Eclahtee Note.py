@@ -722,7 +722,7 @@ p, li { white-space: pre-wrap; }
         self.setStyleSheet("background-color: white; color: black")
         self.setWindowTitle("Eclahtee - About")
         self.pushButton_3.setFont(font_button)
-        self.pushButton_3.pressed.connect(self.rick_astley)
+        self.pushButton_3.pressed.connect(self.something_very_cool)
         self.label_2.mousePressEvent = lambda event: self.home_scr()
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
@@ -734,8 +734,16 @@ p, li { white-space: pre-wrap; }
     def open_github(self):
         webbrowser.open("https:\\github.com/MaiNgocChau9")
 
-    def rick_astley(self):
-        webbrowser.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+    def something_very_cool(self):
+        meme = random.randint(1, 4)
+        if meme == 1: 
+            webbrowser.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ") # Rick Astley - Never Gonna Give You Up
+        elif meme == 2:
+            webbrowser.open("https://www.youtube.com/watch?v=BMvqvnyGtGo") # Bing Chilling Into The Night
+        elif meme == 3:
+            webbrowser.open("https://www.youtube.com/watch?v=4xnsmyI5KMQ") # Toothless Dancing to Driftveil City
+        elif meme == 4:
+            webbrowser.open("https://www.youtube.com/watch?v=0tOXxuLcaog") # CHIPI CHIPI CHAPA CHAPA CAT
 
     def home_scr(self):
         home_ui.show()
