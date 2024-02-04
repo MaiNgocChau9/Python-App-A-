@@ -699,6 +699,8 @@ class About(QMainWindow):
         # Font
         font = QFont("Segoe UI", 17)
         font.setBold(True)
+        font_button = QFont("Segoe UI", 9)
+        font_button.setBold(True)
         # UI
         self.label_8.setFont(font)
         self.textBrowser.setHtml("""
@@ -715,6 +717,8 @@ p, li { white-space: pre-wrap; }
 
         self.setStyleSheet("background-color: white; color: black")
         self.setWindowTitle("Eclahtee - About")
+        self.pushButton_3.setFont(font_button)
+        self.pushButton_3.pressed.connect(self.rick_astley)
         self.label_2.mousePressEvent = lambda event: self.home_scr()
         self.label_3.mousePressEvent = lambda event: self.notes_scr()
         self.label_4.mousePressEvent = lambda event: self.chat_scr()
@@ -725,7 +729,10 @@ p, li { white-space: pre-wrap; }
 
     def open_github(self):
         webbrowser.open("https:\\github.com/MaiNgocChau9")
-    
+
+    def rick_astley(self):
+        webbrowser.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+
     def home_scr(self):
         home_ui.show()
         self.close()
