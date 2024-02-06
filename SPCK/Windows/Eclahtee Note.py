@@ -328,12 +328,13 @@ class Notes(QMainWindow):
 
     def remove_note(self):
         currentIndex = self.listWidget_2.currentRow()
-        item_list = [self.listWidget_2.item(i).text() for i in range(self.listWidget_2.count())]
-        os.remove(f"All Notes\\{item_list[currentIndex]}")
-        try:
-            self.listWidget_2.takeItem(currentIndex)
-        except Exception as e:
-            print(e)
+        if currentIndex >= 0:
+            item_list = [self.listWidget_2.item(i).text() for i in range(self.listWidget_2.count())]
+            try:
+                self.listWidget_2.takeItem(currentIndex)
+                os.remove(f"All Notes\\{item_list[currentIndex]}")
+            except Exception as e:
+                print(e)
 
     def add_note(self):
         global_all_note = os.listdir("All Notes")
@@ -655,62 +656,63 @@ class Search(QMainWindow):
         self.close()
 
     def search(self):
-        # Base variables
-        all_notes = os.listdir("All Notes")
-        search_notes = []
-        files = os.listdir("All Notes")
+        if self.lineEdit.text():
+            # Base variables
+            all_notes = os.listdir("All Notes")
+            search_notes = []
+            files = os.listdir("All Notes")
 
-        # Search
+            # Search
 
-        if self.ai_search == False: # Chế độ tìm kiếm thông thường
-            self.listWidget_2.clear()
+            if self.ai_search == False: # Chế độ tìm kiếm thông thường
+                self.listWidget_2.clear()
 
-            for note in all_notes:
-                if self.lineEdit.text().lower() in note.lower():
-                    search_notes.append(note)
-            if search_notes == []: # Nếu không tìm thấy ghi chú liên quan
-                msg_box = QMessageBox()
-                msg_box.setWindowTitle("Lỗi")
-                msg_box.setIcon(QMessageBox.Icon.Warning)
-                msg_box.setText("┗( T__T )┛\nKhông tìm thấy ghi chú liên quan")
-                msg_box.exec()
-            
-            elif search_notes != []: # Nếu tìm thấy ghi chú liên quan
-                for note in search_notes:
-                    self.listWidget_2.addItem(note)
-        
-        elif self.ai_search == True:
-            # Setup prompt parts
-            prompt_parts = []
-            temp = ""
-            for note_name in all_notes:
-                with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file: html_code = file.read()
-                temp += f"\n\nTên ghi chú: {note_name} - Nội dung ghi chú: {html2text.html2text(html_code)}; "
-            prompt_parts = [f"System: Tất cả ghi chú của user: {temp}"]
-            prompt_parts += ["System: Bạn là một A.I tìm kiếm, khi user đưa vào thông tin mô tả hãy trả về kết quả về những ghi chú liên quan. Format: <Tên ghi chú 1>;<Tên ghi chú thứ 2>; (Ý là ngăn cách bằng dấu \";\" và Dính liền)",]
-
-            # Generate response
-            prompt_parts += [f"user: {self.lineEdit.text()}"]
-            generation_config = {"temperature": 1,"top_p": 1,"top_k": 1,"max_output_tokens": 1000}
-            model = genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config)
-            response = model.generate_content(prompt_parts)
-            search_notes = response.text.split(";")
-
-            # Display response
-            self.listWidget_2.clear() # Xóa dữ liệu trong listWidget_2
-
-            # Add response to listWidget_2
-            if search_notes == []: # Nếu không tìm thấy ghi chú liên quan
-                msg_box = QMessageBox()
-                msg_box.setWindowTitle("Lỗi")
-                msg_box.setIcon(QMessageBox.Icon.Warning)
-                msg_box.setText("┗( T__T )┛\nKhông tìm thấy ghi chú liên quan")
-                msg_box.exec()
-        
-            elif search_notes != []: # Nếu tìm thấy ghi chú liên quan
-                for note in search_notes:
-                    if note in all_notes:
+                for note in all_notes:
+                    if self.lineEdit.text().lower() in note.lower():
+                        search_notes.append(note)
+                if search_notes == []: # Nếu không tìm thấy ghi chú liên quan
+                    msg_box = QMessageBox()
+                    msg_box.setWindowTitle("Lỗi")
+                    msg_box.setIcon(QMessageBox.Icon.Warning)
+                    msg_box.setText("┗( T__T )┛\nKhông tìm thấy ghi chú liên quan")
+                    msg_box.exec()
+                
+                elif search_notes != []: # Nếu tìm thấy ghi chú liên quan
+                    for note in search_notes:
                         self.listWidget_2.addItem(note)
+            
+            elif self.ai_search == True:
+                # Setup prompt parts
+                prompt_parts = []
+                temp = ""
+                for note_name in all_notes:
+                    with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file: html_code = file.read()
+                    temp += f"\n\nTên ghi chú: {note_name} - Nội dung ghi chú: {html2text.html2text(html_code)}; "
+                prompt_parts = [f"System: Tất cả ghi chú của user: {temp}"]
+                prompt_parts += ["System: Bạn là một A.I tìm kiếm, khi user đưa vào thông tin mô tả hãy trả về kết quả về những ghi chú liên quan. Format: <Tên ghi chú 1>;<Tên ghi chú thứ 2>; (Ý là ngăn cách bằng dấu \";\" và Dính liền)",]
+
+                # Generate response
+                prompt_parts += [f"user: {self.lineEdit.text()}"]
+                generation_config = {"temperature": 1,"top_p": 1,"top_k": 1,"max_output_tokens": 1000}
+                model = genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config)
+                response = model.generate_content(prompt_parts)
+                search_notes = response.text.split(";")
+
+                # Display response
+                self.listWidget_2.clear() # Xóa dữ liệu trong listWidget_2
+
+                # Add response to listWidget_2
+                if search_notes == []: # Nếu không tìm thấy ghi chú liên quan
+                    msg_box = QMessageBox()
+                    msg_box.setWindowTitle("Lỗi")
+                    msg_box.setIcon(QMessageBox.Icon.Warning)
+                    msg_box.setText("┗( T__T )┛\nKhông tìm thấy ghi chú liên quan")
+                    msg_box.exec()
+            
+                elif search_notes != []: # Nếu tìm thấy ghi chú liên quan
+                    for note in search_notes:
+                        if note in all_notes:
+                            self.listWidget_2.addItem(note)
 
     def switch_to_search_ai(self):
         if self.pushButton_3.text() == "Use A.I Search Mode":
@@ -733,12 +735,13 @@ class Search(QMainWindow):
 
     def remove_note(self):
         currentIndex = self.listWidget_2.currentRow()
-        item_list = [self.listWidget_2.item(i).text() for i in range(self.listWidget_2.count())]
-        os.remove(f"All Notes\\{item_list[currentIndex]}")
-        try:
-            self.listWidget_2.takeItem(currentIndex)
-        except Exception as e:
-            print(e)
+        if currentIndex >= 0:
+            item_list = [self.listWidget_2.item(i).text() for i in range(self.listWidget_2.count())]
+            try:
+                self.listWidget_2.takeItem(currentIndex)
+                os.remove(f"All Notes\\{item_list[currentIndex]}")
+            except Exception as e:
+                print(e)
     
     def open_note(self, item):
         try:
