@@ -1,2 +1,2 @@
-logged: 1
+logged: 0
 account: 

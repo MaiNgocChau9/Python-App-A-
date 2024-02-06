@@ -448,7 +448,7 @@ p, li { white-space: pre-wrap; }
         with open("data\\account.ecl", "r+") as f:
             f.write("logged: 0")
         login_ui.show()
-        login_ui.reload()
+        login_ui.reload_ui()
         self.close()
 
     def notes_scr(self):
