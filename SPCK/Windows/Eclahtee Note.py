@@ -41,8 +41,8 @@ class Login(QMainWindow):
     # Setup
     image = ImageCaptcha(width=280, height=90, fonts=['times'])
     captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
-    image.write(captcha_text, 'captcha.png')
-    image = Image.open('captcha.png')
+    image.write(captcha_text, 'Image\\captcha.png')
+    image = Image.open('Image\\captcha.png')
     pixel_color = '#%02x%02x%02x' % image.getpixel((0, 0))
 
     def __init__ (self):
@@ -51,7 +51,7 @@ class Login(QMainWindow):
         self.setWindowIcon(QtGui.QIcon('Image\\icon.ico'))
 
         # Font UI
-        self.label.setPixmap(QtGui.QPixmap("captcha.png"))
+        self.label.setPixmap(QtGui.QPixmap("Image\\captcha.png"))
         self.label.setStyleSheet(f"background-color: {self.pixel_color}; padding: 5px; border-radius: 20px; border: 1px solid gray;")
         self.label_5.setFont(QFont("Segoe UI", 22))
         self.label_8.setFont(QFont("Segoe UI", 10))
@@ -77,10 +77,10 @@ class Login(QMainWindow):
     def regenerate_captcha(self):
         self.image = ImageCaptcha(width=280, height=90, fonts=['times'])
         self.captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
-        self.image.write(self.captcha_text, 'captcha.png')
-        self.image = Image.open('captcha.png')
+        self.image.write(self.captcha_text, 'Image\\captcha.png')
+        self.image = Image.open('Image\\captcha.png')
         self.pixel_color = '#%02x%02x%02x' % self.image.getpixel((0, 0))
-        self.label.setPixmap(QtGui.QPixmap("captcha.png"))
+        self.label.setPixmap(QtGui.QPixmap("Image\\captcha.png"))
         self.label.setStyleSheet(f"background-color: {self.pixel_color}; padding: 5px; border-radius: 20px; border: 1px solid gray;")
 
     def reload_ui(self):
@@ -756,15 +756,9 @@ p, li { white-space: pre-wrap; }
         webbrowser.open("https:\\github.com/MaiNgocChau9")
 
     def something_very_cool(self):
+        all_meme = ["https://www.youtube.com/watch?v=dQw4w9WgXcQ", "https://www.youtube.com/watch?v=BMvqvnyGtGo", "https://www.youtube.com/watch?v=4xnsmyI5KMQ", "https://www.youtube.com/watch?v=0tOXxuLcaog"]
         meme = random.randint(1, 4)
-        if meme == 1: 
-            webbrowser.open("https://www.youtube.com/watch?v=dQw4w9WgXcQ") # Rick Astley - Never Gonna Give You Up
-        elif meme == 2:
-            webbrowser.open("https://www.youtube.com/watch?v=BMvqvnyGtGo") # Bing Chilling Into The Night
-        elif meme == 3:
-            webbrowser.open("https://www.youtube.com/watch?v=4xnsmyI5KMQ") # Toothless Dancing to Driftveil City
-        elif meme == 4:
-            webbrowser.open("https://www.youtube.com/watch?v=0tOXxuLcaog") # CHIPI CHIPI CHAPA CHAPA CAT
+        webbrowser.open(all_meme[meme - 1])
 
     def home_scr(self):
         home_ui.show()
@@ -1107,4 +1101,4 @@ elif logged == 0:
 
 # sys.exit(app.exec())
 app.exec()
-os.remove("captcha.png")
+os.remove("Image\\captcha.png")
