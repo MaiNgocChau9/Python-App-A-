@@ -9,7 +9,6 @@ import sys
 # Captcha
 from captcha.image import ImageCaptcha
 from PIL import Image
-import importlib
 import random
 import string
 
