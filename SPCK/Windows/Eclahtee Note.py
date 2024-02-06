@@ -351,14 +351,17 @@ class Notes(QMainWindow):
                 notes_ui.add_note()
     
     def open_note(self, item):
-        global note_name
-        note_name = self.listWidget_2.currentItem().text()
-        if note_name in os.listdir("All Notes"):
-            edit_ui.show()
-            edit_ui.reload()
-            self.close()
-            global last_ui
-            last_ui = "Notes"
+        try:
+            global note_name
+            note_name = self.listWidget_2.currentItem().text()
+            if note_name in os.listdir("All Notes"):
+                edit_ui.show()
+                edit_ui.reload()
+                self.close()
+                global last_ui
+                last_ui = "Notes"
+        except Exception as bug:
+            print(bug)
 
     def home_scr(self):
         home_ui.show()
@@ -700,11 +703,17 @@ class Search(QMainWindow):
             print(e)
     
     def open_note(self, item):
-        edit_ui.show()
-        edit_ui.reload()
-        self.close()
-        global last_ui
-        last_ui = "Search"
+        try:
+            global note_name
+            note_name = self.listWidget_2.currentItem().text()
+            if note_name in os.listdir("All Notes"):
+                edit_ui.show()
+                edit_ui.reload()
+                self.close()
+                global last_ui
+                last_ui = "Notes"
+        except Exception as bug:
+            print(bug)
 
 
 class About(QMainWindow):
