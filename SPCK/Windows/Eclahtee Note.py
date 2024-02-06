@@ -408,7 +408,6 @@ class Chat(QMainWindow):
     temp = temp.replace("\n", " ")
     temp = re.sub(r'!\[.*\]\(.*\)', "", temp)
     prompt_parts = [f"Eclahtee Note (Cơ sở lưu trữ ghi chú): Tất cả ghi chú của user: {temp}"]
-    print(prompt_parts)
     prompt_parts += ["""
 Những câu hỏi thông thường:
 System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng thường xuyên \"emoji\" trong mỗi câu trả lời.
