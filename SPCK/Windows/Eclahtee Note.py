@@ -90,10 +90,10 @@ class Login(QMainWindow):
         self.lineEdit_4.setText("")
         self.image = ImageCaptcha(width=280, height=90, fonts=['times'])
         self.captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
-        self.image.write(self.captcha_text, 'captcha.png')
-        self.image = Image.open('captcha.png')
+        self.image.write(self.captcha_text, 'Image\\captcha.png')
+        self.image = Image.open('Image\\captcha.png')
         self.pixel_color = '#%02x%02x%02x' % self.image.getpixel((0, 0))
-        self.label.setPixmap(QtGui.QPixmap("captcha.png"))
+        self.label.setPixmap(QtGui.QPixmap("Image\\captcha.png"))
         self.label.setStyleSheet(f"background-color: {self.pixel_color}; padding: 5px; border-radius: 20px; border: 1px solid gray;")
 
     def the_button_was_clicked(self):
