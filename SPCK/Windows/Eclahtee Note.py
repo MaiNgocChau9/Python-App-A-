@@ -850,7 +850,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         # Font
         font_title = QFont("Segoe UI", 17)
         font_title.setBold(True)
-        font_edit = QFont("Roboto", 12)
+        font_edit = QFont("Roboto", 14)
         font_edit.setBold(False)
         font_button = QFont("Segoe UI", 12)
         font_button.setBold(True)
