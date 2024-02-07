@@ -1139,6 +1139,4 @@ if logged == 1:
 elif logged == 0:
     login_ui.show()
 
-# sys.exit(app.exec())
-app.exec()
-os.remove("Image\\captcha.png")
+sys.exit(app.exec())
