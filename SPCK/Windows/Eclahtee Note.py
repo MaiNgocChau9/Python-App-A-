@@ -1133,7 +1133,7 @@ search_ui = Search()
 choosefont_ui = Choosefont()
 edit_ui = Edit(note_name)
 
-# Cửa sổ thực hiện
+# Cửa sổ xuất hiện đầu tiên?
 if logged == 1:
     home_ui.show()
 elif logged == 0:
