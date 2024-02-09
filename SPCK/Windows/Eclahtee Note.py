@@ -27,18 +27,24 @@ from datetime import datetime
 hello = ""
 now = datetime.now()
 time = int(now.strftime("%H"))
+
 if time <= 13 and time >= 6:
     hello = "Good morning"
+
 elif time <= 18 and time >= 13:
     hello = "Good afternoon"
+
 else:
     hello = "Good evening"
 
-# Setup global variables
+
+# === Setup global variables ===
 global note_name, edit_reload, logged, last_ui
 note_name = ""
 edit_reload = 0
 last_ui = ""
+
+# Get account
 with open("data\\account.ecl", "r", encoding='utf-8') as f: # Check account
     lines = f.readlines()
     logged = int(lines[0].split(": ")[1])
