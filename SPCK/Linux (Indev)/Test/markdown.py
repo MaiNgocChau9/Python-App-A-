@@ -15,8 +15,8 @@ class Main(QMainWindow):
 
         self.textBrowser.setMarkdown("""
 
-[Google](https://www.google.com)\n
-[Google](https://www.google.com/search?q={thứ người dùng yêu cầu})
+[Google] (https://www.google.com)\n
+[Google] (https://www.google.com/search?q={thứ người dùng yêu cầu})
 https://www.google.com/search?q=abc\n
 https://www.facebook.com/search/top/?q=\n
 https://www.youtube.com/results?search_query=\n

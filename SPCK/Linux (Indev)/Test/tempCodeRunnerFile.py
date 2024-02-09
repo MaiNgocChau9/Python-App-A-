@@ -1,6 +1,15 @@
-import geshi
+from datetime import datetime
+now = datetime.now()
+day = now.strftime("ngày %d tháng %m")
+time = int(now.strftime("%H"))
 
-geshi = geshi.Geshi("python")
-geshi.set_code("print('Hello, world!')")
-highlighted_code = geshi.highlight()
-print(highlighted_code)
+print(f"Giờ: {time}")
+if time <= 11 and time >= 6:
+    print("Chào buổi sáng")
+elif time <= 13 and time >= 12:
+    print("Chào buổi trưa")
+elif time <= 6 and time >= 13:
+    print("Chào buổi chiều")
+else:
+    print("Chào buổi tối")
+print(f"Hôm nay là {day}")
