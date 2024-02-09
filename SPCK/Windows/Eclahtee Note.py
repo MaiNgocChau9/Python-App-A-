@@ -24,10 +24,11 @@ import os
 genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
 
 # Setup global variables
-global note_name, edit_reload, logged, last_ui
+global note_name, edit_reload, logged, last_ui, user_name
 note_name = ""
 edit_reload = 0
 last_ui = ""
+user_name = "Admin"
 
 # Default font
 font_edit = "Times New Roman"
@@ -106,6 +107,7 @@ class Login(QMainWindow):
                     msg_box.exec()
                     self.close()
                     home_ui.show()
+                    home_ui.label_17.setText("Admin")
                     with open("data\\account.ecl", "r+") as f:
                         f.write("logged: 1")
                 else: 
@@ -115,6 +117,7 @@ class Login(QMainWindow):
                     msg_box.exec()
                     self.close()
                     home_ui.show()
+                    home_ui.label_17.setText("Admin")
                     with open("data\\account.ecl", "r+") as f:
                         f.write("logged: 0")
             else:
@@ -159,9 +162,12 @@ class Register(QMainWindow):
                 if self.checkBox.isChecked():
                     msg_box = QMessageBox()
                     msg_box.setWindowTitle("Thành công")
-                    msg_text = "Tài khoản đã được tạo! (Đó là trên lý thuyết, thực tế thì tương lai sẽ thử MySQL)\n" + f"Name: {self.lineEdit.text()}\nEmail: {self.lineEdit_3.text()}\nPassword: {self.lineEdit_2.text()}"
+                    msg_text = "Tài khoản đã được tạo!\n" + f"Name: {self.lineEdit.text()}\nEmail: {self.lineEdit_3.text()}\nPassword: {self.lineEdit_2.text()}"
                     msg_box.setText(msg_text)
                     msg_box.exec()
+                    self.close()
+                    home_ui.show()
+                    home_ui.label_17.setText(self.lineEdit.text())
                 else:
                     msg_box = QMessageBox()
                     msg_box.setWindowTitle("Caution")
@@ -189,6 +195,10 @@ class Home(QMainWindow):
         super().__init__()
         uic.loadUi("GUI\\Home.ui", self)
         self.setWindowIcon(QtGui.QIcon('Image\\icon.ico'))
+        font = QFont("Segoe UI", 17)
+        font.setBold(True)
+        self.label_17.setText(user_name)
+        self.label_17.setFont(font)
         
         # Font
         font = QFont("Segoe UI", 14)
