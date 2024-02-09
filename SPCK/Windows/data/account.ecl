@@ -1,4 +1,4 @@
-logged: 0
-account: Châu
+logged: 1
+account: Mai Ngoc Chau
 email: maingocchau@gmail.com
 password: 123

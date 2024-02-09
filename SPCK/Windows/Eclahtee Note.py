@@ -42,10 +42,9 @@ last_ui = ""
 with open("data\\account.ecl", "r", encoding='utf-8') as f: # Check account
     lines = f.readlines()
     logged = int(lines[0].split(": ")[1])
-    account = str(lines[1].split(": ")[1])
-    email = str(lines[2].split(": ")[1])
-    password = str(lines[3].split(": ")[1])
-    print(logged, account, email, password)
+    account = str(lines[1].split(": ")[1]).replace("\n", "")
+    email = str(lines[2].split(": ")[1]).replace("\n", "")
+    password = str(lines[3].split(": ")[1]).replace("\n", "")
 
 # Default font
 font_edit = "Times New Roman"
@@ -121,7 +120,7 @@ class Login(QMainWindow):
                     msg_box.exec()
                     self.close()
                     home_ui.show()
-                    home_ui.label_17.setText(f"{hello}, {account}")
+                    home_ui.label_17.setText(f"{hello}, Admin")
                     with open("data\\account.ecl", "r+") as f:
                         f.write("logged: 1")
                 else: 
@@ -135,9 +134,6 @@ class Login(QMainWindow):
                     with open("data\\account.ecl", "r+") as f:
                         f.write("logged: 0")
         elif self.lineEdit_3.text() == email and self.lineEdit_2.text() == password:
-            print("BRUHHHHH")
-            print(self.lineEdit_3.text())
-            print(self.lineEdit_2.text())
             if self.lineEdit_4.text() == self.captcha_text:
                 if self.checkBox.isChecked(): 
                     msg_box = QMessageBox()
@@ -208,7 +204,7 @@ class Register(QMainWindow):
                     home_ui.show()
                     home_ui.label_17.setText(f"{hello}, {self.lineEdit.text()}")
                     with open("data\\account.ecl", "r+", encoding='utf-8') as f:
-                        f.write(f"logged: {logged}\naccount: {self.lineEdit.text()}")
+                        f.write(f"logged: {logged}\naccount: {self.lineEdit.text()}\nemail: {self.lineEdit_3.text()}\npassword: {self.lineEdit_2.text()}")
                 else:
                     msg_box = QMessageBox()
                     msg_box.setWindowTitle("Caution")
