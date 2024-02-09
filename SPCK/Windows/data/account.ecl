@@ -1,2 +1,4 @@
 logged: 1
-account: 
+account: Châu
+email: maingocchau@gmail.com
+password: 123

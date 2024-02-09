@@ -40,16 +40,18 @@ note_name = ""
 edit_reload = 0
 last_ui = ""
 user_name = "Admin"
+with open("data\\account.ecl", "r", encoding='utf-8') as f: # Check account
+    lines = f.readlines()
+    logged = int(lines[0].split(": ")[1])
+    account = str(lines[1].split(": ")[1])
+    email = str(lines[2].split(": ")[1])
+    password = str(lines[3].split(": ")[1])
+    print(logged, account, email, password)
 
 # Default font
 font_edit = "Times New Roman"
 
-#Keep me login
-with open("data\\account.ecl", "r") as f:
-    lines = f.readlines()
-    logged = int(lines[0].split(":")[1])
-
-#Login
+# Login
 class Login(QMainWindow):   
     # Setup
     image = ImageCaptcha(width=280, height=90, fonts=['times'])
@@ -118,7 +120,7 @@ class Login(QMainWindow):
                     msg_box.exec()
                     self.close()
                     home_ui.show()
-                    home_ui.label_17.setText(f"{hello}, Admin")
+                    home_ui.label_17.setText(f"{hello}, {account}")
                     with open("data\\account.ecl", "r+") as f:
                         f.write("logged: 1")
                 else: 
@@ -128,7 +130,7 @@ class Login(QMainWindow):
                     msg_box.exec()
                     self.close()
                     home_ui.show()
-                    home_ui.label_17.setText(f"{hello}, Admin")
+                    home_ui.label_17.setText(f"{hello}, {account}")
                     with open("data\\account.ecl", "r+") as f:
                         f.write("logged: 0")
             else:
@@ -179,6 +181,8 @@ class Register(QMainWindow):
                     self.close()
                     home_ui.show()
                     home_ui.label_17.setText(f"{hello}, {self.lineEdit.text()}")
+                    with open("data\\account.ecl", "r+", encoding='utf-8') as f:
+                        f.write(f"logged: {logged}\naccount: {self.lineEdit.text()}")
                 else:
                     msg_box = QMessageBox()
                     msg_box.setWindowTitle("Caution")
@@ -208,7 +212,7 @@ class Home(QMainWindow):
         self.setWindowIcon(QtGui.QIcon('Image\\icon.ico'))
         font = QFont("Segoe UI", 17)
         font.setBold(True)
-        self.label_17.setText(f"{hello}, Admin")
+        self.label_17.setText(f"{hello}, {account}")
         self.label_17.setFont(font)
         
         # Font
