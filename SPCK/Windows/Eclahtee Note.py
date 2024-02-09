@@ -110,7 +110,34 @@ class Login(QMainWindow):
         self.label.setStyleSheet(f"background-color: {self.pixel_color}; padding: 5px; border-radius: 20px; border: 1px solid gray;")
 
     def the_button_was_clicked(self):
+        print("Email:", email)
+        print("Password:", password)
         if self.lineEdit_3.text() == "admin@example.com" and self.lineEdit_2.text() == "admin":
+            if self.lineEdit_4.text() == self.captcha_text:
+                if self.checkBox.isChecked(): 
+                    msg_box = QMessageBox()
+                    msg_box.setWindowTitle("Success")
+                    msg_box.setText("Đăng nhập thành công!")
+                    msg_box.exec()
+                    self.close()
+                    home_ui.show()
+                    home_ui.label_17.setText(f"{hello}, {account}")
+                    with open("data\\account.ecl", "r+") as f:
+                        f.write("logged: 1")
+                else: 
+                    msg_box = QMessageBox()
+                    msg_box.setWindowTitle("Success")
+                    msg_box.setText("Đăng nhập thành công!")
+                    msg_box.exec()
+                    self.close()
+                    home_ui.show()
+                    home_ui.label_17.setText(f"{hello}, {account}")
+                    with open("data\\account.ecl", "r+") as f:
+                        f.write("logged: 0")
+        elif self.lineEdit_3.text() == email and self.lineEdit_2.text() == password:
+            print("BRUHHHHH")
+            print(self.lineEdit_3.text())
+            print(self.lineEdit_2.text())
             if self.lineEdit_4.text() == self.captcha_text:
                 if self.checkBox.isChecked(): 
                     msg_box = QMessageBox()
