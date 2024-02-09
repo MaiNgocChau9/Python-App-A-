@@ -120,6 +120,7 @@ QLineEdit:focus{
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>50</weight>
       <bold>false</bold>
       <kerning>false</kerning>
      </font>
@@ -140,6 +141,7 @@ QLineEdit:focus{
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>50</weight>
       <bold>false</bold>
       <kerning>false</kerning>
      </font>
@@ -233,6 +235,7 @@ QPushButton:hover{
     <property name="font">
      <font>
       <pointsize>9</pointsize>
+      <weight>75</weight>
       <bold>true</bold>
      </font>
     </property>
@@ -253,7 +256,7 @@ QPushButton:hover{
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string notr="true">background-color: transparent;</string>
     </property>
     <property name="text">
      <string/>
@@ -333,6 +336,7 @@ QLineEdit:focus{
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>50</weight>
       <bold>false</bold>
       <kerning>false</kerning>
      </font>
@@ -394,6 +398,7 @@ QLineEdit:focus{
     <property name="font">
      <font>
       <pointsize>10</pointsize>
+      <weight>50</weight>
       <bold>false</bold>
       <kerning>false</kerning>
      </font>

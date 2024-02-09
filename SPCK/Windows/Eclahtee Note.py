@@ -189,7 +189,10 @@ class Register(QMainWindow):
 
         self.setStyleSheet("background-color: white; color: black")
         self.setWindowTitle("Eclahtee - Register")
+        font = QFont("Segoe UI", 10)
+        font.setBold(True)
         self.pushButton.clicked.connect(self.the_button_was_clicked)
+        self.label_7.setFont(font)
         self.label_7.mousePressEvent = lambda event: self.login()
 
     def login(self):
