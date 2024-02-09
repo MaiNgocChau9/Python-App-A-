@@ -1,5 +1,5 @@
-logged: 0
-account: Mai Ngoc Chau
-email: maingocchau@gmail.com
-password: 123
+logged: 1
+account: Admin
+email: admin@example.com
+password: admin
 last_account_name: Admin

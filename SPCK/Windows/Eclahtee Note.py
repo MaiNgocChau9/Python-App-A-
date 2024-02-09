@@ -29,7 +29,7 @@ now = datetime.now()
 time = int(now.strftime("%H"))
 if time <= 13 and time >= 6:
     hello = "Good morning"
-elif time <= 6 and time >= 13:
+elif time <= 18 and time >= 13:
     hello = "Good afternoon"
 else:
     hello = "Good evening"
@@ -1193,4 +1193,5 @@ if logged == 1:
 elif logged == 0:
     login_ui.show()
 
-sys.exit(app.exec())
+app.exec()
+os.remove("Image\\captcha.png")
