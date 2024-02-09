@@ -1,19 +1,15 @@
-    def insert_image(self):
-        # Lấy tên file ảnh
-        filename, _ = QFileDialog.getOpenFileName(self, 'Chèn ảnh', ".", "Images (*.png *.xpm *.jpg *.bmp *.gif)")
+from datetime import datetime
+now = datetime.now()
+day = now.strftime("ngày %d tháng %m")
+time = int(now.strftime("%H"))
 
-        if filename:
-            # Tạo đối tượng ảnh
-            image = QImage(filename)
-
-            # Báo lỗi nếu không thể load ảnh
-            if image.isNull():
-                popup = QMessageBox(QMessageBox.Critical,
-                                    "Lỗi khi tải ảnh",
-                                    "Không thể tải được tệp ảnh!",
-                                    QMessageBox.Ok,
-                                    self)
-                popup.show()
-            else:
-                cursor = self.text_edit.textCursor()
-                cursor.insertImage(image, filename)
+print(f"Giờ: {time}")
+if time <= 11 and time >= 6:
+    print("Chào buổi sáng")
+elif time <= 13 and time >= 12:
+    print("Chào buổi trưa")
+elif time <= 6 and time >= 13:
+    print("Chào buổi chiều")
+else:
+    print("Chào buổi tối")
+print(f"Hôm nay là {day}")

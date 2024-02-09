@@ -20,8 +20,19 @@ import google.generativeai as genai
 import html2text
 import re
 import os
-
 genai.configure(api_key="AIzaSyDf_CTLM3mIPCx5n7fmNAtEQW5QeT2jgI0")
+
+# Get current time
+from datetime import datetime
+hello = ""
+now = datetime.now()
+time = int(now.strftime("%H"))
+if time <= 13 and time >= 6:
+    hello = "Good morning"
+elif time <= 6 and time >= 13:
+    hello = "Good afternoon"
+else:
+    hello = "Good evening"
 
 # Setup global variables
 global note_name, edit_reload, logged, last_ui, user_name
@@ -107,7 +118,7 @@ class Login(QMainWindow):
                     msg_box.exec()
                     self.close()
                     home_ui.show()
-                    home_ui.label_17.setText("Admin")
+                    home_ui.label_17.setText(f"{hello}, Admin")
                     with open("data\\account.ecl", "r+") as f:
                         f.write("logged: 1")
                 else: 
@@ -117,7 +128,7 @@ class Login(QMainWindow):
                     msg_box.exec()
                     self.close()
                     home_ui.show()
-                    home_ui.label_17.setText("Admin")
+                    home_ui.label_17.setText(f"{hello}, Admin")
                     with open("data\\account.ecl", "r+") as f:
                         f.write("logged: 0")
             else:
@@ -167,7 +178,7 @@ class Register(QMainWindow):
                     msg_box.exec()
                     self.close()
                     home_ui.show()
-                    home_ui.label_17.setText(self.lineEdit.text())
+                    home_ui.label_17.setText(f"{hello}, {self.lineEdit.text()}")
                 else:
                     msg_box = QMessageBox()
                     msg_box.setWindowTitle("Caution")
@@ -185,7 +196,7 @@ class Register(QMainWindow):
 class Home(QMainWindow):
     all_task = []
     with open("data\\todo_list.ecl", 'r', encoding='utf-8') as file: 
-        all_task = file.read().splitlines() 
+        all_task = file.read().splitlines()
 
     all_notes = []
     files = os.listdir("All Notes")
@@ -197,7 +208,7 @@ class Home(QMainWindow):
         self.setWindowIcon(QtGui.QIcon('Image\\icon.ico'))
         font = QFont("Segoe UI", 17)
         font.setBold(True)
-        self.label_17.setText(user_name)
+        self.label_17.setText(f"{hello}, Admin")
         self.label_17.setFont(font)
         
         # Font

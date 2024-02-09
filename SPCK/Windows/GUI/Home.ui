@@ -387,8 +387,8 @@ min-height: 80px;</string>
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">max-height: 20px;
-min-height: 20px;</string>
+                <string notr="true">max-height: 30px;
+min-height: 30px;</string>
                </property>
                <property name="text">
                 <string>&lt;User name&gt;</string>
@@ -404,8 +404,8 @@ min-height: 20px;</string>
                 </font>
                </property>
                <property name="styleSheet">
-                <string notr="true">max-height: 20px;
-min-height: 20px;</string>
+                <string notr="true">max-height: 25px;
+min-height: 25px;</string>
                </property>
                <property name="text">
                 <string>The best preparation for tomorrow is doing your best today.</string>
