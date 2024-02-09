@@ -59,7 +59,7 @@ font_edit = "Times New Roman"
 # Login
 class Login(QMainWindow):   
     # Setup
-    image = ImageCaptcha(width=280, height=90, fonts=['times'])
+    image = ImageCaptcha(width=280, height=90)
     captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
     image.write(captcha_text, 'Image//captcha.png')
     image = Image.open('Image//captcha.png')
