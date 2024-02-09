@@ -35,11 +35,10 @@ else:
     hello = "Good evening"
 
 # Setup global variables
-global note_name, edit_reload, logged, last_ui, user_name
+global note_name, edit_reload, logged, last_ui
 note_name = ""
 edit_reload = 0
 last_ui = ""
-user_name = "Admin"
 with open("data\\account.ecl", "r", encoding='utf-8') as f: # Check account
     lines = f.readlines()
     logged = int(lines[0].split(": ")[1])
