@@ -107,7 +107,7 @@ class Login(QMainWindow):
         self.lineEdit_2.setText("")
         self.lineEdit_3.setText("")
         self.lineEdit_4.setText("")
-        self.image = ImageCaptcha(width=280, height=90, fonts=['times'])
+        self.image = ImageCaptcha(width=280, height=90)
         self.captcha_text = ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
         self.image.write(self.captcha_text, 'Image//captcha.png')
         self.image = Image.open('Image//captcha.png')
