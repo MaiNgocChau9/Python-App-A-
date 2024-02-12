@@ -458,7 +458,7 @@ class Chat(QMainWindow):
     Top_p = Mức độ kiểm soát
     Top_k = Mức độ chi tiết
     """
-    generation_config = {"temperature": 1,"top_p": 1,"top_k": 40,"max_output_tokens": 100000}
+    generation_config = {"temperature": 1,"top_p": 1,"top_k": 1,"max_output_tokens": 100000}
     safety_settings = [{"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},]
 
     model = genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config,safety_settings=safety_settings)
@@ -473,7 +473,7 @@ class Chat(QMainWindow):
     prompt_parts = [f"Eclahtee Note (Cơ sở lưu trữ tất cả ghi chú của user): {temp}"]
     prompt_parts += [f"""
 Những câu hỏi thông thường:
-System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng thường xuyên \"kaomoji\" trong mỗi câu trả lời.
+System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt.
 Bạn có thể đọc được ghi chú của người dùng.
 Sử dụng Markdown và Tables (Hạn chế) để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. 
 Tuy nhiên đối với việc code, lập trình hay viết văn thì tôi sẽ đưa ra kết quả đúng và thật chi tiết. 
@@ -489,9 +489,9 @@ Nếu câu hỏi liên quan đến "GHI CHÚ":
 Khi người dùng yêu cầu liên quan đến "Liệt kê tất cả ghi chú của tôi", hãy trả về kết quả dạng danh sách.
 Khi người dùng yêu cầu liên quan đến "Những ghi chú nào có chủ đề ..." (Nói cho đơn giản là tìm kiếm), hãy trả về kết quả dạng danh sách của những ghi chú liên quan.
 Nếu như người dùng có hỏi lại kiểu như "Chỉ có ghi chú đó thôi hả?" (Nói cho đơn giản là yêu cầu kiểm tra lại). Nếu như đã trả lời đầy đủ thì bảo những câu kiểu như "Có vẻ đó là tất cả rồi, nhưng nếu bạn muốn chắc chắn hơn, hãy tự mình kiểm tra lại".
-Sau đó khi người dùng nói những câu chấp nhận kiểu: Oke, Uke, được rồi, được thôi, =)), Oke luôn,... Hãy trả lời theo kiểu: Được thôi, nếu bạn gặp khó khăn gì nhớ hỏi mình nhé 😊
+Sau đó khi người dùng nói những câu chấp nhận kiểu: Oke, Uke, được rồi, được thôi, =)), Oke luôn,... Hãy trả lời theo kiểu: Được thôi, nếu bạn gặp khó khăn gì nhớ hỏi mình nhé
 """,]
-    prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
+    prompt_parts += ['User: Xin chào', 'Xin chào bạn!']
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI//Chat.ui", self)
@@ -569,7 +569,7 @@ p, li { white-space: pre-wrap; }
         self.prompt_parts = [f"Eclahtee Note (Cơ sở lưu trữ tất cả ghi chú của user): {temp}"]
         self.prompt_parts += [f"""
 Những câu hỏi thông thường:
-System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng thường xuyên \"kaomoji\" trong mỗi câu trả lời.
+System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt.
 Bạn có thể đọc được ghi chú của người dùng.
 Sử dụng Markdown và Tables (Hạn chế) để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. 
 Tuy nhiên đối với việc code, lập trình hay viết văn thì tôi sẽ đưa ra kết quả đúng và thật chi tiết. 
@@ -587,7 +587,7 @@ Khi người dùng yêu cầu liên quan đến "Những ghi chú nào có chủ
 Nếu như người dùng có hỏi lại kiểu như "Chỉ có ghi chú đó thôi hả?" (Nói cho đơn giản là yêu cầu kiểm tra lại). Nếu như đã trả lời đầy đủ thì bảo những câu kiểu như "Có vẻ đó là tất cả rồi, nhưng nếu bạn muốn chắc chắn hơn, hãy tự mình kiểm tra lại".
 Sau đó khi người dùng nói những câu chấp nhận kiểu: Oke, Uke, được rồi, được thôi, =)), Oke luôn,... Hãy trả lời theo kiểu: Được thôi, nếu bạn gặp khó khăn gì nhớ hỏi mình nhé 😊
         """,]
-        self.prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
+        self.prompt_parts += ['You: Xin chào', 'Xin chào bạn!']
     
     def the_button_was_clicked(self):
         try:
@@ -888,11 +888,11 @@ class Edit(QMainWindow):
 System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ nhân tạo.
 Sử dụng Markdown để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch, kết quả đúng, ngắn gọn
 Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
-Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, kết hợp với kaomoji. Một chút hài hước cũng được.
+Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên. Một chút hài hước cũng được.
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 \"Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.\"
     """,]
-    prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
+    prompt_parts += ['You: Xin chào', 'Xin chào bạn!']
     def __init__ (self, note_name):
         super().__init__()
         uic.loadUi("GUI//Note_edit.ui", self)
@@ -1068,13 +1068,13 @@ p, li { white-space: pre-wrap; }
 System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ nhân tạo.
 Sử dụng Markdown để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch, kết quả chính xác.
 Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
-Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, kết hợp với kaomoji.
+Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên.
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 \"Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.\"
 Trả lời theo ngôn ngữ tự nhiên tôi và bạn.
 Nếu người dùng nói một số câu nói như "Oh", "Woww",... nhớ là hãy trả lời một cách vui vẻ lên nha.
     """,]
-        self.prompt_parts += ["You: Xin chào", "Eclahtee Assistant: Xin chào bạn!"]
+        self.prompt_parts += ["You: Xin chào", "Xin chào bạn!"]
 
     def the_button_was_clicked(self):
         try:
@@ -1137,11 +1137,11 @@ p, li { white-space: pre-wrap; }
 System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ nhân tạo.
 Sử dụng Markdown để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch, kết quả đúng, ngắn gọn
 Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
-Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, kết hợp với kaomoji.
+Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên.
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 \"Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.\"
     """,]
-        self.prompt_parts += ["You: Xin chào", "Eclahtee Assistant: Xin chào bạn!"]
+        self.prompt_parts += ["You: Xin chào", "Xin chào bạn!"]
     
     def open_last_ui(self):
         print("RUN!!!")
