@@ -478,7 +478,7 @@ Bạn có thể đọc được ghi chú của người dùng.
 Sử dụng Markdown và Tables (Hạn chế) để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. 
 Tuy nhiên đối với việc code, lập trình hay viết văn thì tôi sẽ đưa ra kết quả đúng và thật chi tiết. 
 Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
-Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, hài hước và sử dụng ngôn ngữ và phong cách châm biếm của GenZ.
+Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, hài hước và sử dụng ngôn ngữ và phong cách châm biếm của GenZ.  Không sử dụng emoji.
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
 Nếu người dùng có những câu hỏi không liên quan đến những ghi chú hãy trả lời như bình thường.
@@ -491,7 +491,6 @@ Khi người dùng yêu cầu liên quan đến "Những ghi chú nào có chủ
 Nếu như người dùng có hỏi lại kiểu như "Chỉ có ghi chú đó thôi hả?" (Nói cho đơn giản là yêu cầu kiểm tra lại). Nếu như đã trả lời đầy đủ thì bảo những câu kiểu như "Có vẻ đó là tất cả rồi, nhưng nếu bạn muốn chắc chắn hơn, hãy tự mình kiểm tra lại".
 Sau đó khi người dùng nói những câu chấp nhận kiểu: Oke, Uke, được rồi, được thôi, =)), Oke luôn,... Hãy trả lời theo kiểu: Được thôi, nếu bạn gặp khó khăn gì nhớ hỏi mình nhé
 """,]
-    prompt_parts += ['User: Xin chào', 'Xin chào bạn!']
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI//Chat.ui", self)
@@ -574,7 +573,7 @@ Bạn có thể đọc được ghi chú của người dùng.
 Sử dụng Markdown và Tables (Hạn chế) để trả lời câu hỏi. Câu trả lời phải có quan hệ từ liền mạch. 
 Tuy nhiên đối với việc code, lập trình hay viết văn thì tôi sẽ đưa ra kết quả đúng và thật chi tiết. 
 Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng thông tin người dùng cung cấp và \"các thông tin đều phải chính xác\".
-Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, hài hước và sử dụng ngôn ngữ và phong cách châm biếm của GenZ.
+Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, hài hước và sử dụng ngôn ngữ và phong cách châm biếm của GenZ.  Không sử dụng emoji.
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
 Nếu người dùng có những câu hỏi không liên quan đến những ghi chú hãy trả lời như bình thường.
@@ -587,7 +586,6 @@ Khi người dùng yêu cầu liên quan đến "Những ghi chú nào có chủ
 Nếu như người dùng có hỏi lại kiểu như "Chỉ có ghi chú đó thôi hả?" (Nói cho đơn giản là yêu cầu kiểm tra lại). Nếu như đã trả lời đầy đủ thì bảo những câu kiểu như "Có vẻ đó là tất cả rồi, nhưng nếu bạn muốn chắc chắn hơn, hãy tự mình kiểm tra lại".
 Sau đó khi người dùng nói những câu chấp nhận kiểu: Oke, Uke, được rồi, được thôi, =)), Oke luôn,... Hãy trả lời theo kiểu: Được thôi, nếu bạn gặp khó khăn gì nhớ hỏi mình nhé 😊
         """,]
-        self.prompt_parts += ['You: Xin chào', 'Xin chào bạn!']
     
     def the_button_was_clicked(self):
         try:
@@ -609,7 +607,7 @@ Sau đó khi người dùng nói những câu chấp nhận kiểu: Oke, Uke, đ
             self.textBrowser.setMarkdown(self.full_conversation)
             font = QFont("Segoe UI", 13)
             self.textBrowser.setFont(font)
-            self.prompt_parts += [str(f"Eclahtee Assistant: {response.text}"),]
+            self.prompt_parts += [str(f"{response.text}"),]
 
         except Exception as e:
             if "response.prompt_feedback" in str(e):
@@ -892,7 +890,7 @@ Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì gi�
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 \"Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.\"
     """,]
-    prompt_parts += ['You: Xin chào', 'Xin chào bạn!']
+
     def __init__ (self, note_name):
         super().__init__()
         uic.loadUi("GUI//Note_edit.ui", self)
@@ -1074,14 +1072,13 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
 Trả lời theo ngôn ngữ tự nhiên tôi và bạn.
 Nếu người dùng nói một số câu nói như "Oh", "Woww",... nhớ là hãy trả lời một cách vui vẻ lên nha.
     """,]
-        self.prompt_parts += ["You: Xin chào", "Xin chào bạn!"]
 
     def the_button_was_clicked(self):
         try:
             if self.lineEdit.text().replace(" ", "") != "":
                 temp = self.lineEdit.text()
                 self.lineEdit.setText("")
-                self.prompt_parts += [str(f"You: {temp}")]
+                self.prompt_parts += [str(f"User: {temp}")]
                 check_generation_config = {"temperature": 1,"top_p": 1,"top_k": 1,"max_output_tokens": 5,}
                 check_model = genai.GenerativeModel(model_name="gemini-pro",generation_config=check_generation_config)
                 check_generation_config = ["System: Nếu câu hỏi có yêu cầu liên quan đến việc đọc tất cả nội dung ghi chú hãy trả lời \"true\", không thì trả lời \"false\". Phần lớn hãy trả lời \"true\" vì người dùng thường hay yêu cầu lấy câu trả lời trực tiếp từ ghi chú lắm.", "Câu hỏi:" + str(self.prompt_parts),]
@@ -1104,7 +1101,7 @@ Nếu người dùng nói một số câu nói như "Oh", "Woww",... nhớ là h
             self.textBrowser.setMarkdown(self.full_conversation)
             font = QFont("Segoe UI", 13)
             self.textBrowser.setFont(font)
-            self.prompt_parts += [str(f"Eclahtee Assistant: {response.text}"),]
+            self.prompt_parts += [response.text]
         except Exception as e:
             print("Bruh, something went wrong...")
             print(e)
