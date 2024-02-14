@@ -1179,4 +1179,4 @@ elif logged == 0:
     login_ui.show()
 
 app.exec()
-os.remove("Image//captcha.png")
+if "captcha.png" in os.listdir("Image"): os.remove("Image//captcha.png")
