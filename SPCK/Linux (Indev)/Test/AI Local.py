@@ -1,14 +1,14 @@
-from transformers import Trainer, TrainingArguments
+import ollama
 
-training_args = TrainingArguments("VietnamAIHub/Vietnamese_LLama2_13B_8K_SFT_General_Domain_Knowledge")
+stream = ollama.chat(
+    model='phi',
+    messages=[
 
-trainer = Trainer(
-  model,
-  training_args,
-  train_dataset = tokenized_datasets["train"],
-  eval_dataset = tokenized_datasets["validation"],
-  data_collator = data collator,
-  tokenizer=tokenizer,`
+      {'role': 'system', 'content': "You are a helpful A.I. Your name is Eclahtee. Respond shortestly and only answer the main problem. Do not taking about \"Let's imagine that there are four different types of artificial intelligence\""},
+      {'role': 'user', 'content': 'Hello'}
+      
+      ],
+    stream=True,
 )
 
-trainer. train()
+for chunk in stream: print(chunk['message']['content'], end='', flush=True)
