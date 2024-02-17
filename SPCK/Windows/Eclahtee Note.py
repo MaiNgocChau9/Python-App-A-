@@ -847,9 +847,8 @@ p, li { white-space: pre-wrap; }
         webbrowser.open("https:\\github.com/MaiNgocChau9")
 
     def something_very_cool(self):
-        all_meme = ["https://www.youtube.com/watch?v=dQw4w9WgXcQ", "https://www.youtube.com/watch?v=BMvqvnyGtGo", "https://www.youtube.com/watch?v=4xnsmyI5KMQ", "https://www.youtube.com/watch?v=0tOXxuLcaog"]
-        meme = random.randint(1, 4)
-        webbrowser.open(all_meme[meme - 1])
+	# webbrowser.open(["https://www.youtube.com/watch?v=dQw4w9WgXcQ", "https://www.youtube.com/watch?v=BMvqvnyGtGo", "https://www.youtube.com/watch?v=4xnsmyI5KMQ", "https://www.youtube.com/watch?v=0tOXxuLcaog"][random.randint(0, 3)])
+        webbrowser.open("https://youtu.be/dQw4w9WgXcQ?si=akUnrQhG_-khNSUs")
 
     def home_scr(self):
         home_ui.show()
