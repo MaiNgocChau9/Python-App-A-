@@ -452,26 +452,16 @@ class Notes(QMainWindow):
         self.close()
 
 class Chat(QMainWindow):
-    all_notes = str(os.listdir("All Notes"))
-    print(all_notes)
+    all_notes = os.listdir("All Notes")
     """
     Temperature = Mức độ sáng tạo
     Top_p = Mức độ kiểm soát
     Top_k = Mức độ chi tiết
     """
-    generation_config = {"temperature": 1,"top_p": 1,"top_k": 40,"max_output_tokens": 100000}
-    safety_settings = [{"category": "HARM_CATEGORY_HARASSMENT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_HATE_SPEECH","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},{"category": "HARM_CATEGORY_DANGEROUS_CONTENT","threshold": "BLOCK_MEDIUM_AND_ABOVE"},]
-
-    model = genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config,safety_settings=safety_settings)
+    generation_config = {"temperature": 1,"top_p": 1,"top_k": 30,"max_output_tokens": 100000}
+    model = genai.GenerativeModel(model_name="gemini-pro",generation_config=generation_config)
     full_conversation = ""
     prompt_parts = []
-    temp = ""
-    for note_name in all_notes:
-        with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file: html_code = file.read()
-        temp += f"Tên ghi chú: {note_name} - Nội dung ghi chú: {html2text.html2text(html_code)}; "
-    temp = temp.replace("\n", " ")
-    temp = re.sub(r'!\[.*\]\(.*\)', "", temp)
-    prompt_parts = [f"Eclahtee Note (Cơ sở lưu trữ tất cả ghi chú của user): {temp}"]
     prompt_parts += [f"""
 Những câu hỏi thông thường:
 System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng thường xuyên \"emoji\" trong mỗi câu trả lời.
@@ -483,16 +473,21 @@ Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì gi�
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
 Nếu người dùng có những câu hỏi không liên quan đến những ghi chú hãy trả lời như bình thường.
-Tên người dùng là "{last_account_name}"
 
-Nếu câu hỏi liên quan đến "GHI CHÚ":
+Nếu câu hỏi liên quan đến "TẤT CẢ GHI CHÚ":
 \"!!!LƯU Ý: NHỮNG GHI CHÚ NÀY PHẢI CÓ Ở TRONG TẤT CẢ GHI CHÚ CỦA NGƯỜI DÙNG!!!\"
-Khi người dùng yêu cầu liên quan đến "Liệt kê tất cả ghi chú của tôi", hãy trả về kết quả dạng danh sách.
-Khi người dùng yêu cầu liên quan đến "Những ghi chú nào có chủ đề ..." (Nói cho đơn giản là tìm kiếm), hãy trả về kết quả dạng danh sách của những ghi chú liên quan.
-Nếu như người dùng có hỏi lại kiểu như "Chỉ có ghi chú đó thôi hả?" (Nói cho đơn giản là yêu cầu kiểm tra lại). Nếu như đã trả lời đầy đủ thì bảo những câu kiểu như "Có vẻ đó là tất cả rồi, nhưng nếu bạn muốn chắc chắn hơn, hãy tự mình kiểm tra lại".
+Khi người dùng yêu cầu liên quan đến "Liệt kê tất cả ghi chú của tôi", hãy trả về kết quả dạng danh sách các ghi chú đã cung cấp theo dạng đánh số thứ tự (1. 2. 3. ...)
+Khi người dùng yêu cầu liên quan đến "Những ghi chú nào có chủ đề ..." (Nói cho đơn giản là tìm kiếm một ghi chú mà người dùng có mô tả), hãy trả về kết quả dạng danh sách của những ghi chú liên quan theo dạng đánh số thứ tự (1. 2. 3. ...).
+Nếu như người dùng có hỏi lại kiểu như "Chỉ có ghi chú đó thôi hả?" (Nói cho đơn giản là yêu cầu kiểm tra lại) hãy kiểm tra lại thông tin. Nếu như thiếu hãy trả lời theo kiểu như "À, tôi còn thiếu những ghi chú này: ...".Nếu như đã trả lời đầy đủ thì bảo những câu kiểu như "Có vẻ đó là tất cả rồi, nhưng nếu bạn muốn chắc chắn hơn, hãy tự mình kiểm tra lại".
 Sau đó khi người dùng nói những câu chấp nhận kiểu: Oke, Uke, được rồi, được thôi, =)), Oke luôn,... Hãy trả lời theo kiểu: Được thôi, nếu bạn gặp khó khăn gì nhớ hỏi mình nhé 😊
 """,]
-    prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
+
+    temp = f"Có tất cả {len(all_notes)} ghi chú: {str(all_notes)}. Trong đó, "
+    for note_name in all_notes:
+        with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file: html_code = file.read()
+        temp += f"Ghi chú {note_name}: {html2text.html2text(html_code)}; "
+    prompt_parts += [temp, f'User: Xin chào, tôi tên là \"{last_account_name}\"', 'Xin chào bạn nhé 😁',]
+
     def __init__ (self):
         super().__init__()
         uic.loadUi("GUI\\Chat.ui", self)
@@ -560,14 +555,8 @@ p, li { white-space: pre-wrap; }
 <p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:18pt;">      How can I help you today?</p>
             """)
 
+        self.full_conversation = ""
         self.prompt_parts = []
-        temp = ""
-        for note_name in self.all_notes:
-            with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file: html_code = file.read()
-            temp += f"\n\nTên ghi chú: {note_name} - Nội dung ghi chú: {html2text.html2text(html_code)}; "
-        temp = temp.replace("\n", " ")
-        temp = re.sub(r'!\[.*\]\(.*\)', "", temp)
-        self.prompt_parts = [f"Eclahtee Note (Cơ sở lưu trữ tất cả ghi chú của user): {temp}"]
         self.prompt_parts += [f"""
 Những câu hỏi thông thường:
 System: Bạn là Eclahtee Assistant (Tên rút ngắn là Ecla), một trợ lý trí tuệ. Câu trả lời \"ngắn gọn đến trung bình nhưng phải đầy đủ ý\" và luôn luôn trả lời bằng Tiếng Việt kết hợp với việc sử dụng thường xuyên \"emoji\" trong mỗi câu trả lời.
@@ -579,17 +568,19 @@ Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì gi�
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.
 Nếu người dùng có những câu hỏi không liên quan đến những ghi chú hãy trả lời như bình thường.
-Tên người dùng là "{last_account_name}"
 
-Nếu câu hỏi liên quan đến "GHI CHÚ":
+Nếu câu hỏi liên quan đến "TẤT CẢ GHI CHÚ":
 \"!!!LƯU Ý: NHỮNG GHI CHÚ NÀY PHẢI CÓ Ở TRONG TẤT CẢ GHI CHÚ CỦA NGƯỜI DÙNG!!!\"
-Khi người dùng yêu cầu liên quan đến "Liệt kê tất cả ghi chú của tôi", hãy trả về kết quả dạng danh sách.
-Khi người dùng yêu cầu liên quan đến "Những ghi chú nào có chủ đề ..." (Nói cho đơn giản là tìm kiếm), hãy trả về kết quả dạng danh sách của những ghi chú liên quan.
-Nếu như người dùng có hỏi lại kiểu như "Chỉ có ghi chú đó thôi hả?" (Nói cho đơn giản là yêu cầu kiểm tra lại). Nếu như đã trả lời đầy đủ thì bảo những câu kiểu như "Có vẻ đó là tất cả rồi, nhưng nếu bạn muốn chắc chắn hơn, hãy tự mình kiểm tra lại".
-Sau đó khi người dùng nói những câu chấp nhận kiểu: Oke, Uke, được rồi, được thôi, =)), Oke luôn,... Hãy trả lời theo kiểu: Được thôi, nếu bạn gặp khó khăn gì nhớ hỏi mình nhé 😊
-        """,]
-        self.prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
-    
+Khi người dùng yêu cầu liên quan đến "Liệt kê tất cả ghi chú của tôi", hãy trả về kết quả dạng danh sách các ghi chú đã cung cấp theo dạng đánh số thứ tự (1. 2. 3. ...)
+Khi người dùng yêu cầu liên quan đến "Những ghi chú nào có chủ đề ..." (Nói cho đơn giản là tìm kiếm một ghi chú mà người dùng có mô tả), hãy trả về kết quả dạng danh sách của những ghi chú liên quan theo dạng đánh số thứ tự (1. 2. 3. ...).
+Nếu như người dùng có hỏi lại kiểu như "Chỉ có ghi chú đó thôi hả?" (Nói cho đơn giản là yêu cầu kiểm tra lại) hãy kiểm tra lại thông tin. Nếu như thiếu hãy trả lời theo kiểu như "À, tôi còn thiếu những ghi chú này: ...".Nếu như đã trả lời đầy đủ thì bảo những câu kiểu như "Có vẻ đó là tất cả rồi, nhưng nếu bạn muốn chắc chắn hơn, hãy tự mình kiểm tra lại".
+""",]
+        temp = f"Có tất cả {len(self.all_notes)} ghi chú: {str(self.all_notes)}. Trong đó, "
+        for note_name in self.all_notes:
+            with open(f"All Notes\\{note_name}", 'r', encoding = 'utf-8') as file: html_code = file.read()
+            temp += f"Ghi chú {note_name}: {html2text.html2text(html_code)}; "
+        self.prompt_parts += [temp, f'User: Xin chào, tôi tên là \"{last_account_name}\"', 'Xin chào bạn 😁',]
+        
     def the_button_was_clicked(self):
         try:
             if self.lineEdit.text().replace(" ", "") != "":
@@ -610,7 +601,7 @@ Sau đó khi người dùng nói những câu chấp nhận kiểu: Oke, Uke, đ
             self.textBrowser.setMarkdown(self.full_conversation)
             font = QFont("Segoe UI", 13)
             self.textBrowser.setFont(font)
-            self.prompt_parts += [str(f"Eclahtee Assistant: {response.text}"),]
+            self.prompt_parts += [response.text]
 
         except Exception as e:
             if "response.prompt_feedback" in str(e):
