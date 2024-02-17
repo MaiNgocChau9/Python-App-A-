@@ -15,6 +15,7 @@
 
 ## **Cách Sử Dụng**
 * Mở thư mục Windows lên. Và nhập lệnh này: ```pip install -r requirements.txt```
+* Hoặc có thể tải về file setup mới nhất tại [đây](https://github.com/MaiNgocChau9/Python-App-A-/releases)
 
 ## **Định Hướng Phát Triển**
   
@@ -22,11 +23,7 @@
   * Tích hợp phương pháp Pomodoro để giúp bạn tập trung hiệu quả. ⏲️
   * Thời gian làm việc chia thành chu kỳ 25 phút và nghỉ giải lao 5 phút. Sau 4 chu kỳ, bạn có thời gian nghỉ dài 10-15 phút. ⏱️
 
-### **Thêm Hình Ảnh, Liên Kết**
-  * Thêm hình ảnh, liên kết vào ghi chú giúp chúng sống động và chi tiết hơn. 📸
-  * Hỗ trợ thêm hình ảnh, liên kết từ các nguồn khác nhau như Google Drive, Dropbox, Unsplash, ... 🌐
-
-### **Online**
+### **Đồng bộ**
   * Truy cập ghi chú từ mọi nơi qua Internet. 🌍
   * Tích hợp với các ứng dụng khác như Google Calendar, Outlook Calendar, Todoist, để quản lý công việc hiệu quả hơn. 📅
 
