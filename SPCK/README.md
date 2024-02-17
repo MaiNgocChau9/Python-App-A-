@@ -38,5 +38,3 @@
   ![About](https://github.com/MaiNgocChau9/Python-App-A-/assets/123575751/01ff333c-c21b-49ef-a9c3-32cf0b1ebfca)
 ### **✍️ Edit**
   ![Edit](https://github.com/MaiNgocChau9/Python-App-A-/assets/123575751/82f67caa-54b8-419c-aaa2-94c5235b9692)
-
-
