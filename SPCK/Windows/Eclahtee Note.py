@@ -452,7 +452,8 @@ class Notes(QMainWindow):
         self.close()
 
 class Chat(QMainWindow):
-    all_notes = os.listdir("All Notes")
+    all_notes = str(os.listdir("All Notes"))
+    print(all_notes)
     """
     Temperature = Mức độ sáng tạo
     Top_p = Mức độ kiểm soát
