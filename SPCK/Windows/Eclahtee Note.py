@@ -123,7 +123,7 @@ class Login(QMainWindow):
                 if self.checkBox.isChecked(): 
                     msg_box = QMessageBox()
                     msg_box.setWindowTitle("Success")
-                    msg_box.setText("Đăng nhập thành công!")
+                    msg_box.setText("Logged in successfully!")
                     msg_box.exec()
                     self.close()
                     home_ui.show()
@@ -134,7 +134,7 @@ class Login(QMainWindow):
                 else: 
                     msg_box = QMessageBox()
                     msg_box.setWindowTitle("Success")
-                    msg_box.setText("Đăng nhập thành công!")
+                    msg_box.setText("Logged in successfully!")
                     msg_box.exec()
                     self.close()
                     home_ui.show()
@@ -148,7 +148,7 @@ class Login(QMainWindow):
                 if self.checkBox.isChecked(): 
                     msg_box = QMessageBox()
                     msg_box.setWindowTitle("Success")
-                    msg_box.setText("Đăng nhập thành công!")
+                    msg_box.setText("Logged in successfully!")
                     msg_box.exec()
                     self.close()
                     home_ui.show()
@@ -159,7 +159,7 @@ class Login(QMainWindow):
                 else: 
                     msg_box = QMessageBox()
                     msg_box.setWindowTitle("Success")
-                    msg_box.setText("Đăng nhập thành công!")
+                    msg_box.setText("Logged in successfully!")
                     msg_box.exec()
                     self.close()
                     home_ui.show()
@@ -169,15 +169,15 @@ class Login(QMainWindow):
                         f.write("logged: 0")
             else:
                 msg_box = QMessageBox()
-                msg_box.setWindowTitle("Lỗi")
+                msg_box.setWindowTitle("Error")
                 msg_box.setIcon(QMessageBox.Icon.Warning)
-                msg_box.setText("Mã captcha sai")
+                msg_box.setText("Wrong captcha")
                 msg_box.exec()
         else:
             msg_box = QMessageBox()
-            msg_box.setWindowTitle("Lỗi")
+            msg_box.setWindowTitle("Error")
             msg_box.setIcon(QMessageBox.Icon.Warning)
-            msg_box.setText("Email hoặc mật khẩu sai")
+            msg_box.setText("Incorrect email or password")
             msg_box.exec()
 
 #Register
@@ -202,17 +202,17 @@ class Register(QMainWindow):
     def the_button_was_clicked(self):
         if self.lineEdit.text().replace(" ", "") == "" or self.lineEdit_2.text().replace(" ", "") == "" or self.lineEdit_3.text().replace(" ", "") == "" or self.lineEdit_4.text().replace(" ", "") == "":
             msg_box = QMessageBox()
-            msg_box.setWindowTitle("Lỗi")
+            msg_box.setWindowTitle("Error")
             msg_box.setIcon(QMessageBox.Icon.Warning)
-            msg_text = "Vui lòng nhập đầy đủ thông tin đăng ký!"
+            msg_text = "Please fill in all the registration information!"
             msg_box.setText(msg_text)
             msg_box.exec()
         else:
             if self.lineEdit_2.text() == self.lineEdit_4.text():
                 if self.checkBox.isChecked():
                     msg_box = QMessageBox()
-                    msg_box.setWindowTitle("Thành công")
-                    msg_text = "Tài khoản đã được tạo!\n" + f"Name: {self.lineEdit.text()}\nEmail: {self.lineEdit_3.text()}\nPassword: {self.lineEdit_2.text()}"
+                    msg_box.setWindowTitle("Success")
+                    msg_text = "Your account has been created successfully!\n" + f"Name: {self.lineEdit.text()}\nEmail: {self.lineEdit_3.text()}\nPassword: {self.lineEdit_2.text()}"
                     msg_box.setText(msg_text)
                     msg_box.exec()
                     self.close()
@@ -225,13 +225,13 @@ class Register(QMainWindow):
                     msg_box = QMessageBox()
                     msg_box.setWindowTitle("Caution")
                     msg_box.setIcon(QMessageBox.Icon.Warning)
-                    msg_box.setText("Vui lòng đánh dấu vào \"I agree to Eclahtee's terms\"")
+                    msg_box.setText("Please agree to Eclahtee's terms")
                     msg_box.exec()
             else:
                     msg_box = QMessageBox()
                     msg_box.setWindowTitle("Caution")
                     msg_box.setIcon(QMessageBox.Icon.Warning)
-                    msg_box.setText("Mật khẩu không hợp lệ!")
+                    msg_box.setText("Incorrect password")
                     msg_box.exec()
 
 #Main
@@ -406,9 +406,9 @@ class Notes(QMainWindow):
                 with open(os.path.join("All Notes", note_name), 'w', encoding='utf-8') as file: file.write("")
             else:
                 msg_box = QMessageBox()
-                msg_box.setWindowTitle("Lỗi")
+                msg_box.setWindowTitle("Error")
                 msg_box.setIcon(QMessageBox.Icon.Warning)
-                msg_box.setText("Tên ghi chú đã tồn tại!")
+                msg_box.setText("Note name already exists!")
                 msg_box.exec()
                 notes_ui.add_note()
     
@@ -601,43 +601,7 @@ Nếu như người dùng có hỏi lại kiểu như "Chỉ có ghi chú đó t
             self.prompt_parts += [response.text]
 
         except Exception as e:
-            if "response.prompt_feedback" in str(e):
-                msg_box = QMessageBox()
-                msg_box.setWindowTitle("Error, something went wrong...")
-                msg_box.setIcon(QMessageBox.Icon.Warning)
-                msg_box.setText("Trong câu hỏi của bạn sử dụng từ ngữ không phù hợp!!!")
-                msg_box.exec()
-
-            elif "cannot access local variable 'response' where it is not associated with a value" in str(e):
-                if self.full_conversation == "":
-                    self.textBrowser.setHtml("""
-<!DOCTYPE HTML PUBLIC "-\\W3C\\DTD HTML 4.0\\EN" "http:\\www.w3.org/TR/REC-html40/strict.dtd">
-<html><head><meta name="qrichtext" content="1" /><style type="text/css">
-p, li { white-space: pre-wrap; }
-</style></head><body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:8pt;"><br /></p>
-<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
-<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
-<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
-<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:28pt; font-weight:600;">Hello</span></p>
-<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:18pt; align: center">        How can I help you today?</p>
-                """)
-                    
-            else:
-                self.textBrowser.setHtml("""
-<!DOCTYPE HTML PUBLIC "-\\W3C\\DTD HTML 4.0\\EN" "http:\\www.w3.org/TR/REC-html40/strict.dtd">
-<html><head><meta name="qrichtext" content="1" /><style type="text/css">
-p, li { white-space: pre-wrap; }
-</style></head><body style=" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;">
-<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:8pt;"><br /></p>
-<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
-<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
-<p align="center" style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:22pt; font-weight:600;"><br /></p>
-<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-family:'Segoe UI'; font-size:28pt; font-weight:600;">Hello</span></p>
-<p align="center" style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Segoe UI'; font-size:18pt;">      How can I help you today?</p>
-                """)
-                print("Bruh, something went wrong...")
-                print(e)
+            print(e)
 
 class Search(QMainWindow):
     ai_search = False
@@ -711,9 +675,9 @@ class Search(QMainWindow):
                         search_notes.append(note)
                 if search_notes == []: # Nếu không tìm thấy ghi chú liên quan
                     msg_box = QMessageBox()
-                    msg_box.setWindowTitle("Lỗi")
+                    msg_box.setWindowTitle("Error")
                     msg_box.setIcon(QMessageBox.Icon.Warning)
-                    msg_box.setText("┗( T__T )┛\nKhông tìm thấy ghi chú liên quan")
+                    msg_box.setText("┗( T__T )┛\nNo related notes found")
                     msg_box.exec()
                 
                 elif search_notes != []: # Nếu tìm thấy ghi chú liên quan
@@ -743,9 +707,9 @@ class Search(QMainWindow):
                 # Add response to listWidget_2
                 if search_notes == []: # Nếu không tìm thấy ghi chú liên quan
                     msg_box = QMessageBox()
-                    msg_box.setWindowTitle("Lỗi")
+                    msg_box.setWindowTitle("Error")
                     msg_box.setIcon(QMessageBox.Icon.Warning)
-                    msg_box.setText("┗( T__T )┛\nKhông tìm thấy ghi chú liên quan")
+                    msg_box.setText("┗( T__T )┛\nNo related notes found")
                     msg_box.exec()
             
                 elif search_notes != []: # Nếu tìm thấy ghi chú liên quan
@@ -758,8 +722,8 @@ class Search(QMainWindow):
             self.pushButton_3.setText("Use Normal Search Mode")
             self.ai_search = True
             msg_box = QMessageBox()
-            msg_box.setWindowTitle("Thành công")
-            msg_text = "Đã chuyển sang chế độ tìm kiếm bằng A.I\nHãy thử nhập mô tả ghi chú vào thanh tìm kiếm!"
+            msg_box.setWindowTitle("Success")
+            msg_text = "Switched to A.I. search mode\nTry entering a note description into the search bar!"
             msg_box.setText(msg_text)
             msg_box.exec()
 
@@ -767,8 +731,8 @@ class Search(QMainWindow):
             self.pushButton_3.setText("Use A.I Search Mode")
             self.ai_search = False
             msg_box = QMessageBox()
-            msg_box.setWindowTitle("Thành công")
-            msg_text = "Đã chuyển sang chế độ tìm kiếm thông thường"
+            msg_box.setWindowTitle("Success")
+            msg_text = "Switched to normal search mode"
             msg_box.setText(msg_text)
             msg_box.exec()
 
@@ -1026,9 +990,9 @@ p, li { white-space: pre-wrap; }
             image = QImage(filename)
             if image.isNull():
                 msg_box = QMessageBox()
-                msg_box.setWindowTitle("Lỗi")
+                msg_box.setWindowTitle("Error")
                 msg_box.setIcon(QMessageBox.Icon.Warning)
-                msg_box.setText("Chèn hình ảnh không thành công")
+                msg_box.setText("Image insertion failed")
                 msg_box.exec()
             else:
                 cursor.insertImage(image, filename)
@@ -1096,21 +1060,7 @@ Nếu người dùng nói một số câu nói như "Oh", "Woww",... nhớ là h
             self.textBrowser.setFont(font)
             self.prompt_parts += [str(f"Eclahtee Assistant: {response.text}"),]
         except Exception as e:
-            print("Bruh, something went wrong...")
             print(e)
-
-            if "response.prompt_feedback" in str(e):
-                msg_box = QMessageBox()
-                msg_box.setWindowTitle("Error, something went wrong...")
-                msg_box.setIcon(QMessageBox.Icon.Warning)
-                msg_box.setText("Trong câu hỏi của bạn sử dụng từ ngữ không phù hợp!!!")
-                msg_box.exec()
-            else:
-                msg_box = QMessageBox()
-                msg_box.setWindowTitle("Error, something went wrong...")
-                msg_box.setIcon(QMessageBox.Icon.Warning)
-                msg_box.setText(f"{e}")
-                msg_box.exec()
     
     def new_chat(self):
         self.full_conversation = ""
@@ -1134,7 +1084,6 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
         self.prompt_parts += ["You: Xin chào", "Eclahtee Assistant: Xin chào bạn!"]
     
     def open_last_ui(self):
-        print("RUN!!!")
         print(last_ui)
         if last_ui == "Notes":
             notes_ui.show()
