@@ -1,4 +1,4 @@
-logged: 1
+logged: 0
 account: Admin
 email: admin@example.com
 password: admin
