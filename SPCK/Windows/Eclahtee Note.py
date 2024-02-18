@@ -493,7 +493,7 @@ Sau đó khi người dùng nói những câu chấp nhận kiểu: Oke, Uke, đ
         self.pushButton_3.clicked.connect(self.home_scr)
         self.pushButton_4.clicked.connect(self.notes_scr)
         self.pushButton_6.clicked.connect(self.search_scr)
-        self.pushButton_7.clicked.connect(self.search_scr)
+        self.pushButton_7.clicked.connect(self.about_scr)
         self.pushButton_8.clicked.connect(self.log_out)
         self.pushButton.clicked.connect(self.the_button_was_clicked)
         self.pushButton_2.clicked.connect(self.new_chat)
