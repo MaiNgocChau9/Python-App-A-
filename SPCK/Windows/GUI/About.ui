@@ -78,23 +78,16 @@ border-radius: 18px;</string>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_2">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
+        <widget class="QPushButton" name="pushButton">
          <property name="styleSheet">
-          <string notr="true">QLabel{
+          <string notr="true">QPushButton{
 	max-height: 22px;
 	border: 2px solid #FBFBFA;
 	padding: 6px;
 	border-radius: 18px;
 }
 
-QLabel:hover{
+QPushButton::hover{
 	max-height: 22px;
 	border: 2px solid gray;
 	padding: 6px;
@@ -104,35 +97,29 @@ QLabel:hover{
          <property name="text">
           <string/>
          </property>
-         <property name="pixmap">
-          <pixmap>../Image/home_d.png</pixmap>
+         <property name="icon">
+          <iconset>
+           <normaloff>../Image/home_d.png</normaloff>../Image/home_d.png</iconset>
          </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_3">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
+        <widget class="QPushButton" name="pushButton_2">
          <property name="styleSheet">
-          <string notr="true">QLabel{
+          <string notr="true">QPushButton{
 	max-height: 22px;
 	border: 2px solid #FBFBFA;
 	padding: 6px;
 	border-radius: 18px;
 }
 
-QLabel:hover{
+QPushButton::hover{
 	max-height: 22px;
 	border: 2px solid gray;
 	padding: 6px;
@@ -142,35 +129,29 @@ QLabel:hover{
          <property name="text">
           <string/>
          </property>
-         <property name="pixmap">
-          <pixmap>../Image/notes_d.png</pixmap>
+         <property name="icon">
+          <iconset>
+           <normaloff>../Image/notes_d.png</normaloff>../Image/notes_d.png</iconset>
          </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_4">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
+        <widget class="QPushButton" name="pushButton_4">
          <property name="styleSheet">
-          <string notr="true">QLabel{
+          <string notr="true">QPushButton{
 	max-height: 22px;
 	border: 2px solid #FBFBFA;
 	padding: 6px;
 	border-radius: 18px;
 }
 
-QLabel:hover{
+QPushButton::hover{
 	max-height: 22px;
 	border: 2px solid gray;
 	padding: 6px;
@@ -180,35 +161,29 @@ QLabel:hover{
          <property name="text">
           <string/>
          </property>
-         <property name="pixmap">
-          <pixmap>../Image/chat_d.png</pixmap>
+         <property name="icon">
+          <iconset>
+           <normaloff>../Image/chat_d.png</normaloff>../Image/chat_d.png</iconset>
          </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_10">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
+        <widget class="QPushButton" name="pushButton_5">
          <property name="styleSheet">
-          <string notr="true">QLabel{
+          <string notr="true">QPushButton{
 	max-height: 22px;
 	border: 2px solid #FBFBFA;
 	padding: 6px;
 	border-radius: 18px;
 }
 
-QLabel:hover{
+QPushButton::hover{
 	max-height: 22px;
 	border: 2px solid gray;
 	padding: 6px;
@@ -218,14 +193,15 @@ QLabel:hover{
          <property name="text">
           <string/>
          </property>
-         <property name="pixmap">
-          <pixmap>../Image/search_d.png</pixmap>
+         <property name="icon">
+          <iconset>
+           <normaloff>../Image/search_d.png</normaloff>../Image/search_d.png</iconset>
          </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
          </property>
         </widget>
        </item>
@@ -243,14 +219,7 @@ QLabel:hover{
         </spacer>
        </item>
        <item>
-        <widget class="QLabel" name="label_6">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
+        <widget class="QPushButton" name="pushButton_6">
          <property name="styleSheet">
           <string notr="true">max-height: 22px;
 border: 2px solid #333333;
@@ -260,35 +229,29 @@ border-radius: 18px;</string>
          <property name="text">
           <string/>
          </property>
-         <property name="pixmap">
-          <pixmap>../Image/about_a.png</pixmap>
+         <property name="icon">
+          <iconset>
+           <normaloff>../Image/about_a.png</normaloff>../Image/about_a.png</iconset>
          </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_9">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-           <weight>75</weight>
-           <bold>true</bold>
-          </font>
-         </property>
+        <widget class="QPushButton" name="pushButton_7">
          <property name="styleSheet">
-          <string notr="true">QLabel{
+          <string notr="true">QPushButton{
 	max-height: 22px;
 	border: 2px solid #FBFBFA;
 	padding: 6px;
 	border-radius: 18px;
 }
 
-QLabel:hover{
+QPushButton::hover{
 	max-height: 22px;
 	border: 2px solid gray;
 	padding: 6px;
@@ -298,14 +261,15 @@ QLabel:hover{
          <property name="text">
           <string/>
          </property>
-         <property name="pixmap">
-          <pixmap>../Image/log_out.png</pixmap>
+         <property name="icon">
+          <iconset>
+           <normaloff>../Image/log_out.png</normaloff>../Image/log_out.png</iconset>
          </property>
-         <property name="scaledContents">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+         <property name="iconSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
          </property>
         </widget>
        </item>
