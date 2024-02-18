@@ -952,17 +952,17 @@ p, li { white-space: pre-wrap; }
         self.textEdit.setTextCursor(cursor)
         
     def setItalic(self):
-        cursor = self.textEdit.textCursor()
-        format_italic = QTextCharFormat()
+        cursor = self.textEdit.textCursor() # Lấy chuỗi đang được chọn
+        format_italic = QTextCharFormat() # QTextCharFormat để thay đổi độ dày, in đậm, nghiêng chữ
 
         if cursor.hasSelection():
             current_format = cursor.charFormat()
             if current_format.fontItalic() == False:
                 format_italic.setFontItalic(True)
-                cursor.mergeCharFormat(format_italic)
+                cursor.mergeCharFormat(format_italic) # Thay đổi chuỗi đang được chọn
             elif current_format.fontItalic() == True:
                 format_italic.setFontItalic(False)
-                cursor.mergeCharFormat(format_italic)
+                cursor.mergeCharFormat(format_italic) # Thay đổi chuỗi đang được chọn
         self.textEdit.setTextCursor(cursor)
 
     def setUnderline(self):
@@ -983,10 +983,11 @@ p, li { white-space: pre-wrap; }
         cursor = self.textEdit.textCursor()
         format_font = QTextCharFormat()
         current_format = cursor.charFormat()
-
+        # print(cursor.selectedText())
+        
         # Check format
         temp = [current_format.fontUnderline(), current_format.fontItalic(), current_format.fontWeight() == QFont.Weight.Bold]
-
+        
         # Format
         format_underline = QTextCharFormat()
         format_italic = QTextCharFormat()
