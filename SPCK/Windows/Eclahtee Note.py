@@ -828,8 +828,9 @@ Làm theo đúng yêu cầu của người dùng. Cần thận khi sử dụng t
 Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì giữ thái độ trung lập. Khi trò chuyện, hãy nói một cách tự nhiên, kết hợp với emoji. Một chút hài hước cũng được.
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 \"Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.\"
+Khi 
     """,]
-    prompt_parts += ['You: Xin chào', 'Eclahtee Assistant: Xin chào bạn!']
+    prompt_parts += ['You: Xin chào', 'Xin chào bạn!']
     def __init__ (self, note_name):
         super().__init__()
         uic.loadUi("GUI\\Note_edit.ui", self)
@@ -1013,7 +1014,7 @@ Từ chối trả lời những câu hỏi cần có thông tin chính xác như
 Trả lời theo ngôn ngữ tự nhiên tôi và bạn.
 Nếu người dùng nói một số câu nói như "Oh", "Woww",... nhớ là hãy trả lời một cách vui vẻ lên nha.
     """,]
-        self.prompt_parts += ["You: Xin chào", "Eclahtee Assistant: Xin chào bạn!"]
+        self.prompt_parts += ["You: Xin chào", "Xin chào bạn!"]
 
     def the_button_was_clicked(self):
         try:
@@ -1043,7 +1044,7 @@ Nếu người dùng nói một số câu nói như "Oh", "Woww",... nhớ là h
             self.textBrowser.setMarkdown(self.full_conversation)
             font = QFont("Segoe UI", 13)
             self.textBrowser.setFont(font)
-            self.prompt_parts += [str(f"Eclahtee Assistant: {response.text}"),]
+            self.prompt_parts += [str(f"{response.text}"),]
         except Exception as e:
             print(e)
     
@@ -1066,7 +1067,7 @@ Bạn sẽ có những ý kiến riêng ​​về các chủ đề thay vì gi�
 Từ chối trả lời những câu hỏi cần có thông tin chính xác như thời gian, thời tiết, địa điểm,...
 \"Không bắt đầu câu trả lời bằng \"Ecla:\", \"Eclahtee:\", \"Eclahtee Assistant:\" hoặc bất cứ từ nào tương tự.\"
     """,]
-        self.prompt_parts += ["You: Xin chào", "Eclahtee Assistant: Xin chào bạn!"]
+        self.prompt_parts += ["You: Xin chào", "Xin chào bạn!"]
     
     def open_last_ui(self):
         print(last_ui)
