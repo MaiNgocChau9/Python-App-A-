@@ -984,7 +984,7 @@ p, li { white-space: pre-wrap; }
         format_font = QTextCharFormat()
         current_format = cursor.charFormat()
         # print(cursor.selectedText())
-        
+
         # Check format
         temp = [current_format.fontUnderline(), current_format.fontItalic(), current_format.fontWeight() == QFont.Weight.Bold]
         
@@ -1019,10 +1019,12 @@ p, li { white-space: pre-wrap; }
             current_format = cursor.charFormat()
             format_bold.setFontWeight(QFont.Weight.Bold)
             cursor.mergeCharFormat(format_bold)
-        self.textEdit.setTextCursor(cursor)    
+        self.textEdit.setTextCursor(cursor)
 
     def insert_image(self):
-        filename, _ = QFileDialog.getOpenFileName(self, 'Chèn ảnh', ".", "Images (*.png *.xpm *.jpg *.bmp *.gif)")
+        filename = QFileDialog.getOpenFileName(self, 'Add Image', "", "Images (*.png *.jpg)")[0]
+        cursor = self.textEdit.textCursor()
+
         if filename:
             image = QImage(filename)
             if image.isNull():
@@ -1032,7 +1034,6 @@ p, li { white-space: pre-wrap; }
                 msg_box.setText("Chèn hình ảnh không thành công")
                 msg_box.exec()
             else:
-                cursor = self.textEdit.textCursor()
                 cursor.insertImage(image, filename)
 
 
